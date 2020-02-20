@@ -7,6 +7,7 @@ import Products from './Components/Products/Products';
 import TestProducts from './Components/Products/Test-Products';
 import SearchBox from './Components/SearchBox/SearchBox';
 import './App.css';
+import ProductPage from './Components/ProductPage/ProductPage'
 
 class App extends Component {
   constructor() {
@@ -14,8 +15,10 @@ class App extends Component {
     this.state = {
       products: TestProducts,
       searchField: "",
-      navbarOpen: false
+      navbarOpen: false,
+      indexOfProduct:-1
     }
+    
   }
 
   handleChange = (e) => {
@@ -26,6 +29,14 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   }
 
+  ChangeIndexOfProduct=(index)=>{
+    this.setState({
+        indexOfProduct:index
+    })
+  }
+
+
+
   render() {
     const myStyle = {
       display: 'flex'
@@ -33,7 +44,7 @@ class App extends Component {
 
     let {searchField,products}=this.state;
     const filteredProducts=products.filter((product)=>(product.title.toLowerCase().includes(searchField.toLowerCase())));
-    console.log(filteredProducts);
+    
 
     return (
       <BrowserRouter>
@@ -51,13 +62,18 @@ class App extends Component {
                 <div>
                 <SearchBox {...props} handleChange={this.handleChange}/>
                 <div className="Big-Container">
-                <Products {...props} items={filteredProducts}/>
+                <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct}/>
                 </div>
+
                 </div>
                 
+                
               )} />
-              {/* <Route path = "/product/:id"  component={Product}/> 
-                <Route path="*" component={NotFound} /> */}
+
+              <Route path={"/product/"+ this.state.indexOfProduct} render={(props)=>(
+                <ProductPage {...props} item={this.state.products[this.state.indexOfProduct]}/>
+              )}></Route>
+              
             </Switch>
           </div>
         </div>

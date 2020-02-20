@@ -1,0 +1,14 @@
+
+
+.Big-Container a:link,.Big-Container a:visited{
+    display: inline-block;
+    text-decoration: none;
+    color:#2b251d   
+    
+}
+.Big-Container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+

@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-import './Product.css'
+import React from 'react';
+import './Product.css';
+import {Link} from "react-router-dom";
 
-function ProductCard(props) {
+function Product(props) {
     return <div className="card-container">
+        
+        <Link onClick={()=>props.changeIndex(props.id)} to={'product/' + props.id}>
         <div className='card-image'>
             <img src={props.item.image} alt="product" />
         </div>
@@ -11,7 +14,8 @@ function ProductCard(props) {
             <h4>{props.item.category}</h4>
             <p>{props.item.excerpt} </p>
         </div>
+        </Link>
     </div>
 }
 
-export default ProductCard;
+export default Product;

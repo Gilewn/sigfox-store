@@ -23,26 +23,26 @@ const Sidebar = () => {
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
                     <NavIcon>
-                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em', color: '#7824ff' }} />
                     </NavIcon>
-                    <NavText>
+                    <NavText style={{ color: '#7824ff' }}> 
                         All Solutions
                     </NavText>
                 </NavItem>
                 <NavItem eventKey="charts">
                     <NavIcon>
-                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', color: '#7824ff' }}/>
                     </NavIcon>
-                    <NavText>
+                    <NavText style={{ color: '#7824ff' }}>
                         All Products
                     </NavText>
                     <NavItem eventKey="charts/linechart">
-                        <NavText>
+                        <NavText style={{ color: '#7824ff' }}>
                             Smart Cities
                         </NavText>
                     </NavItem>
                     <NavItem eventKey="charts/barchart">
-                        <NavText>
+                        <NavText style={{ color: '#7824ff' }}>
                             Smart Buildings
                         </NavText>
                     </NavItem>

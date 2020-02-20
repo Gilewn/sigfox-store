@@ -31,9 +31,9 @@ class App extends Component {
       display: 'flex'
     };
 
-    let {searchField,products}=this.state;
-    const filteredProducts=products.filter((product)=>(product.title.toLowerCase().includes(searchField.toLowerCase())));
-    console.log(filteredProducts);
+    // let {searchField,products}=this.state;
+    // const filteredProducts=products.filter((product)=>(product.title.toLowerCase().includes(searchField.toLowerCase())));
+    // console.log(filteredProducts);
 
     return (
       <BrowserRouter>
@@ -43,16 +43,8 @@ class App extends Component {
             handleNavbar={this.handleNavbar} />
           <div style={myStyle}>
             <Sidebar />
-            <SearchBox handleChange={this.handleChange}/>
-            <Products items={filteredProducts}/>
             <Switch>
               <Route path="/" exact component={Solutions} />
-              {/* <Route exact path="/products" render = {(props) => (
-                <Products items = {props.match.params.items}/>
-                
-              )} /> */}
-              {/* <Route path = "/product/:id"  component={Product}/> 
-                <Route path="*" component={NotFound} /> */}
             </Switch>
           </div>
         </div>

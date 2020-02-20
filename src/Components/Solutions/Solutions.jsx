@@ -10,7 +10,7 @@ import solutions from "./Test-Solutions";
 
 function Solutions (props) {
     const cardItem = {
-        width: '35%'
+        width: '20vw'
     };
 
   return (
@@ -20,25 +20,24 @@ function Solutions (props) {
           <Grid
             style={ cardItem }
             item key={solution.title}>
-            <Card>
+            <Card style={{height: '25vh'}}>
               <CardActionArea>
                 <CardMedia
                   component="img"
                   alt="Test Product"
-                  height="140"
+                  height="100vh"
                   image={solution.image}
                   title="Test Product"
                 />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                <CardContent style={{ position: 'absolute', padding: '0px 5px', top: '0.5%', color: '#fff', textShadow: '1px 2px 2px #656565'}}>
+                  <Typography gutterBottom variant="h4" component="h2" style={{ fontSize: '26px'}}>
                     {solution.title}
                   </Typography>
-                  <Typography component="p">{solution.excerpt}</Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Learn More
+                <Button size="small" color="primary" style={{ textTransform: 'none', margin: '0 auto'}}>
+                  Available Products
                 </Button>
               </CardActions>
             </Card>

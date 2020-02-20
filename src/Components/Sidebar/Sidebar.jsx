@@ -6,11 +6,11 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 const Sidebar = () => {
     const navStyle = {
         position: 'relative',
-        backgroundColor: '#3f51b5',
+        backgroundColor: '#7824ff',
         height: '60vh',
         top: '10vh'
     };
-
+    
     return (
         <SideNav
             style={navStyle}

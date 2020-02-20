@@ -7,6 +7,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import solutions from "./Test-Solutions";
+import {Link} from "react-router-dom";
+import "./Solutions.css";
 
 function Solutions (props) {
     const cardItem = {
@@ -20,8 +22,9 @@ function Solutions (props) {
           <Grid
             style={ cardItem }
             item key={solution.title}>
-            <Card>
-              <CardActionArea>
+             <Link className="solutions" to="/products">
+            <Card >
+              <CardActionArea >
                 <CardMedia
                   component="img"
                   alt="Test Product"
@@ -29,11 +32,11 @@ function Solutions (props) {
                   image={solution.image}
                   title="Test Product"
                 />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
+                <CardContent >
+                  <Typography  gutterBottom variant="h5" component="h2">
                     {solution.title}
                   </Typography>
-                  <Typography component="p">{solution.excerpt}</Typography>
+                  <Typography  component="p">{solution.excerpt}</Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
@@ -42,6 +45,7 @@ function Solutions (props) {
                 </Button>
               </CardActions>
             </Card>
+            </Link>
           </Grid>
         ))}
       </Grid>

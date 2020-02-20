@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.Products {
+  text-align: center;
+}
+
+.CardItem {
+  width: 35%;
+}
+
+.Big-Container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+

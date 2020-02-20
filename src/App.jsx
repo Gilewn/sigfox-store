@@ -43,14 +43,19 @@ class App extends Component {
             handleNavbar={this.handleNavbar} />
           <div style={myStyle}>
             <Sidebar />
-            <SearchBox handleChange={this.handleChange}/>
-            <Products items={filteredProducts}/>
+            
+            
             <Switch>
               <Route path="/" exact component={Solutions} />
-              {/* <Route exact path="/products" render = {(props) => (
-                <Products items = {props.match.params.items}/>
+              <Route exact path="/products" render = {(props) => (
+                <div>
+                <SearchBox {...props} handleChange={this.handleChange}/>
+                <div className="Big-Container">
+                <Products {...props} items={filteredProducts}/>
+                </div>
+                </div>
                 
-              )} /> */}
+              )} />
               {/* <Route path = "/product/:id"  component={Product}/> 
                 <Route path="*" component={NotFound} /> */}
             </Switch>

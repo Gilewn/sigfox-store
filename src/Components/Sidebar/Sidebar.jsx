@@ -9,9 +9,12 @@ const Sidebar = () => {
         position: 'relative',
         backgroundColor: 'transparent',
         height: '60vh',
-        top: '10vh'
+        top: '10vh',
+        borderTop: '1px outset #7824ff80',
+        borderRight: '2px outset #7824ff80',
+        borderBottom: '3px outset #7824ff80'
     };
-    
+
     return (
         <SideNav
             style={navStyle}
@@ -25,13 +28,13 @@ const Sidebar = () => {
                     <NavIcon>
                         <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em', color: '#7824ff' }} />
                     </NavIcon>
-                    <NavText style={{ color: '#7824ff' }}> 
+                    <NavText style={{ color: '#7824ff' }}>
                         All Solutions
                     </NavText>
                 </NavItem>
                 <NavItem eventKey="charts">
                     <NavIcon>
-                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', color: '#7824ff' }}/>
+                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', color: '#7824ff' }} />
                     </NavIcon>
                     <NavText style={{ color: '#7824ff' }}>
                         All Products

@@ -8,36 +8,36 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import solutions from "./Test-Solutions";
 
-function Solutions (props) {
-    const cardItem = {
-        width: '20vw'
-    };
+function Solutions(props) {
+  const cardItem = {
+    width: '20vw'
+  };
 
   return (
     <div style={{ marginTop: 20, padding: 30 }}>
       <Grid container spacing={2} justify="center">
         {solutions.map(solution => (
           <Grid
-            style={ cardItem }
+            style={cardItem}
             item key={solution.title}>
-            <Card style={{height: '25vh'}}>
+            <Card style={{ height: '100%' }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
                   alt="Test Product"
-                  height="100vh"
+                  height="100%"
                   image={solution.image}
                   title="Test Product"
                 />
-                <CardContent style={{ position: 'absolute', padding: '0px 5px', top: '0.5%', color: '#fff', textShadow: '1px 2px 2px #656565'}}>
+                {/* <CardContent style={{ position: 'absolute', padding: '0px 5px', top: '0.5%', color: '#fff', textShadow: '1px 2px 2px #656565'}}>
                   <Typography gutterBottom variant="h4" component="h2" style={{ fontSize: '26px'}}>
                     {solution.title}
                   </Typography>
-                </CardContent>
+                </CardContent> */}
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" style={{ textTransform: 'none', margin: '0 auto'}}>
-                  Available Products
+                <Button size="small" color="primary" style={{ textTransform: 'none', margin: '0 auto' }}>
+                  {solution.title}
                 </Button>
               </CardActions>
             </Card>

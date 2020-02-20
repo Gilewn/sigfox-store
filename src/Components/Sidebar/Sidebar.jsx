@@ -1,12 +1,13 @@
 import React from 'react';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import './Sidebar.css';
 
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 const Sidebar = () => {
     const navStyle = {
         position: 'relative',
-        backgroundColor: '#7824ff',
+        backgroundColor: 'transparent',
         height: '60vh',
         top: '10vh'
     };

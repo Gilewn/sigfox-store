@@ -4,7 +4,7 @@ import React from 'react';
 function ProductPage(props) {
     return <div>
         {console.log(props.item)}
-        <img src={props.item.image} alt="photo" />
+        <img src={props.item.image} alt="productPhoto" />
     </div>
 }
 

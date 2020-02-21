@@ -6,6 +6,7 @@ import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
 import TestProducts from './Components/Products/Test-Products';
 import SearchBox from './Components/SearchBox/SearchBox';
+import ProductPage from './Components/ProductPage/ProductPage';
 import './App.css';
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
     this.state = {
       products: TestProducts,
       searchField: "",
-      navbarOpen: false
+      navbarOpen: false,
+      indexOfProduct: -1
     }
   }
 
@@ -26,14 +28,20 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   }
 
+  ChangeIndexOfProduct = (index) => {
+    this.setState({
+      indexOfProduct: index
+    })
+  }
+
   render() {
     const myStyle = {
       display: 'flex'
     };
 
-    // let {searchField,products}=this.state;
-    // const filteredProducts=products.filter((product)=>(product.title.toLowerCase().includes(searchField.toLowerCase())));
-    // console.log(filteredProducts);
+    let { searchField, products } = this.state;
+    const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
+    console.log(filteredProducts);
 
     return (
       <BrowserRouter>
@@ -43,8 +51,26 @@ class App extends Component {
             handleNavbar={this.handleNavbar} />
           <div style={myStyle}>
             <Sidebar />
+
+
             <Switch>
               <Route path="/" exact component={Solutions} />
+              <Route exact path="/products" render={(props) => (
+                <div>
+                  <SearchBox {...props} handleChange={this.handleChange} />
+                  <div className="Big-Container">
+                    <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+                  </div>
+
+                </div>
+
+
+              )} />
+
+              <Route path={"/product/" + this.state.indexOfProduct} render={(props) => (
+                <ProductPage {...props} item={this.state.products[this.state.indexOfProduct]} />
+              )}></Route>
+
             </Switch>
           </div>
         </div>

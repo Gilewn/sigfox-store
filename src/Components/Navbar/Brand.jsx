@@ -4,8 +4,17 @@ import logo from "./en_sigfox.png";
 import { Link } from 'react-router-dom';
 
 const Brand = () => {
+  const divImageStyle = {
+    backgroundColor: '#fff',
+    borderRadius: '5px',
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    height: '10vh'
+  };
+
   return (
-    <div>
+    <div style={ divImageStyle }>
       <Link to = "/">
         <Image src={logo} alt="Company Logo" />
       </Link>
@@ -20,4 +29,5 @@ const Image = styled.img`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  padding: 0 10%;
 `;

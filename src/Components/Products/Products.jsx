@@ -8,44 +8,16 @@ import CardMedia from "@material-ui/core/CardMedia";
 import products from "./Test-Products";
 import {Link} from 'react-router-dom'
 import styled from "styled-components";
+import Product from "../Product/Product";
+import './Products.css';
 
   function Products(props) {
     
     return (
-    
-        <div style={{ position: 'relative', top: '15vh' }}>
-          <Grid container spacing={2} justify="center"  >
-          
-            {products.map(product => (
-              <CardItem key ={product.id}>
-              <Grid >
-              <Link to = {{ pathname:`/product/${product.id}` , state: {the:product}}}> 
-                <Card>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Test Product"
-                      height="140"
-                      image={product.image}
-                      title="Test Product"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {product.title}
-                      </Typography>
-                      <Typography component="p">{product.excerpt}</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                  <Link to = {{ pathname:`/product/${product.id}` , state: {the:product}}}>Learn More</Link> 
-                  </CardActions>
-                  </Card>
-                  </Link> 
-              </Grid> 
-              </CardItem>
-          
-            ))}
-          </Grid>
+        <div className="Big-Container">
+            {props.items.map((product,index) =>
+                <Product key={index} changeIndex={props.changeIndexOfProduct} id={index} item={product} />
+            )}
         </div>
         
       );

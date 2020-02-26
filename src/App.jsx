@@ -7,6 +7,7 @@ import Products from './Components/Products/Products';
 import TestProducts from './Components/Products/Test-Products';
 import SearchBox from './Components/SearchBox/SearchBox';
 import ProductPage from './Components/ProductPage/ProductPage';
+import Footer from './Components/Footer/Footer';
 import './App.css';
 
 class App extends Component {
@@ -74,6 +75,7 @@ class App extends Component {
             </Switch>
           </div>
         </div>
+        <Footer />
       </BrowserRouter>
     );
   }

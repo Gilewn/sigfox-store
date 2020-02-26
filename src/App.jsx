@@ -21,6 +21,8 @@ class App extends Component {
     }
   }
 
+   
+
   handleChange = (e) => {
     this.setState({ searchField: e.target.value })
   }
@@ -28,6 +30,8 @@ class App extends Component {
   handleNavbar = () => {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   }
+  
+
 
   ChangeIndexOfProduct = (index) => {
     this.setState({
@@ -47,9 +51,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar
+            <Navbar
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
+          
           <div style={myStyle}>
             <Sidebar />
 

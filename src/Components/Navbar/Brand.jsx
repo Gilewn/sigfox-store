@@ -10,12 +10,13 @@ const Brand = () => {
     position: 'relative',
     top: '50%',
     transform: 'translateY(-50%)',
-    height: '10vh'
+    height: '10vh',
+    width: 'fit-content'
   };
 
   return (
-    <div style={ divImageStyle }>
-      <Link to = "/">
+    <div style={divImageStyle}>
+      <Link to="/">
         <Image src={logo} alt="Company Logo" />
       </Link>
     </div>

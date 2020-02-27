@@ -3,14 +3,16 @@ const BodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectID;
 
-
 const CONNECTION_URL = "mongodb+srv://JGS:JGSJGS@jkcluster-ydbsz.mongodb.net/test?retryWrites=true&w=majority";
 const DATABASE_NAME = "sigfox-eshop-db";
 
-var app = Express();
+var cors = require('cors')
 
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
+var app = Express();
+app.use(cors())
+
+app.use(Express.json());
+app.use(Express.urlencoded({ extended: true }));
 
 var database, collection;
 
@@ -21,6 +23,7 @@ app.listen(5000, () => {
     }
     database = client.db(DATABASE_NAME);
     collection = database.collection("products");
+    collection_partners = database.collection("partners")
     console.log("Connected to `" + DATABASE_NAME + "`!");
 });
 });
@@ -29,6 +32,7 @@ app.listen(5000, () => {
 //////GET products/////////////////////////////////////
 
 app.get("/products", (request, response) => {
+  
   collection.find({}).toArray((error, result) => {
       if(error) {
           return response.status(500).send(error);
@@ -55,6 +59,16 @@ app.get("/products/:id", (request, response) => {
 //////////////////POST products////////////////////////////////
 app.post("/products", (request, response) => {
   collection.insert(request.body, (error, result) => {
+      if(error) {
+          return response.status(500).send(error);
+      }
+      response.send(result.result);
+  });
+});
+
+/////////////////POST PARTNERS//////////////////////////////////
+app.post("/partners", (request, response) => {
+  collection_partners.insert(request.body, (error, result) => {
       if(error) {
           return response.status(500).send(error);
       }

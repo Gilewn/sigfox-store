@@ -4,23 +4,33 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
-import TestProducts from './Components/Products/Test-Products';
 import SearchBox from './Components/SearchBox/SearchBox';
 import ProductPage from './Components/ProductPage/ProductPage';
+import NotFound from './Components/NotFound/NotFound'
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: TestProducts,
+      products: [],
       searchField: "",
       navbarOpen: false,
       indexOfProduct: -1
     }
   }
-
-   
+  componentDidMount() {
+    axios.get(`http://localhost:5000/products`)
+      .then(res => {
+        const products = res.data;
+        this.setState({ products });
+        console.log(this.state.products);
+        
+      })
+    
+     
+  }
 
   handleChange = (e) => {
     this.setState({ searchField: e.target.value })
@@ -42,7 +52,9 @@ class App extends Component {
     const myStyle = {
       display: 'flex'
     };
-
+    
+    
+    
     let { searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
     console.log(filteredProducts);
@@ -50,6 +62,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+        <ul>
+        
+        </ul>
             <Navbar
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
@@ -75,7 +90,7 @@ class App extends Component {
               <Route path={"/product/" + this.state.indexOfProduct} render={(props) => (
                 <ProductPage {...props} item={this.state.products[this.state.indexOfProduct]} />
               )}></Route>
-
+                <Route path="*" component={NotFound} />
             </Switch>
           </div>
         </div>

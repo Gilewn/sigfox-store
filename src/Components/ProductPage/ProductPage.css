@@ -19,7 +19,8 @@
 .image{
     display: flex;
     flex-direction: row;
-    height: 45%;
+    height: 60%;
+    
 }
 
 .arrows{
@@ -64,7 +65,7 @@ width: 10%;
 }
 
 .col2-infoBox{
-    width: 75%;
+    width: 85%;
     height: 20%;
     background-color: #f7f7f7;
     border: 1px solid #f7f7f7;
@@ -94,7 +95,7 @@ width: 10%;
 .col2-contactForm{
     border: 1px solid #f7f7f7;
     border-radius: 2%;
-    width: 75%;
+    width: 85%;
     height: 25%;
     margin:20px;
     background-color:#f7f7f7;
@@ -159,13 +160,13 @@ width: 10%;
 
 }
 
-input{
+.contact-form input{
     width: 90%;
     height: 30px;
     padding: 3px 10px;
-    margin: 0px auto 10px auto;
+    margin: 0px auto 8px auto;
     border: 1px solid #f7f7f7;
-    border-radius: 7%;
+    border-radius: 5%;
 }
 
 
@@ -278,7 +279,7 @@ p ul, p ul:nth-child(2){
 
 .card-postal img{
     width: 80px;
-    height: 80px;
+    height: 70px;
     margin: 0px 15px;
     padding: 0px;
 }
@@ -301,7 +302,7 @@ p ul, p ul:nth-child(2){
 
 .tabs{
     width: 80%;
-    margin-left: 100px;
+    margin-left: 70px;
     border-bottom: 1px solid #f3eaea;
     padding-bottom: 10px;
     margin-bottom: 5px;

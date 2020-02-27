@@ -8,7 +8,8 @@ export default class ColumnTwo extends React.Component{
         name: '',
         lastname:'',
         email:'',
-        message:''
+        message:'',
+        
       }
     
       handleChange = event => {
@@ -60,7 +61,7 @@ export default class ColumnTwo extends React.Component{
                 <textarea name="message" id="message" cols="30" rows="5" placeholder="Type your request" message="message" onChange={this.handleChange}></textarea>
                 </div>
                 <div className='submit-button'>
-                 <button type='submit'><ion-icon id='message-icon' name="mail-outline"></ion-icon>Send</button>
+                 <button id="button" type='submit'><ion-icon id='message-icon' name="mail-outline"></ion-icon>Send</button>
                 </div>
                 </form>
             </div>

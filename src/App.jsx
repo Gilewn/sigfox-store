@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navbar from './Components/Navbar/Navbar';
-
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
@@ -21,7 +20,11 @@ class App extends Component {
     }
     
   }
-
+  InitialIndexOfProduct=(index)=>{
+    this.setState({
+      indexOfProduct:index
+    })
+  }
   handleChange = (e) => {
     this.setState({ searchField: e.target.value })
   }
@@ -36,9 +39,10 @@ class App extends Component {
     })
   }
 
-
+ 
 
   render() {
+    
     const myStyle = {
       display: 'flex'
     };
@@ -73,14 +77,16 @@ class App extends Component {
               )} />
 
                <Route path={"/product/"/*+ this.state.indexOfProduct*/} render={(props)=>( 
-                 
-                 <ProductPage images={this.state.products[this.state.indexOfProduct].images}/> //{...props} item={this.state.products[this.state.indexOfProduct]}
+                 <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].images}/> //{...props} item={this.state.products[this.state.indexOfProduct]}
               )}></Route>
               
             </Switch>
           </div>
         </div>
+        
       </BrowserRouter>
+
+      
     );
   }
 }

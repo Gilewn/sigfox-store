@@ -10,6 +10,8 @@ function ProductPage(props){
     //     <img src={props.item.image} alt="photo"/>
     // </div>
 
+   
+    
 
     return <div className="container">
         <ColumnOne album={props.images}/>

@@ -18,13 +18,13 @@ function ColumnOne(props){
         </div>
         <div className='image'>
         <div className="arrows"> <ion-icon id='left-arrow' name="chevron-back-outline"></ion-icon></div>
-        <img id='main-photo' src={props.images}    alt="photo"/>
+        <img id='main-photo' src={props.album[0]} alt="photo"/>
         <div className="arrows2"> <ion-icon id='right-arrow' name="chevron-forward-outline"></ion-icon></div>
 
         </div>
     
     <div className="card-postal">
-    
+    {props.album.map((image,index)=><img onClick={changePhoto} key={index} src={image} alt={'photo'+index}/>)}  
        
         
     </div>
@@ -109,6 +109,8 @@ End Product Certificate <br/> P_0056_99E6_01 </div>
     </div>
 
     </div>  
+
     
 }
+
 export default ColumnOne;

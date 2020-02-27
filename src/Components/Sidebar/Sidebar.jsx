@@ -8,11 +8,7 @@ const Sidebar = () => {
     const navStyle = {
         position: 'relative',
         backgroundColor: 'transparent',
-        height: '60vh',
-        top: '10vh',
-        borderTop: '1px outset #7824ff80',
-        borderRight: '2px outset #7824ff80',
-        borderBottom: '3px outset #7824ff80'
+        borderRight: '2px outset #7824ff80'
     };
 
     return (

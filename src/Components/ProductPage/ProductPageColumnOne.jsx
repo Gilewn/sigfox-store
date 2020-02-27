@@ -18,7 +18,7 @@ function ColumnOne(props){
         </div>
         <div className='image'>
         <div className="arrows"> <ion-icon id='left-arrow' name="chevron-back-outline"></ion-icon></div>
-        <img id='main-photo' src={props.album[0]} alt="photo"/>
+        <img id='main-photo' src={props.products} alt="photo"/>
         <div className="arrows2"> <ion-icon id='right-arrow' name="chevron-forward-outline"></ion-icon></div>
 
         </div>

@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
 import SearchBox from './Components/SearchBox/SearchBox';
-import ProductPage from './Components/ProductPage/ProductPage';
 import NotFound from './Components/NotFound/NotFound'
 import Footer from './Components/Footer/Footer';
 import './App.css';
@@ -102,7 +101,7 @@ class App extends Component {
               )} />
 
                 <Route path={"/product/"/*+ this.state.indexOfProduct*/} render={(props)=>( 
-                 <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].images}/> //{...props} item={this.state.products[this.state.indexOfProduct]}
+                 <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].image}/> //{...props} item={this.state.products[this.state.indexOfProduct]}
               )}></Route>
                 <Route path="*" component={NotFound} />
             </Switch>

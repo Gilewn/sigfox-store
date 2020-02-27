@@ -7,6 +7,7 @@ import Products from './Components/Products/Products';
 import SearchBox from './Components/SearchBox/SearchBox';
 import ProductPage from './Components/ProductPage/ProductPage';
 import NotFound from './Components/NotFound/NotFound'
+import Footer from './Components/Footer/Footer';
 import './App.css';
 import axios from 'axios';
 
@@ -94,6 +95,7 @@ class App extends Component {
             </Switch>
           </div>
         </div>
+        <Footer />
       </BrowserRouter>
     );
   }

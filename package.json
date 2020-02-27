@@ -9,9 +9,16 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@trendmicro/react-sidenav": "^0.5.0",
+<<<<<<< HEAD
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "material-ui-icons": "^1.0.0-beta.36",
+=======
+    "axios": "^0.19.2",
+    "font-awesome": "^4.7.0",
+    "mdbootstrap": "^4.13.0",
+    "mdbreact": "^4.25.2",
+>>>>>>> 1dd8d5af9608839148e1d6cb9090bc181a882f73
     "npm-install-missing": "^0.1.4",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",

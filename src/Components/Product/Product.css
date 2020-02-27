@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -28,9 +28,8 @@
     
 }
 
-.card-image img:hover{
+.card-image img:hover {
     opacity: 1;
-    
 }
 
 .card-image{

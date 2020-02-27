@@ -54,10 +54,7 @@ const NavBar = styled(animated.nav)`
   justify-content:center;
   top: 0;
   left: 0;
-  margin:0 auto;
-  background: #fff;
-  border-bottom:1px solid rgba(240,235, 235, 0.7);
-  padding:0px;
+  background: #7824ff;
   z-index: 1;
   font-size: 1.4rem;
 `;

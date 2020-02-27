@@ -1,9 +1,41 @@
 import React from 'react';
 import logo from "../Navbar/en_sigfox.png";
+import axios from 'axios';
 
-function ColumnTwo(){
+export default class ColumnTwo extends React.Component{
    
+    state = {
+        name: '',
+        lastname:'',
+        email:'',
+        message:''
+      }
+    
+      handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value , [event.target.lastname]:event.target.value,[event.target.email]:event.target.value,[event.target.message]:event.target.value });
+      }
+    
+     handleSubmit = event => {
+    event.preventDefault();
 
+    const user = {
+      name: this.state.name,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      message: this.state.message
+
+      
+    };
+
+    axios.post(`http://localhost:5000/partners`, { user })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+    
+    
+    render() {
    return <div className="col2">
        <div className='col2-infoBox'>
             <div id='col2-product'><h3>SimplePack 3.0 Plus Full RC1</h3> </div>
@@ -20,15 +52,15 @@ function ColumnTwo(){
                 <div className='sigfox-logo-contact-text'>Get directly in touch with <br/> Sigfox Hellas</div>
             </div>
             <div className='contact-form'>
-                <form action="post">
+                <form action="post"onSubmit={this.handleSubmit}>
                 <div className='inputs'>   
-                <input type="text" placeholder='Name'/>
-                <input type="text" placeholder='Lastname'/>
-                <input type="email" placeholder='Email'/>
-                <textarea name="message" id="message" cols="30" rows="5" placeholder="Type your request"></textarea>
+                <input type="text" placeholder='Name' name="name" onChange={this.handleChange}/>
+                <input type="text" placeholder='Lastname' name="lastname" onChange={this.handleChange}/>
+                <input type="email" placeholder='Email' name="email" onChange={this.handleChange}/>
+                <textarea name="message" id="message" cols="30" rows="5" placeholder="Type your request" message="message" onChange={this.handleChange}></textarea>
                 </div>
                 <div className='submit-button'>
-                 <button id='button'type='submit'><ion-icon id='message-icon' name="mail-outline"></ion-icon>Send</button>
+                 <button type='submit'><ion-icon id='message-icon' name="mail-outline"></ion-icon>Send</button>
                 </div>
                 </form>
             </div>
@@ -36,5 +68,4 @@ function ColumnTwo(){
         </div>
    </div>
 }
-
-export default ColumnTwo;
+}

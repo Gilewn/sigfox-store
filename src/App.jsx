@@ -3,20 +3,23 @@ import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
-import TestProducts from './Components/Products/Test-Products';
 import SearchBox from './Components/SearchBox/SearchBox';
+import ProductPage from './Components/ProductPage/ProductPage';
+import NotFound from './Components/NotFound/NotFound'
+import Footer from './Components/Footer/Footer';
 import './App.css';
 import ProductPage from './Components/ProductPage/ProductPage';
 import Sidebar from './Components/Sidebar/Sidebar';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: TestProducts,
+      products: [],
       searchField: "",
       navbarOpen: false,
-      indexOfProduct:-1
+      indexOfProduct: -1
     }
     
   }
@@ -25,12 +28,32 @@ class App extends Component {
       indexOfProduct:index
     })
   }
+  componentDidMount() {
+    axios.get(`http://localhost:5000/products`)
+      .then(res => {
+        const products = res.data;
+        this.setState({ products });
+        console.log(this.state.products);
+        
+      })
+    
+     
+  }
+
   handleChange = (e) => {
     this.setState({ searchField: e.target.value })
   }
 
   handleNavbar = () => {
     this.setState({ navbarOpen: !this.state.navbarOpen });
+  }
+  
+
+
+  ChangeIndexOfProduct = (index) => {
+    this.setState({
+      indexOfProduct: index
+    })
   }
 
   ChangeIndexOfProduct=(index)=>{
@@ -58,32 +81,34 @@ class App extends Component {
             handleChange={this.handleChange}
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
+          
           <div style={myStyle}>
-          {/* <Sidebar/> */}
-            
-            
+            <Sidebar />
+
+                  {/* //<div className='pageProducts'> */}
+                  
             <Switch>
               <Route path="/" exact component={Solutions} />
-              <Route exact path="/products" render = {(props) => (
-                <div className='pageProducts'>
-                {/* <SearchBox {...props} handleChange={this.handleChange}/> */}
-                <div className="Big-Container">
-                <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct}/>
-                </div>
+              <Route exact path="/products" render={(props) => (
+                <div>
+                  <SearchBox {...props} handleChange={this.handleChange} />
+                  <div className="Big-Container">
+                    <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+                  </div>
 
                 </div>
-                
-                
+
+
               )} />
 
-               <Route path={"/product/"/*+ this.state.indexOfProduct*/} render={(props)=>( 
+                <Route path={"/product/"/*+ this.state.indexOfProduct*/} render={(props)=>( 
                  <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].images}/> //{...props} item={this.state.products[this.state.indexOfProduct]}
               )}></Route>
-              
+                <Route path="*" component={NotFound} />
             </Switch>
           </div>
         </div>
-        
+        <Footer />
       </BrowserRouter>
 
       

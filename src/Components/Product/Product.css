@@ -2,26 +2,29 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .card-container{
-    /* width: 30vw;
-    height: 30vh
-    margin-top: 20px;
-    margin-left: 20px; */
+    
     width: 25%;
+    height: 320px;
     display: flex;
     flex-direction: column;
-    margin: 15px 15px;
+    margin: 50px 25px;
     transform: scale(1);
-    transition: transform 0.5s;
+    box-shadow: 0px 1px 60px #d9dadb ;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
 }
 
-.card-container:hover{
 
-    transform: scale(1.1);
-    
+
+.card-container:hover{
+    transition: transform 0.7s;
+    transform: scale(1.05);
+    cursor: pointer;
     
 }
 
@@ -32,239 +35,59 @@
 
 .card-image{
     
-    width:90%;
-    
-    background-color: black;
-    
-}
-.card-image img{
-    width: 100%;
+    width:100%;
+    margin:  auto;
+   
    
     
-    margin-bottom:-15px;
+}
+
+
+
+.card-image img{
+    
+    width: 100%;
+    height: 100%;    
+    background-color: #575048;
+    margin-top: -14px;
     
     
    
 }
 
 .card-title-description{
-    width: 90%;
-    padding: 10px 10px;
-    border-radius: 0.8%;
-    border-left:2px solid rgb(192, 190, 190);
-    border-right:2px solid rgb(192, 190, 190); 
-    border-bottom:2px solid rgb(192, 190, 190); 
+    width: 100%;
+    height: 20%;
+    padding-top: 15px;
+    padding-left: 5px;
     font-family: 'Roboto', sans-serif;
-    word-spacing: 1px;
-    letter-spacing: 0.8px;
-    line-height: 140%;
-    background-color: rgb(250, 246, 246);
+    word-spacing: 0.5px;
+    letter-spacing: 0.2px;
+    font-size: 0.875rem;
+    line-height: 120%;
+    background-color: #fff;
+    font-weight: normal;
     
 }
 
 .card-title-description p,.card-title-description h1,.card-title-description h4{
-    margin:5px 10px ;
+    margin:0px 10px ;
 }
 
 .card-title-description h1{
-    margin-top:0px;
-    margin-bottom: 25px;
-    color: #2b251d;
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 1px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    color: #2a2a2a;
+    font-size: 0.875rem;
+    font-weight: normal;
+    letter-spacing: 0.2px;
 }
 
 .card-title-description h4{
-    margin-top:25px;
-    margin-bottom: 25px;
+    margin-top:5px;
+    margin-bottom: 15px;
     color: #575048;
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-weight: normal;
+    letter-spacing: 0.4px;
 }
 
-@media only screen and (min-width:0px) and (max-width:319px)
-{
- 
-    .card-container{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin: 40px 40px;
-        
-        transform: scale(1);
-        
-    }
-    .card-container:hover{
-        transform: scale(1);
-    }
-  
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-size: 10px;
-    }
-
-    .card-title-description{
-        width: 90%;
-        padding: 15px 15px;
-        border-radius: 0.8%;
-        border-left:2px solid rgb(192, 190, 190);
-        border-right:2px solid rgb(192, 190, 190); 
-        border-bottom:2px solid rgb(192, 190, 190); 
-        font-family: 'Roboto', sans-serif;
-        word-spacing: 1px;
-        letter-spacing: 0.8px;
-        line-height: 140%;
-        background-color: rgb(250, 246, 246);
-        
-    }
-
-}
-/* small phones */
-@media only screen and (min-width:320px) and (max-width:479px)
-{
- 
-    .card-container{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin: 40px 40px;
-        
-        transform: scale(1);
-        transition: transform 0.2s;
-    }
-  
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-size: 15px;
-    }
-
-    .card-title-description{
-        width: 90%;
-        padding: 15px 15px;
-        border-radius: 0.8%;
-        border-left:2px solid rgb(192, 190, 190);
-        border-right:2px solid rgb(192, 190, 190); 
-        border-bottom:2px solid rgb(192, 190, 190); 
-        font-family: 'Roboto', sans-serif;
-        word-spacing: 0.8px;
-        letter-spacing: 0.8px;
-        line-height: 120%;
-        background-color: rgb(250, 246, 246);
-        
-    }
-
-    .card-title-description h1{
-        margin-top:0px;
-        margin-bottom: 25px;
-        color: #2b251d;
-        font-size: 1.2rem;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
-
-}
-
-/* small phones to small tablets */
-@media only screen and (min-width:480px) and (max-width:767px)
-{
-    .card-container{
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        margin: 40px 40px;
-        
-        transform: scale(1);
-        transition: transform 0.2s;
-    }
-  
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-
-}
-
-/* small tablet to big tablets */
-@media only screen and (min-width:768px) and (max-width:991px)
-{
-    .card-container{
-        width: 35%;
-        display: flex;
-        flex-direction: column;
-        margin: 40px 40px;
-        
-        transform: scale(1);
-        transition: transform 0.2s;
-    }
-  
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-
-    .card-title-description h1{
-        margin-top:0px;
-        margin-bottom: 25px;
-        color: #2b251d;
-        font-size: 1rem;
-        font-weight: 400;
-    }
-    
-
-}
-
-/* big tablets to desktops */
-@media only screen and (min-width:992px) and (max-width:1702px)
-{
-
-     *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-
-    .card-container{
-        width: 25%;
-        display: flex;
-        flex-direction: column;
-        margin: 20px 20px;
-        
-        transform: scale(1);
-        transition: transform 0.2s;
-    }
-  
-   
-    .card-title-description h1{
-        margin-top:0px;
-        margin-bottom: 25px;
-        color: #2b251d;
-        font-size: 1.5rem;
-        font-weight: 400;
-    }
-    
-    .card-title-description{
-        width: 90%;
-        padding: 15px 15px;
-        border-radius: 0.8%;
-        border-left:2px solid rgb(192, 190, 190);
-        border-right:2px solid rgb(192, 190, 190); 
-        border-bottom:2px solid rgb(192, 190, 190); 
-        font-family: 'Roboto', sans-serif;
-        word-spacing: 0.5px;
-        letter-spacing: 0.5px;
-        line-height: 120%;
-        background-color: rgb(250, 246, 246);
-        
-    }
-    
-}

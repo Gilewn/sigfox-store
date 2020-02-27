@@ -4,6 +4,7 @@ import { useSpring, animated, config } from "react-spring";
 import Brand from "./Brand";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
+import SearchBox from '../SearchBox/SearchBox';
 
 const Navbar = (props) => {
   const barAnimation = useSpring({
@@ -23,6 +24,7 @@ const Navbar = (props) => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <Brand />
+          {/* <SearchBox/> */}
           <NavLinks style={linkAnimation}>
             <a href="/">link n1</a>
             <a href="/">link n2</a>
@@ -48,9 +50,14 @@ export default Navbar
 const NavBar = styled(animated.nav)`
   position: relative;
   width: 100%;
+  display:flex;
+  justify-content:center;
   top: 0;
   left: 0;
-  background: #230367;
+  margin:0 auto;
+  background: #fff;
+  border-bottom:1px solid rgba(240,235, 235, 0.7);
+  padding:0px;
   z-index: 1;
   font-size: 1.4rem;
 `;
@@ -67,7 +74,7 @@ const NavLinks = styled(animated.ul)`
   list-style-type: none;
   margin: auto 0;
   & a {
-    color: #dfe6e9;
+    color: #666;
     text-transform: uppercase;
     font-weight: 600;
     border-bottom: 1px solid transparent;

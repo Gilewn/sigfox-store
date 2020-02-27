@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Navbar from './Components/Navbar/Navbar';
-import Sidebar from './Components/Sidebar/Sidebar';
+
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
 import TestProducts from './Components/Products/Test-Products';
 import SearchBox from './Components/SearchBox/SearchBox';
 import './App.css';
-import ProductPage from './Components/ProductPage/ProductPage'
+import ProductPage from './Components/ProductPage/ProductPage';
+import Sidebar from './Components/Sidebar/Sidebar';
 
 class App extends Component {
   constructor() {
@@ -50,17 +51,18 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Navbar
+            handleChange={this.handleChange}
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div style={myStyle}>
-            <Sidebar />
+          {/* <Sidebar/> */}
             
             
             <Switch>
               <Route path="/" exact component={Solutions} />
               <Route exact path="/products" render = {(props) => (
-                <div>
-                <SearchBox {...props} handleChange={this.handleChange}/>
+                <div className='pageProducts'>
+                {/* <SearchBox {...props} handleChange={this.handleChange}/> */}
                 <div className="Big-Container">
                 <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct}/>
                 </div>
@@ -70,8 +72,9 @@ class App extends Component {
                 
               )} />
 
-              <Route path={"/product/"+ this.state.indexOfProduct} render={(props)=>(
-                <ProductPage {...props} item={this.state.products[this.state.indexOfProduct]}/>
+               <Route path={"/product/"/*+ this.state.indexOfProduct*/} render={(props)=>( 
+                 
+                 <ProductPage images={this.state.products[this.state.indexOfProduct].images}/> //{...props} item={this.state.products[this.state.indexOfProduct]}
               )}></Route>
               
             </Switch>

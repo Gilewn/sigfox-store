@@ -7,8 +7,17 @@
     
 }
 .Big-Container{
+    padding-left: 0;
+    margin-top: 10px;
+    width: 90%;
+    margin-left:0%;
+    margin-right: 10%;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
+.pageProducts{
+    width: 100%;
+}

@@ -9,6 +9,7 @@ import Footer from './Components/Footer/Footer';
 import ProductPage from './Components/ProductPage/ProductPage';
 import Sidebar from './Components/Sidebar/Sidebar';
 import axios from 'axios';
+import { Column, Row } from 'styled-grid-system-component';
 
 import './App.css';
 
@@ -53,10 +54,6 @@ class App extends Component {
   }
 
   render() {
-    const myStyle = {
-      display: 'flex'
-    };
-
     let { searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
 
@@ -68,7 +65,7 @@ class App extends Component {
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
 
-          <div style={myStyle}>
+          <div className="App">
             <Sidebar />
             <Switch>
               <Route path="/" exact component={Solutions} />

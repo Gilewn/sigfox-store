@@ -5,4 +5,15 @@
 
 .SearchBox input {
     width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.SearchBox input:hover {
+    border-bottom: 1px solid #7824ff80;
+}
+
+.SearchBox input:active {
+    border-bottom: 1px solid #7824ff;
 }

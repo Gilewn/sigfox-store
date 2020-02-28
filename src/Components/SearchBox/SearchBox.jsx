@@ -6,7 +6,11 @@ function SearchBox(props) {
 
     return (
         <div className='SearchBox'>
-            <input type="text" placeholder=" Search for components, devices or solutions" onChange={props.handleChange}></input>
+            <input
+                type="text"
+                placeholder=" Search for components, devices or solutions"
+                onChange={props.handleChange}
+            />
         </div>
     );
 }

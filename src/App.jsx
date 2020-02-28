@@ -19,7 +19,7 @@ class App extends Component {
       products: [],
       searchField: "",
       navbarOpen: false,
-      indexOfProduct: -1
+      indexOfProduct: 0
     }
   }
 
@@ -81,7 +81,7 @@ class App extends Component {
                 </div>
               )} />
               <Route path={"/product/"} render={(props) => (
-                <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].image} />
+                <ProductPage images={this.state.products[this.state.indexOfProduct].image} />
               )}></Route>
               <Route path="*" component={NotFound} />
             </Switch>

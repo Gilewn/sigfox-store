@@ -1,0 +1,8 @@
+.SearchBox {
+    margin: auto 0;
+    width: 35vw;
+}
+
+.SearchBox input {
+    width: 100%;
+}

@@ -21,10 +21,10 @@ const Navbar = (props) => {
 
   return (
     <>
-      <NavBar style={barAnimation}>
+      <NavBar style={barAnimation} className="col-sm-12">
         <FlexContainer>
           <Brand />
-          {/* <SearchBox/> */}
+          <SearchBox/>
           <NavLinks style={linkAnimation}>
             <a href="/">link n1</a>
             <a href="/">link n2</a>
@@ -54,12 +54,12 @@ const NavBar = styled(animated.nav)`
   justify-content:center;
   top: 0;
   left: 0;
-  background: #7824ff;
+  background: #fff;
   z-index: 1;
   font-size: 1.4rem;
 `;
 const FlexContainer = styled.div`
-  max-width: 120rem;
+  width: 90vw;
   display: flex;
   margin: auto;
   padding: 0 2rem;;

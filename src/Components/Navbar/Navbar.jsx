@@ -23,7 +23,7 @@ const Navbar = (props) => {
   return (
     <Row>
       <Column md={12}>
-        <NavBar style={barAnimation} className="col-sm-12">
+        <NavBar style={barAnimation}>
           <FlexContainer>
             <Brand />
             <SearchBox />

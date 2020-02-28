@@ -6,13 +6,13 @@ const Footer = () => {
         <MDBFooter color="unique-color" className="font-small pt-4">
             <MDBContainer fluid className="text-center">
                 <MDBRow>
-                    <MDBCol md="6" className="text-md-left pl-5">
+                    <MDBCol md="6">
                         <h5 className="title">Footer Header</h5>
                         <p>
                             Footer Content
                         </p>
                     </MDBCol>
-                    <MDBCol md="6" className="text-md-right pr-5">
+                    <MDBCol md="6">
                         <h5 className="title">Links</h5>
                         <ul>
                             <li className="list-unstyled">

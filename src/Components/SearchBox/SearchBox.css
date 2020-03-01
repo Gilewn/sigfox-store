@@ -17,3 +17,13 @@
 .SearchBox input:active {
     border-bottom: 1px solid #7824ff;
 }
+
+/* Under 426px */
+@media(max-width: 426px) {
+    .SearchBox {
+        position: relative;
+        top: 5rem;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

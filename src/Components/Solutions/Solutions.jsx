@@ -7,21 +7,16 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import solutions from "./Test-Solutions";
+
 import "./Solutions.css";
 
-
 function Solutions(props) {
-  const cardItem = {
-    width: '20vw'
-  };
-
   return (
     <div style={{ marginTop: 20, padding: 30 }}>
       <Grid container spacing={2} justify="center">
         {solutions.map(solution => (
           <Grid
-            style={cardItem}
-            item key={solution.title}>
+            item xs={12} sm={6} md={3} key={solution.title}>
             <Link className='solutions' to="/products">
               <Card style={{ height: '100%' }}>
                 <CardActionArea>
@@ -48,13 +43,3 @@ function Solutions(props) {
 }
 
 export default Solutions;
-
-/*const CardItem = styled.div`
-width: 35%;
-text-align: center;
-margin-left: 5%;
-margin-right: -3%;
-margin-bottom: 3%;
-
-
-`;*/

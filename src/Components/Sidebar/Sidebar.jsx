@@ -7,8 +7,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 const Sidebar = () => {
     const navStyle = {
         position: 'relative',
-        backgroundColor: 'transparent',
-        borderRight: '2px outset #7824ff80'
+        backgroundColor: 'transparent'
     };
 
     return (

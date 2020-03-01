@@ -30,8 +30,7 @@ const Navbar = (props) => {
             <NavLinks style={linkAnimation}>
               <a href="/">link n1</a>
               <a href="/">link n2</a>
-              <a href="https:/google.gr">link n3</a>
-              <a href="/">link n4</a>
+              <a href="/">link n3</a>
             </NavLinks>
             <BurgerWrapper>
               <BurgerMenu
@@ -85,6 +84,9 @@ const NavLinks = styled(animated.ul)`
     transition: all 300ms linear 0s;
     text-decoration: none;
     cursor: pointer;
+    @media (max-width: 900px) {
+      margin: 0 0.5rem;
+    }
     &:hover {
       color: #7824ff;
       border-bottom: 1px solid #7824ff;

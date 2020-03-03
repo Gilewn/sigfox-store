@@ -4,6 +4,10 @@
   margin: auto 5%;
 }
 
+.Fullwidth {
+  width: 100%;
+}
+
 .Products {
   text-align: center;
 }

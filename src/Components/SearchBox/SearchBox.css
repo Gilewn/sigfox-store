@@ -1,6 +1,6 @@
 .SearchBox {
-    margin: auto 0;
-    width: 20vw;
+    margin: 0 auto 2% auto;
+    width: 30vw;
 }
 
 .SearchBox input {
@@ -21,9 +21,6 @@
 /* Under 426px */
 @media(max-width: 426px) {
     .SearchBox {
-        position: relative;
-        top: 5rem;
         width: 100%;
-        margin: 0 auto;
     }
 }

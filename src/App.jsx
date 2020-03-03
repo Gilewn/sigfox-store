@@ -12,14 +12,11 @@ import axios from 'axios';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      products: [],
-      searchField: "",
-      navbarOpen: false,
-      indexOfProduct: -1
-    }
+  state = {
+    products: [],
+    searchField: "",
+    navbarOpen: false,
+    indexOfProduct: -1
   }
 
   InitialIndexOfProduct = (index) => {
@@ -63,20 +60,22 @@ class App extends Component {
             handleNavbar={this.handleNavbar} />
           <div className="App">
             <Sidebar />
-            <Switch>
-              <Route path="/" exact component={Solutions} />
-              <Route exact path="/products" render={(props) => (
-                <div>
-                  <div className="Big-Container">
-                    <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+            <div className="Fullwidth">
+              <Switch>
+                <Route path="/" exact component={Solutions} />
+                <Route exact path="/products" render={(props) => (
+                  <div>
+                    <div className="Big-Container">
+                      <Products {...props} items={filteredProducts} handleChange={this.handleChange} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+                    </div>
                   </div>
-                </div>
-              )} />
-              <Route path={"/product/"} render={(props) => (
-                <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].image} />
-              )}></Route>
-              <Route path="*" component={NotFound} />
-            </Switch>
+                )} />
+                <Route path={"/product/"} render={(props) => (
+                  <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].image} />
+                )}></Route>
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </div>
           </div>
           <Footer />
         </div>

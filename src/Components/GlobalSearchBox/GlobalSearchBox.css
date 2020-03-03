@@ -1,0 +1,29 @@
+.GlobalSearchBox {
+    margin: auto 0;
+    width: 20vw;
+}
+
+.GlobalSearchBox input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.GlobalSearchBox input:hover {
+    border-bottom: 1px solid #7824ff80;
+}
+
+.GlobalSearchBox input:active {
+    border-bottom: 1px solid #7824ff;
+}
+
+/* Under 426px */
+@media(max-width: 426px) {
+    .GlobalSearchBox {
+        position: relative;
+        top: 5rem;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

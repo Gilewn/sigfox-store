@@ -5,14 +5,9 @@ import './Sidebar.css';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 const Sidebar = () => {
-    const navStyle = {
-        position: 'relative',
-        backgroundColor: 'transparent'
-    };
-
     return (
         <SideNav
-            style={navStyle}
+            className="Sidebar"
             onSelect={(selected) => {
                 // Add your code here
             }}

@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <NavBar style={barAnimation}>
           <FlexContainer>
             <Brand />
-            <SearchBox />
+            <SearchBox {...props} handleChange={props.handleChange} />
             <NavLinks style={linkAnimation}>
               <a href="/">link n1</a>
               <a href="/">link n2</a>

@@ -11,11 +11,3 @@
 .CardItem {
   width: 35%;
 }
-
-.Big-Container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-

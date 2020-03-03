@@ -3,13 +3,11 @@ import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
-import SearchBox from './Components/SearchBox/SearchBox';
 import NotFound from './Components/NotFound/NotFound'
 import Footer from './Components/Footer/Footer';
 import ProductPage from './Components/ProductPage/ProductPage';
 import Sidebar from './Components/Sidebar/Sidebar';
 import axios from 'axios';
-import { Column, Row } from 'styled-grid-system-component';
 
 import './App.css';
 
@@ -35,7 +33,6 @@ class App extends Component {
       .then(res => {
         const products = res.data;
         this.setState({ products });
-        console.log(this.state.products);
       })
   }
 
@@ -64,14 +61,12 @@ class App extends Component {
             handleChange={this.handleChange}
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
-
           <div className="App">
             <Sidebar />
             <Switch>
               <Route path="/" exact component={Solutions} />
               <Route exact path="/products" render={(props) => (
                 <div>
-                  <SearchBox {...props} handleChange={this.handleChange} />
                   <div className="Big-Container">
                     <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct} />
                   </div>
@@ -83,8 +78,8 @@ class App extends Component {
               <Route path="*" component={NotFound} />
             </Switch>
           </div>
+          <Footer />
         </div>
-        <Footer />
       </BrowserRouter>
     );
   }

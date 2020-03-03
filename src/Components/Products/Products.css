@@ -1,23 +1,9 @@
-
-
-.Big-Container a:link,.Big-Container a:visited{
-    display: inline-block;
+.Big-Container a:link,
+.Big-Container a:visited {
     text-decoration: none;
-    color:#2b251d   
-    
-}
-.Big-Container{
-    padding-left: 0;
-    margin-top: 10px;
-    width: 90%;
-    margin-left:0%;
-    margin-right: 10%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    color: #2b251d;
 }
 
-.pageProducts{
+.pageProducts {
     width: 100%;
 }

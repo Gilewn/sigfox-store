@@ -1,18 +1,21 @@
 import React from "react";
-
 import Product from "../Product/Product";
+import { Grid } from "@material-ui/core";
+
 import './Products.css';
 
-  function Products(props) {
-    
+function Products(props) {
     return (
-        
-        <div className="Big-Container">
-            {props.items.map((product,index) =>
-                <Product key={index} changeIndex={props.changeIndexOfProduct} id={index} item={product} />
-            )}
+        <div style={{ marginTop: 20, padding: 30 }}>
+            <Grid container spacing={2} justify="center">
+                {props.items.map((product, index) =>
+                    <Grid
+                        item xs={12} sm={6} md={3} key={product.title}>
+                        <Product key={index} changeIndex={props.changeIndexOfProduct} id={index} item={product} />
+                    </Grid>
+                )}
+            </Grid>
         </div>
-       
     )
 }
 

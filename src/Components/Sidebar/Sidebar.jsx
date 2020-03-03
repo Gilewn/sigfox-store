@@ -1,19 +1,13 @@
 import React from 'react';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import './Sidebar.css';
 
+import './Sidebar.css';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 const Sidebar = () => {
-    const navStyle = {
-        position: 'relative',
-        backgroundColor: 'transparent',
-        borderRight: '2px outset #7824ff80'
-    };
-
     return (
         <SideNav
-            style={navStyle}
+            className="Sidebar"
             onSelect={(selected) => {
                 // Add your code here
             }}

@@ -1,3 +1,9 @@
+.Sidebar {
+    position: relative !important;
+    background-color: transparent !important;
+    height: 100vh;
+}
+
 .sidenav---icon-bar---u1f02 {
     background-color: #7824ff !important;
 }

@@ -21,12 +21,12 @@ const Wrapper = styled.div`
   cursor: pointer;
   display: block;
   & span {
-    background: #fdcb6e;
+    background: #7824ff;
     display: block;
     position: relative;
-    width: 3.5rem;
-    height: .4rem;
-    margin-bottom: .7rem;
+    width: 2.5rem;
+    height: .3rem;
+    margin-bottom: .3rem;
     transition: all ease-in-out 0.2s;
   }
   .open span:nth-child(2) {

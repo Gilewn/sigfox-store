@@ -29,22 +29,21 @@ const CollapseMenu = (props) => {
 export default CollapseMenu;
 
 const CollapseWrapper = styled(animated.div)`
-  background: #230367;
+  background: #7824ff;
   position: fixed;
-  top: 4.5rem;
-  left: 5;
   right: 0;
+  z-index: 1007;
 `;
 
 const NavLinks = styled.ul`
   list-style-type: none;
-  padding: 2rem 1rem 2rem 2rem;
+  padding: 2rem;
   & li {
     transition: all 300ms linear 0s;
   }
   & a {
     font-size: 1.4rem;
-    line-height: 2;
+    line-height: 1.5;
     color: #dfe6e9;
     text-transform: uppercase;
     text-decoration: none;

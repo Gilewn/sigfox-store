@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  margin: auto 5%;
 }
 
 .Products {
@@ -9,11 +11,3 @@
 .CardItem {
   width: 35%;
 }
-
-.Big-Container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-

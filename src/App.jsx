@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Components/Navbar/Navbar';
+import QuickSearch from './Components/QuickSearch/QuickSearch';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
@@ -12,14 +13,11 @@ import axios from 'axios';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      products: [],
-      searchField: "",
-      navbarOpen: false,
-      indexOfProduct: 0
-    }
+  state = {
+    products: [],
+    searchField: "",
+    navbarOpen: false,
+    indexOfProduct: -1
   }
 
   InitialIndexOfProduct = (index) => {
@@ -34,6 +32,10 @@ class App extends Component {
         const products = res.data;
         this.setState({ products });
       })
+  }
+
+  handleGlobalChange = (e) => {
+    this.setState({ searchField: e.target.value })
   }
 
   handleChange = (e) => {
@@ -54,29 +56,40 @@ class App extends Component {
     let { searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
 
+    let quickSearch = null;
+
+    if (searchField.length > 0 && filteredProducts.length > 0) {
+      quickSearch = <QuickSearch
+        items={filteredProducts}
+        {...this.props} />;
+    }
+
     return (
       <BrowserRouter>
         <div>
           <Navbar
-            handleChange={this.handleChange}
+            handleGlobalChange={this.handleGlobalChange}
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div className="App">
             <Sidebar />
-            <Switch>
-              <Route path="/" exact component={Solutions} />
-              <Route exact path="/products" render={(props) => (
-                <div>
-                  <div className="Big-Container">
-                    <Products {...props} items={filteredProducts} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+            {quickSearch}
+            <div className="Fullwidth">
+              <Switch>
+                <Route path="/" exact component={Solutions} />
+                <Route exact path="/products" render={(props) => (
+                  <div>
+                    <div className="Big-Container">
+                      <Products {...props} items={filteredProducts} handleChange={this.handleChange} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+                    </div>
                   </div>
-                </div>
-              )} />
-              <Route path={"/product/"} render={(props) => (
-                <ProductPage images={this.state.products[this.state.indexOfProduct].image} />
-              )}></Route>
-              <Route path="*" component={NotFound} />
-            </Switch>
+                )} />
+                <Route path={"/product/"} render={(props) => (
+                  <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].image} />
+                )}></Route>
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </div>
           </div>
           <Footer />
         </div>

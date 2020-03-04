@@ -1,5 +1,6 @@
 import React from "react";
 import Product from "../Product/Product";
+import SearchBox from '../SearchBox/SearchBox';
 import { Grid } from "@material-ui/core";
 
 import './Products.css';
@@ -7,6 +8,7 @@ import './Products.css';
 function Products(props) {
     return (
         <div style={{ marginTop: 20, padding: 30 }}>
+            <SearchBox {...props} handleChange={props.handleChange} />
             <Grid container spacing={2} justify="center">
                 {props.items.map((product, index) =>
                     <Grid

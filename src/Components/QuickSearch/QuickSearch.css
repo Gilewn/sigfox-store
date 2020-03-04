@@ -1,0 +1,62 @@
+.QuickSearch {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    box-shadow: 2px 2px 3px #828282;
+    /* fallback for old browsers */
+    background: #C9D6FF;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+}
+
+.QuickSearch .card-container {
+    margin: 5px auto;
+    width: 80%;
+    box-shadow: none;
+}
+
+.QuickSearch .card-container:hover {
+    transform: none;
+    background-color: #000;
+    transition: all 0.4s ease-in-out;
+}
+
+.QuickSearch .card-container:hover .card-title-description h1,
+.QuickSearch .card-container:hover .card-title-description h4 {
+    color: #fff;
+}
+
+.QuickSearch .card-title-description {
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.QuickSearch .card-image {
+    width: 20%;
+}
+
+.QuickSearch a {
+    display: flex;
+}
+
+.QuickSearch a:hover {
+    text-decoration: none;
+}
+
+.QuickSearch img {
+    margin: 0 !important;
+}
+
+.QuickSearch .card-title-description h1,
+.QuickSearch .card-title-description h4 {
+    margin: auto;
+}

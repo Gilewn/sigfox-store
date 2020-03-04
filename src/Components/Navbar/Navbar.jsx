@@ -2,7 +2,7 @@ import React from 'react'
 import Brand from "./Brand";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
-import SearchBox from '../SearchBox/SearchBox';
+import GlobalSearchBox from '../GlobalSearchBox/GlobalSearchBox';
 import { Column, Row } from 'styled-grid-system-component';
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <NavBar style={barAnimation}>
           <FlexContainer>
             <Brand />
-            <SearchBox {...props} handleChange={props.handleChange} />
+            <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
             <NavLinks style={linkAnimation}>
               <a href="/">link n1</a>
               <a href="/">link n2</a>
@@ -48,6 +48,7 @@ const Navbar = (props) => {
     </Row>
   )
 }
+
 export default Navbar
 
 const NavBar = styled(animated.nav)`

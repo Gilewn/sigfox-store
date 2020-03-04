@@ -11,9 +11,9 @@ function ProductPage(props){
     // </div>
 
 
-    return <div className="container">
-        <ColumnOne album={props.images}/>
-        <ColumnTwo/>
+    return <div className="productPage-container">
+        <ColumnOne product={props.product} album={props.product.images} generalDetails={props.text} certificates={props.certificates}/>
+        <ColumnTwo product={props.product}/>
     </div>
 }
 

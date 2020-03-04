@@ -1,5 +1,8 @@
-.container {
-    width: 99vw;
+*{
+    font-size: 1.0rem;
+}
+.productPage-container{
+    width: 90vw;
     margin: 30px auto;
     display: flex;
     flex-wrap: wrap;
@@ -57,8 +60,8 @@
 }
 
 .col2-infoBox{
-    width: 75%;
-    height: 20%;
+    width: 85%;
+    height: 15%;
     background-color: #f7f7f7;
     border: 1px solid #f7f7f7;
     border-radius: 2%;
@@ -74,7 +77,6 @@
 .col2-container h3,
 p,
 .info {
-
     margin: 10px 25px 25px 20px;
 }
 
@@ -129,13 +131,13 @@ p,
 
 .sigfox-logo-contact-text {
     margin-top: 20px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
-.contact-form-footer p {
-    font-size: 0.55rem;
-    padding-bottom: 0px;
+.contact-form-footer p{
+    font-size: 0.65rem;
+    padding-bottom:0px;
     text-align: justify;
 }
 
@@ -152,13 +154,15 @@ p,
     width: 90%;
     height: 30px;
     padding: 3px 10px;
-    margin: 0px auto 10px auto;
+    font-size: 1.2rem;
+    margin: 0px auto 8px auto;
     border: 1px solid #f7f7f7;
     border-radius: 7%;
 }
 
 #message {
     width: 95%;
+    font-size: 1.2rem;
     height: 120px;
     padding: 3px 10px;
     margin: 0px auto 10px auto;
@@ -176,10 +180,12 @@ p,
     width: 95%;
     height: 30px;
     padding: 5px;
+    padding-bottom: 25px;
     border: 1px solid #f7f7f7;
     background-color: #ffe869;
     border-radius: 2%;
     cursor: pointer;
+    font-size: 1.1rem;
 }
 
 .info {
@@ -211,6 +217,15 @@ p,
     line-height: 140%;
     word-spacing: normal;
     color: rgb(100, 100, 100);
+    font-size: 1rem;
+}
+
+.general p ul li{
+    font-size: 1rem;
+}
+
+.general p strong{
+    font-size: 1.2rem;
 }
 
 p ul,
@@ -298,15 +313,23 @@ p ul:nth-child(2) {
     justify-content: start;
 }
 
-.certification-container {
+.certification-container{
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-top: 10px;   
 }
 
-.certification-image {
+.certification-container img{
+    height: 150px;
+}
+
+.certification-container:first-of-type{
+    margin-left: 100px;
+}
+
+.certification-image{
     width: 250px;
 }
 
@@ -316,8 +339,11 @@ p ul:nth-child(2) {
     margin-top: 50px;
 }
 
-.technical-details-col1 div,
-.technical-details-col2 div {
+.certification-title{
+    height: 24px;
+}
+
+.technical-details-col1 div ,.technical-details-col2 div{
     margin-left: 90px;
     margin-top: 50px;
     font-weight: 700;
@@ -333,6 +359,17 @@ p ul:nth-child(2) {
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
+}
+
+.also-interested-in{
+    margin-top: 100px;
+    background-color: #fcfcfc;
+    width: 90vw;
+    justify-content: center;
+    margin: 0px;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 h2 {

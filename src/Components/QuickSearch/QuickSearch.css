@@ -18,6 +18,7 @@
 .QuickSearch .card-container {
     margin: 5px auto;
     width: 80%;
+    height: auto;
     box-shadow: none;
 }
 

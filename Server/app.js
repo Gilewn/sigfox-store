@@ -22,8 +22,9 @@ app.listen(5000, () => {
         throw error;
     }
     database = client.db(DATABASE_NAME);
-    collection = database.collection("products");
+    collection = database.collection("Products");
     collection_partners = database.collection("partners")
+
     console.log("Connected to `" + DATABASE_NAME + "`!");
 });
 });

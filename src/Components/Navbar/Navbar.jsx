@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <NavBar style={barAnimation}>
           <FlexContainer>
             <Brand />
-            <GlobalSearchBox {...props} handleSearch={props.handleChange} />
+            <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
             <NavLinks style={linkAnimation}>
               <a href="/">link n1</a>
               <a href="/">link n2</a>
@@ -48,6 +48,7 @@ const Navbar = (props) => {
     </Row>
   )
 }
+
 export default Navbar
 
 const NavBar = styled(animated.nav)`

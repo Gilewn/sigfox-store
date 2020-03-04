@@ -8,7 +8,7 @@ function SearchBox(props) {
             <input
                 type="text"
                 placeholder=" Search..."
-                onKeyUp={props.handleSearch}
+                onChange={props.handleGlobalChange}
             />
         </div>
     );

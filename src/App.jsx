@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Components/Navbar/Navbar';
+import QuickSearch from './Components/QuickSearch/QuickSearch';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
@@ -33,6 +34,10 @@ class App extends Component {
       })
   }
 
+  handleGlobalChange = (e) => {
+    this.setState({ searchField: e.target.value })
+  }
+
   handleChange = (e) => {
     this.setState({ searchField: e.target.value })
   }
@@ -51,15 +56,24 @@ class App extends Component {
     let { searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
 
+    let quickSearch = null;
+
+    if (searchField.length > 0 && filteredProducts.length > 0) {
+      quickSearch = <QuickSearch 
+        items={filteredProducts}
+        {...this.props}/>;
+    }
+
     return (
       <BrowserRouter>
         <div>
           <Navbar
-            handleChange={this.handleChange}
+            handleGlobalChange={this.handleGlobalChange}
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div className="App">
             <Sidebar />
+            { quickSearch }
             <div className="Fullwidth">
               <Switch>
                 <Route path="/" exact component={Solutions} />

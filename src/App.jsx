@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Components/Navbar/Navbar';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {BrowserRouter, Switch, Route } from 'react-router-dom';
 import Solutions from './Components/Solutions/Solutions';
 import Products from './Components/Products/Products';
 import SearchBox from './Components/SearchBox/SearchBox';
@@ -9,6 +9,8 @@ import Footer from './Components/Footer/Footer';
 import ProductPage from './Components/ProductPage/ProductPage';
 import Sidebar from './Components/Sidebar/Sidebar';
 import axios from 'axios';
+import {Helmet} from "react-helmet";
+
 
 import './App.css';
 
@@ -81,7 +83,17 @@ class App extends Component {
                 </div>
               )} />
               <Route path={"/product/"} render={(props) => (
-                <ProductPage index={this.InitialIndexOfProduct} images={this.state.products[this.state.indexOfProduct].image} />
+                <div style={{width : '100%'}}>
+                <ProductPage product={this.state.products[this.state.indexOfProduct]} />
+                <Helmet>
+                <style type="text/css">{`
+              nav {
+                  display: none
+              }
+          
+          `}</style>
+              </Helmet>
+              </div>
               )}></Route>
               <Route path="*" component={NotFound} />
             </Switch>

@@ -7,12 +7,12 @@ function Product(props) {
         
         <Link onClick={()=>props.changeIndex(props.id)} to={'product/' + props.id}>
         <div className='card-image'>
-            <img src={props.item.image[0]} alt="product" />
+            <img src={props.item.images[0]} alt="product" />
         </div>
         <div className='card-title-description'>
             <h1>{props.item.title}</h1>
-            <h4>{props.item.category}</h4>
-            <p>{props.item.excerpt} </p>
+            <h4>{props.item.solution}</h4>
+            <p>{props.item.description} </p>
         </div>
         </Link>
     </div>

@@ -38,9 +38,9 @@ export default class ColumnTwo extends React.Component{
     render() {
    return <div className="col2">
        <div className='col2-infoBox'>
-            <div id='col2-product'><h3>SimplePack 3.0 Plus Full RC1</h3> </div>
-            <div id='col2-category'><p>Internet Of Things</p></div>
-            <div id='col2-overview'><p>Multipurpose device enabling 50+ use cases in all the verticals - track, trace, guard assets, monitor machine hours, monitor overturn, monitor temperature and much more.</p></div>
+    <div id='col2-product'><h3>{this.props.product.title}</h3> </div>
+            <div id='col2-category'><p>{this.props.product.solution}</p></div>
+            <div id='col2-overview'><p>{this.props.product.description}</p></div>
             <div className='info'><a href='#contactUs'><ion-icon name="information-outline"></ion-icon>Request for information</a></div>
             
         </div>  

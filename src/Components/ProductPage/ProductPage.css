@@ -1,5 +1,8 @@
-.container{
-    width: 99vw;
+*{
+    font-size: 1.0rem;
+}
+.productPage-container{
+    width: 90vw;
     margin: 30px auto;
     display:flex;
     flex-wrap: wrap;
@@ -14,6 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    
 }
 
 .image{
@@ -66,7 +70,7 @@ width: 10%;
 
 .col2-infoBox{
     width: 85%;
-    height: 20%;
+    height: 15%;
     background-color: #f7f7f7;
     border: 1px solid #f7f7f7;
     border-radius: 2%;
@@ -137,14 +141,14 @@ width: 10%;
 
 .sigfox-logo-contact-text{
     margin-top: 20px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
     
 }
 
 
 .contact-form-footer p{
-    font-size: 0.55rem;
+    font-size: 0.65rem;
     padding-bottom:0px;
     text-align: justify;
 }
@@ -164,6 +168,7 @@ width: 10%;
     width: 90%;
     height: 30px;
     padding: 3px 10px;
+    font-size: 1.2rem;
     margin: 0px auto 8px auto;
     border: 1px solid #f7f7f7;
     border-radius: 5%;
@@ -172,6 +177,7 @@ width: 10%;
 
 #message{
     width: 95%;
+    font-size: 1.2rem;
     height: 120px;
     padding: 3px 10px;
     margin: 0px auto 10px auto;
@@ -191,10 +197,12 @@ width: 10%;
     width: 95%;
     height: 30px;
     padding: 5px;
+    padding-bottom: 25px;
     border: 1px solid #f7f7f7;
     background-color: #ffe869;
     border-radius: 2%;
     cursor: pointer;
+    font-size: 1.1rem;
     
 }
 .info
@@ -231,6 +239,15 @@ width: 10%;
     line-height: 140%;
     word-spacing: normal;
     color: rgb(100, 100, 100);
+    font-size: 1rem;
+}
+
+.general p ul li{
+    font-size: 1rem;
+}
+
+.general p strong{
+    font-size: 1.2rem;
 }
 
 p ul, p ul:nth-child(2){
@@ -323,15 +340,24 @@ p ul, p ul:nth-child(2){
     flex-direction: row;
     justify-content: start;
     
+    
 }
 
 .certification-container{
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-top: 10px;   
 
+}
+
+.certification-container img{
+    height: 150px;
+}
+
+.certification-container:first-of-type{
+    margin-left: 100px;
 }
 
 
@@ -346,6 +372,11 @@ p ul, p ul:nth-child(2){
     height: 150px;
     margin-top: 50px;
     
+}
+
+.certification-title{
+    height: 24px;
+
 }
 
 
@@ -379,7 +410,7 @@ p ul, p ul:nth-child(2){
 .also-interested-in{
     margin-top: 100px;
     background-color: #fcfcfc;
-    width: 100vw;
+    width: 90vw;
     justify-content: center;
     margin: 0px;
     display:flex;

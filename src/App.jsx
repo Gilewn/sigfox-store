@@ -18,6 +18,7 @@ class App extends Component {
   state = {
     products: [],
     searchField: "",
+    globalSearchField: "",
     navbarOpen: false,
     indexOfProduct: -1
   }
@@ -37,7 +38,7 @@ class App extends Component {
   }
 
   handleGlobalChange = (e) => {
-    this.setState({ searchField: e.target.value })
+    this.setState({ globalSearchField: e.target.value })
   }
 
   handleChange = (e) => {
@@ -55,14 +56,15 @@ class App extends Component {
   }
 
   render() {
-    let { searchField, products } = this.state;
+    let { globalSearchField, searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
+    const globalFilteredProducts = products.filter((product) => (product.title.toLowerCase().includes(globalSearchField.toLowerCase())));
 
     let quickSearch = null;
 
-    if (searchField.length > 0 && filteredProducts.length > 0) {
+    if (globalSearchField.length > 0 && filteredProducts.length > 0) {
       quickSearch = <QuickSearch
-        items={filteredProducts}
+        items={globalFilteredProducts}
         {...this.props}
         handleChange={this.handleChange}
         changeIndexOfProduct={this.ChangeIndexOfProduct} />;

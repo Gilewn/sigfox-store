@@ -63,7 +63,9 @@ class App extends Component {
     if (searchField.length > 0 && filteredProducts.length > 0) {
       quickSearch = <QuickSearch
         items={filteredProducts}
-        {...this.props} />;
+        {...this.props}
+        handleChange={this.handleChange}
+        changeIndexOfProduct={this.ChangeIndexOfProduct} />;
     }
 
     return (

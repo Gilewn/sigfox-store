@@ -6,25 +6,22 @@
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    box-shadow: 2px 2px 3px #828282;
-    /* fallback for old browsers */
-    background: #C9D6FF;
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+    box-shadow: 2px 2px 0 #828282;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .QuickSearch .card-container {
-    margin: 5px auto;
-    width: 80%;
+    margin: auto;
+    width: 98%;
     height: auto;
     box-shadow: none;
+    transition: all 0.4s ease-in-out;
 }
 
 .QuickSearch .card-container:hover {
     transform: none;
-    background-color: #000;
+    background-color: #7824ff;
+    width: 100%;
     transition: all 0.4s ease-in-out;
 }
 
@@ -60,4 +57,14 @@
 .QuickSearch .card-title-description h1,
 .QuickSearch .card-title-description h4 {
     margin: auto;
+    color: #7824ff;
+}
+
+.fade-appear {
+    opacity: 0.01;
+}
+
+.fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
 }

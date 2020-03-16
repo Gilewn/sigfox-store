@@ -38,11 +38,15 @@ class App extends Component {
   }
 
   handleGlobalChange = (e) => {
-    this.setState({ globalSearchField: e.target.value })
+    this.setState({ globalSearchField: e.target.value });
+  }
+
+  closeSearchField = () => {
+    this.setState({ globalSearchField: "" });
   }
 
   handleChange = (e) => {
-    this.setState({ searchField: e.target.value })
+    this.setState({ searchField: e.target.value });
   }
 
   handleNavbar = () => {
@@ -52,7 +56,7 @@ class App extends Component {
   ChangeIndexOfProduct = (index) => {
     this.setState({
       indexOfProduct: index
-    })
+    });
   }
 
   render() {
@@ -67,12 +71,13 @@ class App extends Component {
         items={globalFilteredProducts}
         {...this.props}
         handleChange={this.handleChange}
-        changeIndexOfProduct={this.ChangeIndexOfProduct} />;
+        changeIndexOfProduct={this.ChangeIndexOfProduct}
+      />;
     }
 
     return (
       <BrowserRouter>
-        <div>
+        <div onClick={this.closeSearchField}>
           <Navbar
             handleGlobalChange={this.handleGlobalChange}
             navbarState={this.state.navbarOpen}

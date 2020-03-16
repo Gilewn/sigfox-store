@@ -12,7 +12,7 @@ const QuickSearchProducts = (props) => {
                 </div>
                 <div className='card-title-description'>
                     <h1>{props.item.title}</h1>
-                    <h4>{props.item.category}</h4>
+                    <h1>{props.item.solution}</h1>
                 </div>
             </Link>
         </div>

@@ -12,26 +12,20 @@ const Styles = styled.div`
 
   table {
     border-spacing: 0;
-    border: 1px solid black;
+
+    tbody {
+        display: flex;
+    }
 
     tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
+        display: flex;
+        flex-direction: column;
     }
 
     th,
     td {
       margin: 0;
       padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
-      }
     }
   }
 `
@@ -46,13 +40,13 @@ function Table({ columns, data }) {
         prepareRow,
     } = useTable({
         columns,
-        data,
+        data
     })
 
     // Render the UI for your table
     return (
         <table {...getTableProps()}>
-            <thead>
+            {/* <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
@@ -60,14 +54,16 @@ function Table({ columns, data }) {
                         ))}
                     </tr>
                 ))}
-            </thead>
+            </thead> */}
             <tbody {...getTableBodyProps()}>
                 {rows.map((row, i) => {
                     prepareRow(row)
                     return (
                         <tr {...row.getRowProps()}>
                             {row.cells.map(cell => {
-                                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                return <td {...cell.getCellProps()}>
+                                    {cell.render('Cell')}
+                                </td>
                             })}
                         </tr>
                     )
@@ -81,19 +77,16 @@ function Products(props) {
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Title',
+                Header: 'Products',
                 columns: [
                     {
-                        Header: 'Title',
                         accessor: 'title',
                     },
                     {
-                        Header: 'Solution',
                         accessor: 'solution',
                     },
                     {
-                        Header: 'Description',
-                        accessor: 'description',
+                        accessor: 'description'
                     }
                 ],
             }
@@ -109,7 +102,7 @@ function Products(props) {
             <Grid container spacing={2} justify="center">
                 {props.items.map((product, index) =>
                     <Grid
-                        item xs={12} sm={6} md={3} key={product.title}>
+                        item xs={12} sm={6} md={3} key={product.id}>
                         <Product key={index} changeIndex={props.changeIndexOfProduct} id={index} item={product} />
                     </Grid>
                 )}

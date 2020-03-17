@@ -1,3 +1,14 @@
+.Products {
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.UtilityBar {
+    display: flex;
+    margin-bottom: 2%;
+    justify-content: space-around;
+}
+
 .Big-Container a:link,
 .Big-Container a:visited {
     text-decoration: none;
@@ -6,4 +17,11 @@
 
 .pageProducts {
     width: 100%;
+}
+
+/* Under 426px */
+@media(max-width: 426px) {
+    .UtilityBar {
+        flex-direction: column;
+    }
 }

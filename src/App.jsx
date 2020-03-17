@@ -11,7 +11,6 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import axios from 'axios';
 import { Helmet } from "react-helmet";
 
-
 import './App.css';
 
 class App extends Component {
@@ -92,7 +91,7 @@ class App extends Component {
           <div className="Big-Container">
             <Products
               {...props}
-              items={groupByCategoryToArray[0].slice(1, 3)}
+              items={groupByCategoryToArray[0].concat(groupByCategoryToArray[1])}
               handleGroupBy={this.handleGroupBy}
               handleChange={this.handleChange}
               changeIndexOfProduct={this.ChangeIndexOfProduct} />
@@ -100,17 +99,16 @@ class App extends Component {
         </div>
       )} />
     }
-    
+
     if (!this.state.showGroubByCategory) {
       products = <Route exact path="/products" render={(props) => (
         <div>
           <div className="Big-Container">
-            <Products 
-              {...props} 
+            <Products
+              {...props}
               items={filteredProducts}
-              groupByCategoryToArray={groupByCategoryToArray}
-              handleGroupBy={this.handleGroupBy} 
-              handleChange={this.handleChange} 
+              handleGroupBy={this.handleGroupBy}
+              handleChange={this.handleChange}
               changeIndexOfProduct={this.ChangeIndexOfProduct} />
           </div>
         </div>

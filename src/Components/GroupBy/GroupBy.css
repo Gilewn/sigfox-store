@@ -1,0 +1,22 @@
+.GroupBy button {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    color: #575048;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.GroupBy button:hover {
+    background-color: #ccc;
+    color: #7824ff;
+    transition: all 0.3s ease-in-out;
+}
+
+.GroupBy button:focus {
+    outline: none;
+}
+
+.GroupBy button span {
+    font-weight: 900;
+}

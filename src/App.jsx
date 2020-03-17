@@ -20,7 +20,8 @@ class App extends Component {
     searchField: "",
     globalSearchField: "",
     navbarOpen: false,
-    indexOfProduct: -1
+    indexOfProduct: -1,
+    showGroubByCategory: false
   }
 
   InitialIndexOfProduct = (index) => {
@@ -59,10 +60,20 @@ class App extends Component {
     });
   }
 
+  handleGroupBy = () => {
+    this.setState({ showGroubByCategory: !this.state.showGroubByCategory });
+  }
+
   render() {
     let { globalSearchField, searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
     const globalFilteredProducts = products.filter((product) => (product.title.toLowerCase().includes(globalSearchField.toLowerCase())));
+    const groupByCategory = filteredProducts.reduce((r, a) => {
+      r[a.solution] = [...r[a.solution] || [], a];
+      return r;
+    }, {});
+
+    let groupByCategoryToArray = Object.values(groupByCategory);
 
     let quickSearch = null;
 
@@ -73,6 +84,37 @@ class App extends Component {
         handleChange={this.handleChange}
         changeIndexOfProduct={this.ChangeIndexOfProduct}
       />;
+    }
+
+    if (this.state.showGroubByCategory) {
+      products = <Route exact path="/products" render={(props) => (
+        <div>
+          <div className="Big-Container">
+            <Products
+              {...props}
+              items={groupByCategoryToArray[0].slice(1, 3)}
+              handleGroupBy={this.handleGroupBy}
+              handleChange={this.handleChange}
+              changeIndexOfProduct={this.ChangeIndexOfProduct} />
+          </div>
+        </div>
+      )} />
+    }
+    
+    if (!this.state.showGroubByCategory) {
+      products = <Route exact path="/products" render={(props) => (
+        <div>
+          <div className="Big-Container">
+            <Products 
+              {...props} 
+              items={filteredProducts}
+              groupByCategoryToArray={groupByCategoryToArray}
+              handleGroupBy={this.handleGroupBy} 
+              handleChange={this.handleChange} 
+              changeIndexOfProduct={this.ChangeIndexOfProduct} />
+          </div>
+        </div>
+      )} />
     }
 
     return (
@@ -88,13 +130,7 @@ class App extends Component {
             <div className="Fullwidth">
               <Switch>
                 <Route path="/" exact component={Solutions} />
-                <Route exact path="/products" render={(props) => (
-                  <div>
-                    <div className="Big-Container">
-                      <Products {...props} items={filteredProducts} handleChange={this.handleChange} changeIndexOfProduct={this.ChangeIndexOfProduct} />
-                    </div>
-                  </div>
-                )} />
+                {products}
                 <Route path={"/product/"} render={(props) => (
                   <div style={{ width: '100%' }}>
                     <ProductPage product={this.state.products[this.state.indexOfProduct]} />

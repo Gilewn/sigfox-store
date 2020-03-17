@@ -99,6 +99,7 @@ function Products(props) {
     return (
         <div style={{ marginTop: 20, padding: 30 }}>
             <SearchBox {...props} handleChange={props.handleChange} />
+            <button style={{margin: '5%'}} onClick={props.handleGroupBy}>Group by Category</button>
             <Grid container spacing={2} justify="center">
                 {props.items.map((product, index) =>
                     <Grid

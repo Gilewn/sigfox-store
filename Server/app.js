@@ -59,12 +59,14 @@ app.get("/products", (request, response) => {
 
 
 /////GET products/:id///////////////////////////////
-app.get("/products/:id", (request, response) => {
+app.get("/product/:id", (request, response) => {
   collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
       response.send(result);
+      console.log(result);
+      
   });
 });
 

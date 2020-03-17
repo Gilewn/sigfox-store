@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './ProductPage.css';
 import ColumnOne from './ProductPageColumnOne';
 import ColumnTwo from './ProductPageColumnTwo';
+import axios from 'axios';
 
+class ProductPage extends Component{
 
-function ProductPage(props){
-    // return <div>
-    //     {console.log(props.item)}
-    //     <img src={props.item.image} alt="photo"/>
-    // </div>
+     state = {
+        product:[]
+    }
+    componentWillMount() {
+        var id= window.location.href.split('/').reverse()[0]
+       
+        console.log(id);
+        
+      
+        axios.get(`http://localhost:5000/product/${id}`)
+        .then(res => {
+            const product = res.data;
+            this.setState({ product });
+           console.log(this.state.product)
+        
+        }) }
 
-
+    render(){
+        
     return <div className="productPage-container">
-        <ColumnOne product={props.product} album={props.product.images} generalDetails={props.text} certificates={props.certificates}/>
-        <ColumnTwo product={props.product}/>
+
+   
+    <ColumnTwo product={this.state.product} />
     </div>
 }
-
+}
 export default ProductPage;

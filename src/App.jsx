@@ -19,16 +19,14 @@ class App extends Component {
     products: [],
     searchField: "",
     navbarOpen: false,
-    indexOfProduct: -1
+    indexOfProduct: -1,
+    
+    
   }
+  
 
-  InitialIndexOfProduct = (index) => {
-    this.setState({
-      indexOfProduct: index
-    })
-  }
-
-  componentDidMount() {
+ 
+  componentWillMount() {
     axios.get(`http://localhost:5000/products`)
       .then(res => {
         const products = res.data;
@@ -48,13 +46,18 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   }
 
-  ChangeIndexOfProduct = (index) => {
+ findIndexOfProduct = (product_id) => {
+   
+  var index= this.state.products.findIndex(index => index._id === product_id);
     this.setState({
       indexOfProduct: index
     })
   }
 
+  
+
   render() {
+   
     let { searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
 
@@ -82,13 +85,15 @@ class App extends Component {
                 <Route exact path="/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
-                      <Products {...props} items={filteredProducts} handleChange={this.handleChange} changeIndexOfProduct={this.ChangeIndexOfProduct} />
+                      <Products {...props} items={filteredProducts} handleChange={this.handleChange} />
                     </div>
                   </div>
-                )} />
-                <Route path={"/product/"} render={(props) => (
+                )} ></Route>
+                
+                <Route path={"/product/:id"} render={(props) => (
                   <div style={{ width: '100%' }}>
-                    <ProductPage product={this.state.products[this.state.indexOfProduct]} />
+                    
+                    <ProductPage  {...props} />
                     <Helmet>
                       <style type="text/css">{`
                         nav {

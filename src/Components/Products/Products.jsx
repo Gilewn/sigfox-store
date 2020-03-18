@@ -1,5 +1,4 @@
 import React from "react";
-import Product from "../Product/Product";
 import SearchBox from '../SearchBox/SearchBox';
 import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";

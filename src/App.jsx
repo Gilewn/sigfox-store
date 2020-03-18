@@ -20,8 +20,12 @@ class App extends Component {
     globalSearchField: "",
     navbarOpen: false,
     indexOfProduct: -1,
-    showGroubByCategory: false
+    showGroubByCategory: false,
+    exampleItems: [...Array(150).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) })),
+    pageOfItems: []
   }
+
+  onChangePage = this.onChangePage.bind(this);
 
   InitialIndexOfProduct = (index) => {
     this.setState({
@@ -63,6 +67,10 @@ class App extends Component {
     this.setState({ showGroubByCategory: !this.state.showGroubByCategory });
   }
 
+  onChangePage(pageOfItems) {
+    this.setState({ pageOfItems: pageOfItems });
+  }
+
   render() {
     let { globalSearchField, searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
@@ -96,7 +104,10 @@ class App extends Component {
             <Products
               {...props}
               items={finalArray}
+              pageOfItems={this.state.pageOfItems}
+              exampleItems={this.state.exampleItems}
               handleGroupBy={this.handleGroupBy}
+              onChangePage={this.onChangePage}
               handleChange={this.handleChange}
               changeIndexOfProduct={this.ChangeIndexOfProduct} />
           </div>
@@ -111,7 +122,10 @@ class App extends Component {
             <Products
               {...props}
               items={filteredProducts}
+              pageOfItems={this.state.pageOfItems}
+              exampleItems={this.state.exampleItems}
               handleGroupBy={this.handleGroupBy}
+              onChangePage={this.onChangePage}
               handleChange={this.handleChange}
               changeIndexOfProduct={this.ChangeIndexOfProduct} />
           </div>

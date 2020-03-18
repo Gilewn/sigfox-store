@@ -2,6 +2,7 @@ import React from "react";
 import Product from "../Product/Product";
 import SearchBox from '../SearchBox/SearchBox';
 import GroupBy from '../GroupBy/GroupBy';
+import Pagination from '../Pagination/Pagination';
 import { Grid } from "@material-ui/core";
 
 import './Products.css';
@@ -21,6 +22,14 @@ function Products(props) {
                     </Grid>
                 )}
             </Grid>
+            <div className="container">
+                <div className="text-center">
+                    {props.pageOfItems.map(item =>
+                        <div key={item.id}>{item.name}</div>
+                    )}
+                    <Pagination items={props.exampleItems} onChangePage={props.onChangePage} />
+                </div>
+            </div>
         </div>
     )
 }

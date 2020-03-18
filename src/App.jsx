@@ -86,12 +86,16 @@ class App extends Component {
     }
 
     if (this.state.showGroubByCategory) {
+      let finalArray = [];
+      if (filteredProducts.length != 0) {
+        finalArray = groupByCategoryToArray[0].concat(groupByCategoryToArray[1]);
+      }
       products = <Route exact path="/products" render={(props) => (
         <div>
           <div className="Big-Container">
             <Products
               {...props}
-              items={groupByCategoryToArray[0].concat(groupByCategoryToArray[1])}
+              items={finalArray}
               handleGroupBy={this.handleGroupBy}
               handleChange={this.handleChange}
               changeIndexOfProduct={this.ChangeIndexOfProduct} />

@@ -7,7 +7,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import solutions from "./Test-Solutions";
-
 import "./Solutions.css";
 
 function Solutions(props) {

@@ -10,23 +10,19 @@ import ProductPage from './Components/ProductPage/ProductPage';
 import Sidebar from './Components/Sidebar/Sidebar';
 import axios from 'axios';
 import { Helmet } from "react-helmet";
-
-
 import './App.css';
+
 
 class App extends Component {
   state = {
     products: [],
     searchField: "",
     navbarOpen: false,
-    indexOfProduct: -1,
-    
-    
-  }
+}
   
 
  
-  componentWillMount() {
+  componentDidMount() {
     axios.get(`http://localhost:5000/products`)
       .then(res => {
         const products = res.data;
@@ -46,13 +42,7 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   }
 
- findIndexOfProduct = (product_id) => {
-   
-  var index= this.state.products.findIndex(index => index._id === product_id);
-    this.setState({
-      indexOfProduct: index
-    })
-  }
+
 
   
 

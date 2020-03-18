@@ -42,6 +42,7 @@ export default class ColumnTwo extends React.Component {
             <div id='col2-category'><p>{this.props.product.solution}</p></div>
             <div id='col2-overview'><p>{this.props.product.description}</p></div>
             <div className='info'><a href='#contactUs'><ion-icon name="information-outline"></ion-icon>Request for information</a></div>
+            <img id='main-photo' src={this.props.album} alt="photo" />
         </div>  
 
       <div id='contactUs' className='col2-contactForm'>

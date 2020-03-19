@@ -33,8 +33,8 @@ class Pagination extends Component {
     }
 
     setPage(page) {
-        var items = this.props.items;
-        var pager = this.state.pager;
+        let items = this.props.items;
+        let pager = this.state.pager;
 
         if (page < 1 || page > pager.totalPages) {
             return;
@@ -44,7 +44,7 @@ class Pagination extends Component {
         pager = this.getPager(items.length, page);
 
         // get new page of items from items array
-        var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+        let pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
         // update state
         this.setState({ pager: pager });
@@ -58,13 +58,13 @@ class Pagination extends Component {
         currentPage = currentPage || 1;
 
         // default page size is 10
-        pageSize = pageSize || 10;
+        pageSize = pageSize || 4;
 
         // calculate total pages
-        var totalPages = Math.ceil(totalItems / pageSize);
+        let totalPages = Math.ceil(totalItems / pageSize);
 
-        var startPage, endPage;
-        if (totalPages <= 10) {
+        let startPage, endPage;
+        if (totalPages <= 4) {
             // less than 10 total pages so show all
             startPage = 1;
             endPage = totalPages;
@@ -83,11 +83,11 @@ class Pagination extends Component {
         }
 
         // calculate start and end item indexes
-        var startIndex = (currentPage - 1) * pageSize;
-        var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+        let startIndex = (currentPage - 1) * pageSize;
+        let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
         // create an array of pages to ng-repeat in the pager control
-        var pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
+        let pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
 
         // return object with all pager properties required by the view
         return {
@@ -104,7 +104,7 @@ class Pagination extends Component {
     }
 
     render() {
-        var pager = this.state.pager;
+        let pager = this.state.pager;
 
         if (!pager.pages || pager.pages.length <= 1) {
             // don't display pager if there is only 1 page

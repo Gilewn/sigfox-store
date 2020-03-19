@@ -21,7 +21,6 @@ class App extends Component {
     navbarOpen: false,
     indexOfProduct: -1,
     showGroubByCategory: false,
-    exampleItems: [...Array(150).keys()].map(i => ({ id: (i + 1), name: 'Item ' + (i + 1) })),
     pageOfItems: []
   }
 
@@ -58,9 +57,7 @@ class App extends Component {
   }
 
   ChangeIndexOfProduct = (index) => {
-    this.setState({
-      indexOfProduct: index
-    });
+    this.setState({ indexOfProduct: index });
   }
 
   handleGroupBy = () => {
@@ -73,7 +70,7 @@ class App extends Component {
 
   render() {
     let { globalSearchField, searchField, products } = this.state;
-    const filteredProducts = products.filter((product) => (product.title.toLowerCase().includes(searchField.toLowerCase())));
+    const filteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(searchField.toLowerCase())));
     const globalFilteredProducts = products.filter((product) => (product.title.toLowerCase().includes(globalSearchField.toLowerCase())));
     const groupByCategory = filteredProducts.reduce((r, a) => {
       r[a.solution] = [...r[a.solution] || [], a];
@@ -87,7 +84,6 @@ class App extends Component {
     if (globalSearchField.length > 0 && filteredProducts.length > 0) {
       quickSearch = <QuickSearch
         items={globalFilteredProducts}
-        {...this.props}
         handleChange={this.handleChange}
         changeIndexOfProduct={this.ChangeIndexOfProduct}
       />;
@@ -98,14 +94,13 @@ class App extends Component {
       if (filteredProducts.length != 0) {
         finalArray = groupByCategoryToArray[0].concat(groupByCategoryToArray[1]);
       }
-      products = <Route exact path="/products" render={(props) => (
+      products = <Route exact path="/products" render={() => (
         <div>
           <div className="Big-Container">
             <Products
-              {...props}
               items={finalArray}
               pageOfItems={this.state.pageOfItems}
-              exampleItems={this.state.exampleItems}
+              paginationItems={this.state.products}
               handleGroupBy={this.handleGroupBy}
               onChangePage={this.onChangePage}
               handleChange={this.handleChange}
@@ -116,14 +111,13 @@ class App extends Component {
     }
 
     if (!this.state.showGroubByCategory) {
-      products = <Route exact path="/products" render={(props) => (
+      products = <Route exact path="/products" render={() => (
         <div>
           <div className="Big-Container">
             <Products
-              {...props}
               items={filteredProducts}
               pageOfItems={this.state.pageOfItems}
-              exampleItems={this.state.exampleItems}
+              paginationItems={this.state.products}
               handleGroupBy={this.handleGroupBy}
               onChangePage={this.onChangePage}
               handleChange={this.handleChange}
@@ -147,7 +141,7 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact component={Solutions} />
                 {products}
-                <Route path={"/product/"} render={(props) => (
+                <Route path={"/product/"} render={() => (
                   <div style={{ width: '100%' }}>
                     <ProductPage product={this.state.products[this.state.indexOfProduct]} />
                     <Helmet>

@@ -11,23 +11,32 @@ function Products(props) {
     return (
         <div className="Products">
             <div className="UtilityBar">
-                <SearchBox {...props} handleChange={props.handleChange} />
+                <SearchBox handleChange={props.handleChange} />
                 <GroupBy handleGroupBy={props.handleGroupBy} />
             </div>
             <Grid container spacing={2} justify="center">
                 {props.items.map((product, index) =>
                     <Grid
-                        item xs={12} sm={6} md={3} key={product.id}>
+                        item xs={12} sm={6} md={3} key={product._id}>
                         <Product key={index} changeIndex={props.changeIndexOfProduct} id={index} item={product} />
                     </Grid>
                 )}
             </Grid>
-            <div className="container">
-                <div className="text-center">
+            <div>
+                <div>
                     {props.pageOfItems.map(item =>
-                        <div key={item.id}>{item.name}</div>
+                        <div key={item._id}>
+                            <div>
+                                <img src={item.images[0]} width="150" alt="product" />
+                            </div>
+                            <div className='card-title-description'>
+                                <h1>{item.title}</h1>
+                                <h4>{item.solution}</h4>
+                                <p>{item.description}</p>
+                            </div>
+                        </div>
                     )}
-                    <Pagination items={props.exampleItems} onChangePage={props.onChangePage} />
+                    <Pagination items={props.paginationItems} onChangePage={props.onChangePage} />
                 </div>
             </div>
         </div>

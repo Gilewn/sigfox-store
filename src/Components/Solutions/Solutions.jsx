@@ -10,7 +10,7 @@ import solutions from "./Test-Solutions";
 
 import "./Solutions.css";
 
-function Solutions(props) {
+function Solutions() {
   return (
     <div style={{ marginTop: 20, padding: 30 }}>
       <Grid container spacing={2} justify="center">

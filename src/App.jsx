@@ -77,7 +77,7 @@ class App extends Component {
             <div className="Fullwidth">
               <Switch>
                 <Route path="/" exact component={Solutions} />
-                <Route exact path=":/products" render={(props) => (
+                <Route exact path="/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
                       <Products {...props} items={filteredProducts} handleChange={this.handleChange} />

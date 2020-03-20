@@ -8,21 +8,24 @@ import './Products.css';
 function Products(props) {
     
     
-    var result = props.match.params.solution_title 
+    if (typeof props.match.params.solution_title === 'undefined') {
+       Products = props.items
+      }else{
     
-    console.log(result);
+    console.log(props.match.params.solution_title);
     
-   const filteredProducts = props.items.filter((product) =>{
-        return product.solution === result;
+   var Products = props.items.filter((product) =>{
+       console.log(product.solution)
+        return product.solution === props.match.params.solution_title;
    });
-    console.log(filteredProducts)
-    
+    console.log(Products)
+}
     return (
         <div style={{ marginTop: 20, padding: 30 }}>
             <SearchBox {...props} handleChange={props.handleChange} />
             <Grid container spacing={2} justify="center">
                
-                {filteredProducts.map((product,index) =>
+                {Products.map((product,index) =>
                     <Grid
                         item xs={12} sm={6} md={3} key={product._id}>
                          <div className="card-container">

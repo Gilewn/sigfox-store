@@ -56,7 +56,7 @@ app.get("/", (request, response) => {
   });
 });
 //////GET products specific solution /////////////////////////////////////
-app.get("/:id/products", (request, response) => {
+app.get("/:solution/products", (request, response) => {
   
   collection_products.find({ solution: request.params  }, (error, result) => {
       if(error) {

@@ -13,12 +13,12 @@ class ProductPage extends Component{
         productcertifications:[]
     }
     componentDidMount() {
-        var id= window.location.href.split('/').reverse()[0]
        
-        console.log(id);
+       
+        
         
       
-        axios.get(`http://localhost:5000/product/${id}`)
+        axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
         .then(res => {
             
             this.setState({ product:res.data });

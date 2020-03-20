@@ -18,7 +18,8 @@ class App extends Component {
     products: [],
     searchField: "",
     navbarOpen: false,
-}
+    solutionproducts: []
+  }
   
 
  
@@ -28,6 +29,9 @@ class App extends Component {
         const products = res.data;
         this.setState({ products });
       })
+      .catch(function (error) {
+        console.log(error);
+    });
   }
 
   handleGlobalChange = (e) => {
@@ -42,8 +46,7 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   }
 
-
-
+  
   
 
   render() {
@@ -59,6 +62,8 @@ class App extends Component {
         {...this.props} />;
     }
 
+    
+
     return (
       <BrowserRouter>
         <div>
@@ -72,15 +77,26 @@ class App extends Component {
             <div className="Fullwidth">
               <Switch>
                 <Route path="/" exact component={Solutions} />
-                <Route exact path="/products" render={(props) => (
+                <Route exact path=":/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
                       <Products {...props} items={filteredProducts} handleChange={this.handleChange} />
                     </div>
                   </div>
                 )} ></Route>
+
+
+             
+                <Route  path="/:solution_title/products" render={(props) => (
+                  <div>
+                    <div className="Big-Container">
+                      <Products {...props} items={filteredProducts} handleChange={this.handleChange} />
+                    </div>
+                  </div>
+                )} ></Route>
+                  
                 
-                <Route path={"/product/:id"} render={(props) => (
+                <Route path={"/:id"} render={(props) => (
                   <div style={{ width: '100%' }}>
                     
                     <ProductPage  {...props} />
@@ -94,6 +110,12 @@ class App extends Component {
                     </Helmet>
                   </div>
                 )}></Route>
+                
+
+
+
+
+
                 <Route path="*" component={NotFound} />
               </Switch>
             </div>

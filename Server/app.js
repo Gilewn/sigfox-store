@@ -14,7 +14,7 @@ app.use(cors())
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
 
-var database, collection;
+var database, collection_products;
 
 app.listen(5000, () => {
   MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
@@ -22,8 +22,9 @@ app.listen(5000, () => {
         throw error;
     }
     database = client.db(DATABASE_NAME);
-    collection = database.collection("Products");
+    collection_products = database.collection("Products");
     collection_partners = database.collection("partners")
+    collection_solutions = database.collection("solutions")
 
     console.log("Connected to `" + DATABASE_NAME + "`!");
 });
@@ -41,13 +42,38 @@ let transport = nodemailer.createTransport({
 });
 
 
+//////GET solutions/////////////////////////////////////
 
+app.get("/", (request, response) => {
+  
+  collection_solutions.find({}).toArray((error, result) => {
+      if(error) {
+          return response.status(500).send(error);
+      }
+      response.send(result);
+      console.log(result);
+     
+  });
+});
+//////GET products specific solution /////////////////////////////////////
+app.get("/:id/products", (request, response) => {
+  
+  collection_products.find({ solution: request.params  }, (error, result) => {
+      if(error) {
+          return response.status(500).send(error);
+      }
+     
+      response.send(result);
+      console.log(result);
+      
+  });
+});
 
 //////GET products/////////////////////////////////////
 
 app.get("/products", (request, response) => {
   
-  collection.find({}).toArray((error, result) => {
+  collection_products.find({}).toArray((error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
@@ -60,9 +86,9 @@ app.get("/products", (request, response) => {
 
 
 /////GET products/:id///////////////////////////////
-app.get("/product/:id", (request, response) => {
+app.get("/products/:id", (request, response) => {
   
-  collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
+  collection_products.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
@@ -77,7 +103,7 @@ app.get("/product/:id", (request, response) => {
 
 //////////////////POST products////////////////////////////////
 app.post("/products", (request, response) => {
-  collection.insert(request.body, (error, result) => {
+  collection_products.insert(request.body, (error, result) => {
       if(error) {
           return response.status(500).send(error);
       }

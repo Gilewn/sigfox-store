@@ -6,16 +6,28 @@ import { Link } from "react-router-dom";
 import './Products.css';
 
 function Products(props) {
+    
+    
+    var result = props.match.params.solution_title 
+    
+    console.log(result);
+    
+   const filteredProducts = props.items.filter((product) =>{
+        return product.solution === result;
+   });
+    console.log(filteredProducts)
+    
     return (
         <div style={{ marginTop: 20, padding: 30 }}>
             <SearchBox {...props} handleChange={props.handleChange} />
             <Grid container spacing={2} justify="center">
-                {props.items.map((product,index) =>
+               
+                {filteredProducts.map((product,index) =>
                     <Grid
                         item xs={12} sm={6} md={3} key={product._id}>
                          <div className="card-container">
                          
-                         <Link to ={`product/${product._id}`}>
+                         <Link to ={ {pathname:`/${product._id}`}}>
                              <div className='card-image'>
                                 <img src={product.images[0]} alt="product" />
                             </div>

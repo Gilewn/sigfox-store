@@ -8,13 +8,15 @@ var decodeHTML = function (html) {
     return txt.value;
 };
 
-function ColumnOne(props) {
+export default class ColumnOne extends React.Component  {
 
-    function changePhoto(e) {
+    
+
+     changePhoto(e) {
         const photo = document.querySelector("#main-photo");
         photo.src = e.target.src;
     }
-
+render(){
     return <div className="col1">
         <div className="tabs">
             <div><a href="#general-text">General</a>
@@ -24,19 +26,19 @@ function ColumnOne(props) {
         </div>
         <div className='image'>
             <div className="arrows"> <ion-icon id='left-arrow' name="chevron-back-outline"></ion-icon></div>
-            <img id='main-photo' src={props.product.images[0]} alt="photo" />
+            <img id='main-photo' src={this.props.album[0]} alt="photo" />
             <div className="arrows2"> <ion-icon id='right-arrow' name="chevron-forward-outline"></ion-icon></div>
 
         </div>
 
         <div className="card-postal">
-            {props.product.images.map((image, index) => <img onClick={changePhoto} key={index} src={image} alt={'photo' + index} />)}
+            {this.props.album.map((image, index) => <img onClick={this.changePhoto} key={index} src={image} alt={'photo' + index} />)}
 
 
         </div>
         <div id="general-text" className='general'>
 
-            <HtmlComponent htmlText={decodeHTML(props.product.generalDetails)} />
+            <HtmlComponent htmlText={decodeHTML(this.props.product.generalDetails)} />
 
         </div>
 
@@ -44,7 +46,7 @@ function ColumnOne(props) {
             <a>Certification</a>
         </div>
         <div className="certification-body">
-            {props.product.certifications.map((certificate, index) => <Certification key={index} certificate={certificate} />)}
+            {this.props.certifications.map((certificate, index) => <Certification key={index} certificate={certificate} />)}
         </div>
 
         <div id='technical-details' className='technical-details-header' >
@@ -75,7 +77,6 @@ function ColumnOne(props) {
 
     </div>
 
-
+}
 }
 
-export default ColumnOne;

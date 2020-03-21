@@ -6,7 +6,7 @@ import './QuickSearchProducts.css';
 const QuickSearchProducts = (props) => {
     return (
         <div className="card-container">
-            <Link onClick={() => props.changeIndex(props.id)} to={'product/' + props.id}>
+            <Link to={{ pathname: `/${props.item._id}` }}>
                 <div className='card-image'>
                     <img src={props.item.images[0]} alt="product" />
                 </div>
@@ -18,4 +18,5 @@ const QuickSearchProducts = (props) => {
         </div>
     )
 }
+
 export default QuickSearchProducts;

@@ -34,30 +34,39 @@ class Sidebar extends Component {
                 <SideNav.Nav defaultSelected="home">
                     <NavItem eventKey="home">
                         <NavIcon>
-                            <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em', color: '#7824ff' }} />
+                            <Link to={`/`}>
+                                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em', color: '#7824ff' }} />
+                            </Link>
                         </NavIcon>
                         <NavText style={{ color: '#7824ff' }}>
                             All Solutions
-                    </NavText>
+                         </NavText>
                         {this.state.solutions.map((solution) =>
                             <NavItem >
                                 <NavText style={{ color: '#7824ff' }}>
-                                    <Link exact to={`/${solution.title}/products`}>
+                                    <Link to={`/${solution.title}/products`}>
                                         {solution.title}
                                     </Link>
                                 </NavText>
                             </NavItem>
                         )}
                     </NavItem>
-                    <NavItem eventKey="charts/barchart">
+                    <NavItem eventKey="products">
                         <NavIcon>
-                            <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', color: '#7824ff' }} />
+                            <Link to={`/products`} >
+                                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', color: '#7824ff' }} />
+                            </Link>
                         </NavIcon>
                         <NavText style={{ color: '#7824ff' }}>
-                            <Link to={`/products`} >
-                                All Products
-                            </Link>
+                            Find all our products
                         </NavText>
+                        <NavItem >
+                            <NavText style={{ color: '#7824ff' }}>
+                                <Link to={`/products`}>
+                                    All Products
+                                </Link>
+                            </NavText>
+                        </NavItem>
                     </NavItem>
                 </SideNav.Nav>
             </SideNav>

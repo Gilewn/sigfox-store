@@ -126,21 +126,21 @@ class App extends Component {
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div className="App">
-            <Sidebar/>
+            <Sidebar />
             {quickSearch}
             <div className="Fullwidth">
               <Switch>
                 <Route path="/" exact component={Solutions} />
                 {products}
-                <Route  exact path="/:solution_title/products" render={(props) => (
+                <Route exact path="/:solution_title/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
-                      <Products 
-                        {...props} 
+                      <Products
+                        {...props}
                         pageOfItems={this.state.pageOfItems}
-                        items={filteredProducts} 
-                        onChangePage={this.onChangePage} 
-                        paginationItems={this.state.products} 
+                        items={filteredProducts}
+                        onChangePage={this.onChangePage}
+                        paginationItems={this.state.products}
                         handleChange={this.handleChange} />
                     </div>
                   </div>

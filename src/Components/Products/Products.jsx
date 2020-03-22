@@ -8,13 +8,16 @@ import { Link } from "react-router-dom";
 import './Products.css';
 
 function Products(props) {
+    let Products = [];
+
     if (typeof props.match.params.solution_title === 'undefined') {
         Products = props.items
     } else {
-        var Products = props.items.filter((product) => {
+        Products = props.items.filter((product) => {
             return product.solution === props.match.params.solution_title;
         });
     }
+    
     return (
         <div className="Products">
             <div className="UtilityBar">

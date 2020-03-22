@@ -42,7 +42,8 @@ class Sidebar extends Component {
                             All Solutions
                          </NavText>
                         {this.state.solutions.map((solution) =>
-                            <NavItem >
+                            <NavItem
+                                key={solution._id}>
                                 <NavText style={{ color: '#7824ff' }}>
                                     <Link to={`/${solution.title}/products`}>
                                         {solution.title}

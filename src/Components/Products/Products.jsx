@@ -17,7 +17,7 @@ function Products(props) {
             return product.solution === props.match.params.solution_title;
         });
     }
-    
+
     return (
         <div className="Products">
             <div className="UtilityBar">
@@ -38,7 +38,8 @@ function Products(props) {
                                     <h4>{product.solution}</h4>
                                     <p>{product.description} </p>
                                 </div>
-                                {product.title}</Link>
+                                {product.title}
+                            </Link>
                         </div>
                     </Grid>
                 )}

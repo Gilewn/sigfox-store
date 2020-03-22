@@ -32,7 +32,7 @@ class Solutions extends Component {
           {this.state.solutions.map(solution => (
             <Grid
               item xs={12} sm={6} md={3} key={solution.title}>
-              <Link className='solutions' to={{ pathname: `${solution.title}/products` }}>
+              <Link className='solutions' to={{ pathname: `/${solution.title}/products` }}>
                 <Card style={{ height: '100%' }}>
                   <CardActionArea>
                     <CardMedia

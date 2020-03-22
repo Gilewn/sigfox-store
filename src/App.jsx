@@ -126,13 +126,13 @@ class App extends Component {
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div className="App">
-            <Sidebar />
+            <Sidebar/>
             {quickSearch}
             <div className="Fullwidth">
               <Switch>
                 <Route path="/" exact component={Solutions} />
                 {products}
-                <Route  path="/:solution_title/products" render={(props) => (
+                <Route  exact path="/:solution_title/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
                       <Products 

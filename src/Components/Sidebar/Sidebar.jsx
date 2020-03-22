@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-
+import axios from 'axios';
 import './Sidebar.css';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-
-const Sidebar = () => {
+import { Link } from "react-router-dom";
+class Sidebar extends Component {
+    
+   state ={
+       solutions:[]
+   } 
+    
+    componentDidMount() { 
+    axios.get(`http://localhost:5000/`)
+    .then(res => {
+       const solutions = res.data;
+       this.setState({solutions})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    }
+ render(){  
     return (
         <SideNav
             className="Sidebar"
@@ -13,6 +29,7 @@ const Sidebar = () => {
             }}
         >
             <SideNav.Toggle />
+            
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
                     <NavIcon>
@@ -21,28 +38,39 @@ const Sidebar = () => {
                     <NavText style={{ color: '#7824ff' }}>
                         All Solutions
                     </NavText>
+                    {this.state.solutions.map((solution) =>
+                    
+                    <NavItem >
+                        <NavText style={{ color: '#7824ff' }}>
+                            
+                            <Link exact to={`/${solution.title}/products`}>
+                            {solution.title}
+
+
+                            </Link>
+                        </NavText>
+                    </NavItem>
+                    )}
                 </NavItem>
-                <NavItem eventKey="charts">
+               
+                <NavItem  eventKey="charts/barchart">
+                
                     <NavIcon>
                         <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', color: '#7824ff' }} />
                     </NavIcon>
+                    
                     <NavText style={{ color: '#7824ff' }}>
+                    <Link to={ `/products`} >
                         All Products
+                    </Link>   
                     </NavText>
-                    <NavItem eventKey="charts/linechart">
-                        <NavText style={{ color: '#7824ff' }}>
-                            Smart Cities
-                        </NavText>
-                    </NavItem>
-                    <NavItem eventKey="charts/barchart">
-                        <NavText style={{ color: '#7824ff' }}>
-                            Smart Buildings
-                        </NavText>
-                    </NavItem>
+                    
+                
                 </NavItem>
+                
             </SideNav.Nav>
         </SideNav>
     );
 }
-
+}
 export default Sidebar;

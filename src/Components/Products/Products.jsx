@@ -42,7 +42,7 @@ function Products(props) {
             </Grid>
             <div>
                 <div>
-                    {Products.map(item =>
+                    {props.pageOfItems.map(item =>
                         <div key={item._id}>
                             <div>
                                 <img src={item.images[0]} width="150" alt="product" />

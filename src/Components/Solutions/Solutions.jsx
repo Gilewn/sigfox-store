@@ -6,8 +6,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import "./Solutions.css";
 import axios from 'axios';
+
+import "./Solutions.css";
 
 class Solutions extends Component {
   state = {
@@ -26,6 +27,7 @@ class Solutions extends Component {
   }
 
   render() {
+
     return (
       <div style={{ marginTop: 20, padding: 30 }}>
         <Grid container spacing={2} justify="center">

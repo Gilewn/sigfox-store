@@ -72,7 +72,7 @@ class Pagination extends Component {
             // more than 10 total pages so calculate start and end pages
             if (currentPage <= 6) {
                 startPage = 1;
-                endPage = 10;
+                endPage = 4;
             } else if (currentPage + 4 >= totalPages) {
                 startPage = totalPages - 9;
                 endPage = totalPages;

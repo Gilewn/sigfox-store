@@ -7,7 +7,13 @@ import './QuickSearch.css';
 class QuickSearch extends React.Component {
 
     render() {
-        const quickSearchProducts = this.props.items.map((product, index) => <QuickSearchProducts key={index} changeIndex={this.props.changeIndexOfProduct} id={index} item={product} />);
+        const quickSearchProducts = this.props.items.map((product, index) =>
+            <QuickSearchProducts
+                key={index}
+                changeIndex={this.props.changeIndexOfProduct}
+                id={index}
+                item={product}
+            />);
 
         return (
             <div className="QuickSearch">

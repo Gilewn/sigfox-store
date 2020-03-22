@@ -44,6 +44,7 @@ function Products(props) {
                     </Grid>
                 )}
             </Grid>
+            <Pagination items={props.paginationItems} onChangePage={props.onChangePage} />
             <div>
                 <div>
                     {props.pageOfItems.map(item =>

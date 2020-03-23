@@ -21,7 +21,8 @@ class App extends Component {
     navbarOpen: false,
     showGroubByCategory: false,
     pageOfItems: [],
-    solutions: []
+    solutions: [],
+    filteredProducts: []
   }
 
   onChangePage = this.onChangePage.bind(this);
@@ -77,7 +78,7 @@ class App extends Component {
       return product.solution === solutionTitle;
     });
 
-    this.setState({ products: filteredProducts });
+    this.setState({ filteredProducts: filteredProducts });
   }
 
   render() {
@@ -164,7 +165,7 @@ class App extends Component {
                         pageOfItems={this.state.pageOfItems}
                         items={this.state.products}
                         onChangePage={this.onChangePage}
-                        paginationItems={this.state.products}
+                        paginationItems={this.state.filteredProducts}
                         handleChange={this.handleChange} />
                     </div>
                   </div>

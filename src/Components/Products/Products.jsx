@@ -7,17 +7,7 @@ import { Link } from "react-router-dom";
 
 import './Products.css';
 
-function Products(props) {
-    let Products = [];
-
-    if (typeof props.match.params.solution_title === 'undefined') {
-        Products = props.items
-    } else {
-        Products = props.items.filter((product) => {
-            return product.solution === props.match.params.solution_title;
-        });
-    }
-
+const Products = (props) => {
     return (
         <div className="Products">
             <div className="UtilityBar">
@@ -25,7 +15,7 @@ function Products(props) {
                 <GroupBy handleGroupBy={props.handleGroupBy} />
             </div>
             <Grid container spacing={2} justify="center">
-                {Products.map((product, index) =>
+                {props.pageOfItems.map((product, index) =>
                     <Grid
                         item xs={12} sm={6} md={3} key={product._id}>
                         <div className="card-container">

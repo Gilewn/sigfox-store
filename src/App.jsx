@@ -20,7 +20,8 @@ class App extends Component {
     globalSearchField: "",
     navbarOpen: false,
     showGroubByCategory: false,
-    pageOfItems: []
+    pageOfItems: [],
+    solutions: []
   }
 
   onChangePage = this.onChangePage.bind(this);
@@ -30,6 +31,15 @@ class App extends Component {
       .then(res => {
         const products = res.data;
         this.setState({ products });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios.get(`http://localhost:5000/`)
+      .then(res => {
+        const solutions = res.data;
+        this.setState({ solutions });
       })
       .catch(function (error) {
         console.log(error);
@@ -60,6 +70,16 @@ class App extends Component {
     this.setState({ pageOfItems: pageOfItems });
   }
 
+  handleProducts = (solutionTitle) => {
+    let filteredProducts = [...this.state.products];
+
+    filteredProducts = filteredProducts.filter((product) => {
+      return product.solution === solutionTitle;
+    });
+
+    this.setState({ products: filteredProducts });
+  }
+
   render() {
     let { globalSearchField, searchField, products } = this.state;
     const filteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(searchField.toLowerCase())));
@@ -82,7 +102,7 @@ class App extends Component {
 
     if (this.state.showGroubByCategory) {
       let finalArray = [];
-      if (filteredProducts.length != 0) {
+      if (filteredProducts.length !== 0) {
         finalArray = groupByCategoryToArray[0].concat(groupByCategoryToArray[1]);
       }
       products = <Route exact path="/products" render={(props) => (
@@ -130,7 +150,11 @@ class App extends Component {
             {quickSearch}
             <div className="Fullwidth">
               <Switch>
-                <Route path="/" exact component={Solutions} />
+                <Route path="/" exact>
+                  <Solutions
+                    items={this.state.solutions}
+                    handleProducts={this.handleProducts} />
+                </Route>
                 {products}
                 <Route exact path="/:solution_title/products" render={(props) => (
                   <div>
@@ -138,7 +162,7 @@ class App extends Component {
                       <Products
                         {...props}
                         pageOfItems={this.state.pageOfItems}
-                        items={filteredProducts}
+                        items={this.state.products}
                         onChangePage={this.onChangePage}
                         paginationItems={this.state.products}
                         handleChange={this.handleChange} />

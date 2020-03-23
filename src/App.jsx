@@ -147,7 +147,9 @@ class App extends Component {
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div className="App">
-            <Sidebar />
+            <Sidebar
+              items={this.state.solutions}
+              handleProducts={this.handleProducts} />
             {quickSearch}
             <div className="Fullwidth">
               <Switch>

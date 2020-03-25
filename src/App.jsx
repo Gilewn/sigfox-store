@@ -72,11 +72,21 @@ class App extends Component {
   }
 
   handleProducts = (solutionTitle) => {
-    let filteredProducts = [...this.state.products];
+    let filteredProducts = [...this.state.solutions];
 
-    filteredProducts = filteredProducts.filter((product) => {
-      return product.solution === solutionTitle;
+    filteredProducts = filteredProducts.filter((solution) => {
+      return solution.title === solutionTitle;
     });
+
+    if (filteredProducts == null) {
+      return filteredProducts = this.state.products;
+    }
+
+    filteredProducts = filteredProducts.map(solution => {
+      return solution.products;
+    });
+
+    filteredProducts = filteredProducts[0];
 
     this.setState({ filteredProducts: filteredProducts });
   }

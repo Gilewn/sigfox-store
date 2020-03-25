@@ -35,23 +35,6 @@ const Products = (props) => {
                 )}
             </Grid>
             <Pagination items={props.paginationItems} onChangePage={props.onChangePage} />
-            <div>
-                <div>
-                    {props.pageOfItems.map(item =>
-                        <div key={item._id}>
-                            <div>
-                                <img src={item.images[0]} width="150" alt="product" />
-                            </div>
-                            <div className='card-title-description'>
-                                <h1>{item.title}</h1>
-                                <h4>{item.solution}</h4>
-                                <p>{item.description}</p>
-                            </div>
-                        </div>
-                    )}
-                    <Pagination items={props.paginationItems} onChangePage={props.onChangePage} />
-                </div>
-            </div>
         </div>
     )
 }

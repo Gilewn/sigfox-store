@@ -19,7 +19,6 @@ const Solutions = (props) => {
             <Link
               className='solutions'
               to={{ pathname: `/${solution.title}/products` }}
-              
             >
               <Card style={{ height: '100%' }}>
                 <CardActionArea>

@@ -13,6 +13,16 @@ class Products extends Component {
         products: []
     }
 
+    shouldComponentUpdate() {
+        if (this.state.products !== this.props.items && this.props.items.length !== 0) {
+            this.state.products = this.props.items;
+            return true;
+        } else {
+            this.state.products = this.state.products;
+            return this.state.products;
+        }
+    }
+
     componentDidMount() {
         if (typeof this.props.match.params.solution_title === 'undefined') {
             axios.get(`http://localhost:5000/products`)
@@ -34,7 +44,6 @@ class Products extends Component {
     }
 
     render() {
-        console.log(this.state.products)
         return (
             <div className="Products">
                 <div className="UtilityBar">

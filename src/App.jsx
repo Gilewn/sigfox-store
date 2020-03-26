@@ -28,11 +28,18 @@ class App extends Component {
   onChangePage = this.onChangePage.bind(this);
 
   componentDidMount() {
-
     axios.get(`http://localhost:5000/`)
       .then(res => {
         const solutions = res.data;
         this.setState({ solutions });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios.get(`http://localhost:5000/products`)
+      .then(res => {
+        this.setState({ products: res.data });
       })
       .catch(function (error) {
         console.log(error);
@@ -69,10 +76,6 @@ class App extends Component {
     filteredProducts = filteredProducts.filter((solution) => {
       return solution.title === solutionTitle;
     });
-
-    if (filteredProducts == null) {
-      return filteredProducts = this.state.products;
-    }
 
     filteredProducts = filteredProducts.map(solution => {
       return solution.products;
@@ -155,10 +158,9 @@ class App extends Component {
             {quickSearch}
             <div className="Fullwidth">
               <Switch>
-                <Route path="/" exact>
+                <Route exact path="/" >
                   <Solutions
-                    items={this.state.solutions}
-                    handleProducts={this.handleProducts} />
+                    items={this.state.solutions} />
                 </Route>
                 {products}
                 <Route exact path="/:solution_title/products" render={(props) => (
@@ -167,7 +169,7 @@ class App extends Component {
                       <Products
                         {...props}
                         pageOfItems={this.state.pageOfItems}
-                        items={this.state.solutions}
+                        items={this.state.filteredProducts}
                         onChangePage={this.onChangePage}
                         paginationItems={this.state.filteredProducts}
                         handleChange={this.handleChange} />

@@ -16,11 +16,11 @@ class ProductPage extends Component{
     
         axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
         .then(res => {
-            
+           
             this.setState({ product:res.data });
             this.setState({ productimages:res.data.images });
             this.setState({ productcertifications:res.data.certifications});
-           console.log(this.state.product)
+          
         
         })
         .catch(function (error) {

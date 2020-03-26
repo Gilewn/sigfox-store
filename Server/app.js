@@ -84,9 +84,14 @@ app.get("/products", (request, response) => {
           return response.status(500).send(error);
       }
        result = result.map(a => a.products);
+       result = result.filter(function (el) {
+          return el != null;
+          });
+       
        result = [].concat.apply([],result);
+       
        response.send(result);
-      console.log(result)
+     
   });
   
 });
@@ -100,27 +105,25 @@ app.get("/products", (request, response) => {
 /////GET products/:id///////////////////////////////
 app.get("/products/:id", (request, response) => {
   
-  let link = request.params.id;
+
   
   collection_solutions.find({},{projection:{_id:0,products:1} }).toArray((error, result) => {
     if(error) {
         return response.status(500).send(error);
     }
+    
      result = result.map(a => a.products);
-     result = [].concat.apply([],result);
-    
-     result = result.map(a => {
-       console.log(a._id)
-        
-     } );
+     result = result.filter(function (el) {
+      return el != null;
+      });
      
+      result = [].concat.apply([],result);
+      result = result.find(x => x._id == request.params.id)
+      response.send(result);
+  });
     
    
-      console.log(result);
       
-  
-   
-});
 });
 
 

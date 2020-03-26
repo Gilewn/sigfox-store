@@ -63,15 +63,6 @@ class App extends Component {
     this.setState({ pageOfItems: pageOfItems });
   }
 
-  handleProducts = (solutionTitle) => {
-    let filteredProducts = [...this.state.products];
-
-    filteredProducts = filteredProducts.filter((product) => {
-      return product.solution === solutionTitle;
-    });
-
-    this.setState({ filteredProducts: filteredProducts });
-  }
 
   render() {
     let { globalSearchField, searchField, products } = this.state;

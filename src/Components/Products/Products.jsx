@@ -1,35 +1,61 @@
-import React from "react";
+import React,{ Component } from "react";
 import SearchBox from '../SearchBox/SearchBox';
 import GroupBy from '../GroupBy/GroupBy';
 import Pagination from '../Pagination/Pagination';
 import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import { useState } from 'react';
 import './Products.css';
 
-const Products = (props) => {
+class Products extends Component{
     
-    const [allproducts,setProducts] = useState("0");
+    
+    state = {
+        products : []
+       
+    }
+    componentDidMount(){
+      
+    if (typeof this.props.match.params.solution_title === 'undefined') {
+        axios.get(`http://localhost:5000/products`)
+        .then(res => {
+        
+            
+            this.setState({ products:res.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    
+    }else{
+        axios.get(`http://localhost:5000/${this.props.match.params.solution_title}/products`)
+        .then(res => {
+          
+            
+            this.setState({ products:res.data });
+       
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  
+    }
+  
 
-    axios.get(`http://localhost:5000/products`)
-    .then(res => {
-    const products = res.data
-        setProducts(products)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    console.log(allproducts);
+   render(){ 
+
+   console.log(this.state.products)
+    
     
     return (
         <div className="Products">
-            <div className="UtilityBar">
-                <SearchBox handleChange={props.handleChange} />
-                <GroupBy handleGroupBy={props.handleGroupBy} />
+           <div className="UtilityBar">
+                <SearchBox handleChange={this.props.handleChange} />
+                <GroupBy handleGroupBy={this.props.handleGroupBy} />
             </div>
             <Grid container spacing={2} justify="center">
-                {props.items.products.pageOfItems.map((product, index) =>
+                {this.state.products.map((product, index) =>
                     <Grid
                         item xs={12} sm={6} md={3} key={product._id}>
                         <div className="card-container">
@@ -48,26 +74,10 @@ const Products = (props) => {
                     </Grid>
                 )}
             </Grid>
-            <Pagination items={props.paginationItems} onChangePage={props.onChangePage} />
-            <div>
-                <div>
-                    {props.pageOfItems.map(item =>
-                        <div key={item._id}>
-                            <div>
-                                <img src={item.images[0]} width="150" alt="product" />
-                            </div>
-                            <div className='card-title-description'>
-                                <h1>{item.title}</h1>
-                                <h4>{item.solution}</h4>
-                                <p>{item.description}</p>
-                            </div>
-                        </div>
-                    )}
-                    <Pagination items={props.paginationItems} onChangePage={props.onChangePage} />
-                </div>
-            </div>
+            <Pagination items={this.props.paginationItems} onChangePage={this.props.onChangePage} />
+           
         </div>
     )
 }
-
+}
 export default Products;

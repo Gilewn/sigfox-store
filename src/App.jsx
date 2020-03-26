@@ -28,15 +28,7 @@ class App extends Component {
   onChangePage = this.onChangePage.bind(this);
 
   componentDidMount() {
-    axios.get(`http://localhost:5000/products`)
-      .then(res => {
-        const products = res.data;
-        this.setState({ products });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    
     axios.get(`http://localhost:5000/`)
       .then(res => {
         const solutions = res.data;
@@ -165,7 +157,7 @@ class App extends Component {
                       <Products
                         {...props}
                         pageOfItems={this.state.pageOfItems}
-                        items={this.state.products}
+                        items={this.state.solutions}
                         onChangePage={this.onChangePage}
                         paginationItems={this.state.filteredProducts}
                         handleChange={this.handleChange} />

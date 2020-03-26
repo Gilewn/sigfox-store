@@ -22,7 +22,7 @@ app.listen(5000, () => {
         throw error;
     }
     database = client.db(DATABASE_NAME);
-    collection_products = database.collection("Products");
+    //collection_products = database.collection("Products");
     collection_partners = database.collection("partners")
     collection_solutions = database.collection("solutions")
 
@@ -51,36 +51,48 @@ app.get("/", (request, response) => {
           return response.status(500).send(error);
       }
       response.send(result);
-      console.log(result);
+      
      
   });
 });
+
 //////GET products specific solution /////////////////////////////////////
+
 app.get("/:solution/products", (request, response) => {
   
-  collection_products.find({ solution: request.params  }, (error, result) => {
-      if(error) {
-          return response.status(500).send(error);
-      }
-     
-      response.send(result);
-      console.log(result);
-      
-  });
+
+  collection_solutions.findOne({"title" :  request.params.solution},(error, result) => {
+    if(error) {
+        return response.status(500).send(error);
+    }
+ 
+  response.send(result.products);
+    
 });
+});
+
+
+
+
 
 //////GET products/////////////////////////////////////
 
 app.get("/products", (request, response) => {
   
-  collection_products.find({}).toArray((error, result) => {
+  collection_solutions.find({},{projection:{_id:0,products:1} }).toArray((error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
-      response.send(result);
-     
+       result = result.map(a => a.products);
+       result = [].concat.apply([],result);
+       response.send(result);
+      console.log(result)
   });
+  
 });
+
+
+
 
 
 
@@ -88,16 +100,41 @@ app.get("/products", (request, response) => {
 /////GET products/:id///////////////////////////////
 app.get("/products/:id", (request, response) => {
   
-  collection_products.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
-      if(error) {
-          return response.status(500).send(error);
-      }
+  let link = request.params.id;
+  
+  collection_solutions.find({},{projection:{_id:0,products:1} }).toArray((error, result) => {
+    if(error) {
+        return response.status(500).send(error);
+    }
+     result = result.map(a => a.products);
+     result = [].concat.apply([],result);
+    
+     result = result.map(a => {
+       console.log(a._id)
+        
+     } );
      
-      response.send(result);
+    
+   
       console.log(result);
       
-  });
+  
+   
 });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

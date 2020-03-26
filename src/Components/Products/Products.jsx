@@ -4,10 +4,24 @@ import GroupBy from '../GroupBy/GroupBy';
 import Pagination from '../Pagination/Pagination';
 import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
-
+import axios from 'axios';
+import { useState } from 'react';
 import './Products.css';
 
 const Products = (props) => {
+    
+    const [allproducts,setProducts] = useState("0");
+
+    axios.get(`http://localhost:5000/products`)
+    .then(res => {
+    const products = res.data
+        setProducts(products)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    console.log(allproducts);
+    
     return (
         <div className="Products">
             <div className="UtilityBar">
@@ -15,7 +29,7 @@ const Products = (props) => {
                 <GroupBy handleGroupBy={props.handleGroupBy} />
             </div>
             <Grid container spacing={2} justify="center">
-                {props.pageOfItems.map((product, index) =>
+                {props.items.products.pageOfItems.map((product, index) =>
                     <Grid
                         item xs={12} sm={6} md={3} key={product._id}>
                         <div className="card-container">

@@ -16,7 +16,7 @@ class ProductPage extends Component{
     
         axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
         .then(res => {
-           
+            console.log(res.data)
             this.setState({ product:res.data });
             this.setState({ productimages:res.data.images });
             this.setState({ productcertifications:res.data.certifications});
@@ -30,8 +30,10 @@ class ProductPage extends Component{
 
     render(){
        
+       
         
     return <div className="productPage-container">
+        
         <ColumnOne product={this.state.product} album = {this.state.productimages}  certifications = {this.state.productcertifications}/>
         <ColumnTwo product={this.state.product}/>
     

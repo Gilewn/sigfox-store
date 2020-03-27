@@ -42,15 +42,18 @@ let transport = nodemailer.createTransport({
 });
 
 
+
+
 //////GET solutions/////////////////////////////////////
 
 app.get("/", (request, response) => {
   
-  collection_solutions.find({}).toArray((error, result) => {
+  collection_solutions.find({products:{$exists:true}}).toArray((error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
       response.send(result);
+    
       
      
   });
@@ -65,7 +68,7 @@ app.get("/:solution/products", (request, response) => {
     if(error) {
         return response.status(500).send(error);
     }
- 
+  
   response.send(result.products);
     
 });
@@ -79,21 +82,15 @@ app.get("/:solution/products", (request, response) => {
 
 app.get("/products", (request, response) => {
   
-  collection_solutions.find({},{projection:{_id:0,products:1} }).toArray((error, result) => {
+  collection_solutions.find({products:{$exists:true}},{projection:{_id:0,products:1}}).toArray((error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
-       result = result.map(a => a.products);
-       result = result.filter(function (el) {
-          return el != null;
-          });
-       
-       result = [].concat.apply([],result);
-       
-       response.send(result);
-     
-  });
-  
+      result = result.map(a => a.products);
+      result = [].concat.apply([],result);
+      console.log(result)
+      response.send(result);
+});
 });
 
 
@@ -106,20 +103,20 @@ app.get("/products", (request, response) => {
 app.get("/products/:id", (request, response) => {
   
 
-  
-  collection_solutions.find({},{projection:{_id:0,products:1} }).toArray((error, result) => {
+  collection_solutions.find({ 'products._id' :  ObjectId(request.params.id)},{ projection: {_id:0, products: 1} }).toArray((error, result) => {
     if(error) {
         return response.status(500).send(error);
     }
+    result = result.map(a => a.products);
+    result = [].concat.apply([],result);
     
-     result = result.map(a => a.products);
-     result = result.filter(function (el) {
-      return el != null;
-      });
+    result = result.find(obj => obj._id == request.params.id);
+    
+    console.log(result)
+    response.send(result);
      
-      result = [].concat.apply([],result);
-      result = result.find(x => x._id == request.params.id)
-      response.send(result);
+
+     
   });
     
    

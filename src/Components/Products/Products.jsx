@@ -14,6 +14,36 @@ class Products extends Component{
         products : []
        
     }
+    shouldComponentUpdate(){
+      
+        if (typeof this.props.match.params.solution_title === 'undefined') {
+            axios.get(`http://localhost:5000/products`)
+            .then(res => {
+            
+                
+                this.setState({ products:res.data });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        
+        }else{
+            axios.get(`http://localhost:5000/${this.props.match.params.solution_title}/products`)
+            .then(res => {
+              
+                
+                this.setState({ products:res.data });
+           
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      
+        }
+
+
+
     componentDidMount(){
       
     if (typeof this.props.match.params.solution_title === 'undefined') {

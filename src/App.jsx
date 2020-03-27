@@ -142,7 +142,7 @@ class App extends Component {
                     handleProducts={this.handleProducts} />
                 </Route>
                 {products}
-                <Route exact path="/:solution_title/products" render={(props) => (
+                <Route path="/:solution_title/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
                       <Products

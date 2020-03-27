@@ -13,13 +13,25 @@ class Products extends Component {
         products: []
     }
 
-    shouldComponentUpdate() {
-        if (this.state.products !== this.props.items && this.props.items.length !== 0) {
-            this.state.products = this.props.items;
-            return true;
-        } else {
-            this.state.products = this.state.products;
-            return this.state.products;
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.solution_title !== this.props.match.params.solution_title) {
+            if (typeof this.props.match.params.solution_title === 'undefined') {
+                axios.get(`http://localhost:5000/products`)
+                    .then(res => {
+                        this.setState({ products: res.data });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.get(`http://localhost:5000/${this.props.match.params.solution_title}/products`)
+                    .then(res => {
+                        this.setState({ products: res.data });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     }
 
@@ -70,7 +82,7 @@ class Products extends Component {
                         </Grid>
                     )}
                 </Grid>
-                <Pagination items={this.props.paginationItems} onChangePage={this.props.onChangePage} />
+                <Pagination items={this.state.products} onChangePage={this.props.onChangePage} />
             </div>
         )
     }

@@ -24,7 +24,6 @@ const Sidebar = (props) => {
                             key={solution._id}>
                             <NavText style={{ color: '#7824ff' }}>
                                 <Link
-                                    onClick={() => props.handleProducts(solution.title)}
                                     to={`/${solution.title}/products`}
                                 >
                                     {solution.title}

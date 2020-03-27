@@ -36,14 +36,6 @@ class App extends Component {
       .catch(function (error) {
         console.log(error);
       });
-
-    axios.get(`http://localhost:5000/products`)
-      .then(res => {
-        this.setState({ products: res.data });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   handleGlobalChange = (e) => {
@@ -68,22 +60,6 @@ class App extends Component {
 
   onChangePage(pageOfItems) {
     this.setState({ pageOfItems: pageOfItems });
-  }
-
-  handleProducts = (solutionTitle) => {
-    let filteredProducts = [...this.state.solutions];
-
-    filteredProducts = filteredProducts.filter((solution) => {
-      return solution.title === solutionTitle;
-    });
-
-    filteredProducts = filteredProducts.map(solution => {
-      return solution.products;
-    });
-
-    filteredProducts = filteredProducts[0];
-
-    this.setState({ filteredProducts: filteredProducts });
   }
 
   render() {
@@ -153,8 +129,7 @@ class App extends Component {
             handleNavbar={this.handleNavbar} />
           <div className="App">
             <Sidebar
-              items={this.state.solutions}
-              handleProducts={this.handleProducts} />
+              items={this.state.solutions} />
             {quickSearch}
             <div className="Fullwidth">
               <Switch>

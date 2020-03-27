@@ -23,9 +23,7 @@ const Sidebar = (props) => {
                         <NavItem
                             key={solution._id}>
                             <NavText style={{ color: '#7824ff' }}>
-                                <Link
-                                    to={`/${solution.title}/products`}
-                                >
+                                <Link to={`/${solution.title}/products`} >
                                     {solution.title}
                                 </Link>
                             </NavText>

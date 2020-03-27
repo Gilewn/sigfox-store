@@ -15,6 +15,7 @@ class ProductPage extends Component {
     componentDidMount() {
         axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
             .then(res => {
+                console.log(res.data)
                 this.setState({ product: res.data });
                 this.setState({ productimages: res.data.images });
                 this.setState({ productcertifications: res.data.certifications });

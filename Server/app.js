@@ -27,7 +27,6 @@ app.listen(5000, () => {
       throw error;
     }
     database = client.db(DATABASE_NAME);
-    //collection_products = database.collection("Products");
     collection_partners = database.collection("partners")
     collection_solutions = database.collection("solutions")
 
@@ -46,7 +45,11 @@ let transport = nodemailer.createTransport({
 
 //////GET solutions/////////////////////////////////////
 app.get("/", (request, response) => {
-  collection_solutions.find({}).toArray((error, result) => {
+  collection_solutions.find({
+    products: {
+      $exists: true
+    }
+  }).toArray((error, result) => {
     if (error) {
       return response.status(500).send(error);
     }
@@ -68,7 +71,11 @@ app.get("/:solution/products", (request, response) => {
 
 //////GET products/////////////////////////////////////
 app.get("/products", (request, response) => {
-  collection_solutions.find({}, {
+  collection_solutions.find({
+    products: {
+      $exists: true
+    }
+  }, {
     projection: {
       _id: 0,
       products: 1
@@ -78,17 +85,17 @@ app.get("/products", (request, response) => {
       return response.status(500).send(error);
     }
     result = result.map(a => a.products);
-    result = result.filter(function (el) {
-      return el != null;
-    });
     result = [].concat.apply([], result);
+    console.log(result)
     response.send(result);
   });
 });
 
 /////GET products/:id///////////////////////////////
 app.get("/products/:id", (request, response) => {
-  collection_solutions.find({}, {
+  collection_solutions.find({
+    'products._id': ObjectId(request.params.id)
+  }, {
     projection: {
       _id: 0,
       products: 1
@@ -98,11 +105,9 @@ app.get("/products/:id", (request, response) => {
       return response.status(500).send(error);
     }
     result = result.map(a => a.products);
-    result = result.filter(function (el) {
-      return el != null;
-    });
     result = [].concat.apply([], result);
-    result = result.find(x => x._id == request.params.id)
+    result = result.find(obj => obj._id == request.params.id);
+    console.log(result)
     response.send(result);
   });
 });

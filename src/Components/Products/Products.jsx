@@ -11,7 +11,8 @@ import './Products.css';
 class Products extends Component {
     state = {
         products: [],
-        pageOfItems: []
+        pageOfItems: [],
+        searchField: ""
     }
 
     onChangePage = this.onChangePage.bind(this);
@@ -62,15 +63,27 @@ class Products extends Component {
         this.setState({ pageOfItems: pageOfItems });
     }
 
+    handleChange = (e) => {
+        this.setState({ searchField: e.target.value });
+    }
+
     render() {
+        let { searchField, products } = this.state;
+        const filteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(searchField.toLowerCase())));
+
+        if (filteredProducts.length !== 0) {
+            console.log(filteredProducts);
+            console.log(this.state.searchField);
+        }
+
         return (
             <div className="Products">
                 <div className="UtilityBar">
-                    <SearchBox handleChange={this.props.handleChange} />
+                    <SearchBox handleChange={this.handleChange} />
                     <GroupBy handleGroupBy={this.props.handleGroupBy} />
                 </div>
                 <Grid container spacing={2} justify="center">
-                    {this.state.pageOfItems.map((product, index) =>
+                    {this.state.pageOfItems.map(product =>
                         <Grid
                             item xs={12} sm={6} md={3} key={product._id}>
                             <div className="card-container">

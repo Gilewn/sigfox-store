@@ -16,7 +16,6 @@ import './App.css';
 class App extends Component {
   state = {
     products: [],
-    searchField: "",
     globalSearchField: "",
     navbarOpen: false,
     showGroubByCategory: false,
@@ -41,10 +40,6 @@ class App extends Component {
 
   closeSearchField = () => {
     this.setState({ globalSearchField: "" });
-  }
-
-  handleChange = (e) => {
-    this.setState({ searchField: e.target.value });
   }
 
   handleNavbar = () => {
@@ -86,8 +81,7 @@ class App extends Component {
             <Products
               {...props}
               items={finalArray}
-              handleGroupBy={this.handleGroupBy}
-              handleChange={this.handleChange} />
+              handleGroupBy={this.handleGroupBy} />
           </div>
         </div>
       )} />
@@ -100,8 +94,7 @@ class App extends Component {
             <Products
               {...props}
               items={filteredProducts}
-              handleGroupBy={this.handleGroupBy}
-              handleChange={this.handleChange} />
+              handleGroupBy={this.handleGroupBy} />
           </div>
         </div>
       )} />
@@ -115,22 +108,18 @@ class App extends Component {
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar} />
           <div className="App">
-            <Sidebar
-              items={this.state.solutions} />
+            <Sidebar items={this.state.solutions} />
             {quickSearch}
             <div className="Fullwidth">
               <Switch>
                 <Route exact path="/" >
-                  <Solutions
-                    items={this.state.solutions} />
+                  <Solutions items={this.state.solutions} />
                 </Route>
                 {products}
                 <Route path="/:solution_title/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
-                      <Products
-                        {...props}
-                        handleChange={this.handleChange} />
+                      <Products {...props} />
                     </div>
                   </div>
                 )} ></Route>

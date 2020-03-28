@@ -10,8 +10,11 @@ import './Products.css';
 
 class Products extends Component {
     state = {
-        products: []
+        products: [],
+        pageOfItems: []
     }
+
+    onChangePage = this.onChangePage.bind(this);
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.solution_title !== this.props.match.params.solution_title) {
@@ -55,6 +58,10 @@ class Products extends Component {
         }
     }
 
+    onChangePage(pageOfItems) {
+        this.setState({ pageOfItems: pageOfItems });
+    }
+
     render() {
         return (
             <div className="Products">
@@ -63,7 +70,7 @@ class Products extends Component {
                     <GroupBy handleGroupBy={this.props.handleGroupBy} />
                 </div>
                 <Grid container spacing={2} justify="center">
-                    {this.state.products.map((product, index) =>
+                    {this.state.pageOfItems.map((product, index) =>
                         <Grid
                             item xs={12} sm={6} md={3} key={product._id}>
                             <div className="card-container">
@@ -82,7 +89,7 @@ class Products extends Component {
                         </Grid>
                     )}
                 </Grid>
-                <Pagination items={this.state.products} onChangePage={this.props.onChangePage} />
+                <Pagination items={this.state.products} onChangePage={this.onChangePage} />
             </div>
         )
     }

@@ -20,12 +20,9 @@ class App extends Component {
     globalSearchField: "",
     navbarOpen: false,
     showGroubByCategory: false,
-    pageOfItems: [],
     solutions: [],
     filteredProducts: []
   }
-
-  onChangePage = this.onChangePage.bind(this);
 
   componentDidMount() {
     axios.get(`http://localhost:5000/`)
@@ -56,10 +53,6 @@ class App extends Component {
 
   handleGroupBy = () => {
     this.setState({ showGroubByCategory: !this.state.showGroubByCategory });
-  }
-
-  onChangePage(pageOfItems) {
-    this.setState({ pageOfItems: pageOfItems });
   }
 
   render() {
@@ -93,10 +86,7 @@ class App extends Component {
             <Products
               {...props}
               items={finalArray}
-              pageOfItems={this.state.pageOfItems}
-              paginationItems={this.state.products}
               handleGroupBy={this.handleGroupBy}
-              onChangePage={this.onChangePage}
               handleChange={this.handleChange} />
           </div>
         </div>
@@ -110,10 +100,7 @@ class App extends Component {
             <Products
               {...props}
               items={filteredProducts}
-              pageOfItems={this.state.pageOfItems}
-              paginationItems={this.state.products}
               handleGroupBy={this.handleGroupBy}
-              onChangePage={this.onChangePage}
               handleChange={this.handleChange} />
           </div>
         </div>
@@ -143,10 +130,6 @@ class App extends Component {
                     <div className="Big-Container">
                       <Products
                         {...props}
-                        pageOfItems={this.state.pageOfItems}
-                        items={this.state.filteredProducts}
-                        onChangePage={this.onChangePage}
-                        paginationItems={this.state.filteredProducts}
                         handleChange={this.handleChange} />
                     </div>
                   </div>

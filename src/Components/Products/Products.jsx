@@ -13,7 +13,8 @@ class Products extends Component {
         products: [],
         pageOfItems: [],
         searchField: "",
-        filteredProducts: []
+        filteredProducts: [],
+        showGroubByCategory: false
     }
 
     onChangePage = this.onChangePage.bind(this);
@@ -71,6 +72,10 @@ class Products extends Component {
             (product.solution.toLowerCase().includes(e.target.value.toLowerCase())));
 
         this.setState({ searchField: e.target.value, filteredProducts: filteredProducts });
+    }
+
+    handleGroupBy = () => {
+        this.setState({ showGroubByCategory: !this.state.showGroubByCategory });
     }
 
     render() {

@@ -18,9 +18,7 @@ class App extends Component {
     products: [],
     globalSearchField: "",
     navbarOpen: false,
-    showGroubByCategory: false,
-    solutions: [],
-    filteredProducts: []
+    solutions: []
   }
 
   componentDidMount() {
@@ -44,10 +42,6 @@ class App extends Component {
 
   handleNavbar = () => {
     this.setState({ navbarOpen: !this.state.navbarOpen });
-  }
-
-  handleGroupBy = () => {
-    this.setState({ showGroubByCategory: !this.state.showGroubByCategory });
   }
 
   render() {
@@ -80,8 +74,7 @@ class App extends Component {
           <div className="Big-Container">
             <Products
               {...props}
-              items={finalArray}
-              handleGroupBy={this.handleGroupBy} />
+              items={finalArray} />
           </div>
         </div>
       )} />
@@ -91,9 +84,7 @@ class App extends Component {
       products = <Route exact path="/products" render={(props) => (
         <div>
           <div className="Big-Container">
-            <Products
-              {...props}
-              handleGroupBy={this.handleGroupBy} />
+            <Products {...props} />
           </div>
         </div>
       )} />
@@ -117,9 +108,7 @@ class App extends Component {
                 <Route exact path="/products" render={(props) => (
                   <div>
                     <div className="Big-Container">
-                      <Products
-                        {...props}
-                        handleGroupBy={this.handleGroupBy} />
+                      <Products {...props} />
                     </div>
                   </div>
                 )} />

@@ -12,7 +12,8 @@ class Products extends Component {
     state = {
         products: [],
         pageOfItems: [],
-        searchField: ""
+        searchField: "",
+        filteredProducts: []
     }
 
     onChangePage = this.onChangePage.bind(this);
@@ -64,47 +65,76 @@ class Products extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({ searchField: e.target.value });
+        let filteredProducts = [...this.state.products];
+
+        filteredProducts = filteredProducts.filter((product) =>
+            (product.solution.toLowerCase().includes(e.target.value.toLowerCase())));
+
+        this.setState({ searchField: e.target.value, filteredProducts: filteredProducts });
     }
 
     render() {
-        let { searchField, products } = this.state;
-        const filteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(searchField.toLowerCase())));
-
-        if (filteredProducts.length !== 0) {
-            console.log(filteredProducts);
-            console.log(this.state.searchField);
-        }
-
-        return (
-            <div className="Products">
-                <div className="UtilityBar">
-                    <SearchBox handleChange={this.handleChange} />
-                    <GroupBy handleGroupBy={this.props.handleGroupBy} />
+        if (this.state.searchField.length > 0 && this.state.filteredProducts.length > 0) {
+            return (
+                <div className="Products">
+                    <div className="UtilityBar">
+                        <SearchBox handleChange={this.handleChange} />
+                        <GroupBy handleGroupBy={this.props.handleGroupBy} />
+                    </div>
+                    <Grid container spacing={2} justify="center">
+                        {this.state.pageOfItems.map(product =>
+                            <Grid
+                                item xs={12} sm={6} md={3} key={product._id}>
+                                <div className="card-container">
+                                    <Link to={{ pathname: `/${product._id}` }}>
+                                        <div className='card-image'>
+                                            <img src={product.images[0]} alt="product" />
+                                        </div>
+                                        <div className='card-title-description'>
+                                            <h1>{product.title}</h1>
+                                            <h4>{product.solution}</h4>
+                                            <p>{product.description} </p>
+                                        </div>
+                                        {product.title}
+                                    </Link>
+                                </div>
+                            </Grid>
+                        )}
+                    </Grid>
+                    <Pagination items={this.state.filteredProducts} onChangePage={this.onChangePage} />
                 </div>
-                <Grid container spacing={2} justify="center">
-                    {this.state.pageOfItems.map(product =>
-                        <Grid
-                            item xs={12} sm={6} md={3} key={product._id}>
-                            <div className="card-container">
-                                <Link to={{ pathname: `/${product._id}` }}>
-                                    <div className='card-image'>
-                                        <img src={product.images[0]} alt="product" />
-                                    </div>
-                                    <div className='card-title-description'>
-                                        <h1>{product.title}</h1>
-                                        <h4>{product.solution}</h4>
-                                        <p>{product.description} </p>
-                                    </div>
-                                    {product.title}
-                                </Link>
-                            </div>
-                        </Grid>
-                    )}
-                </Grid>
-                <Pagination items={this.state.products} onChangePage={this.onChangePage} />
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className="Products">
+                    <div className="UtilityBar">
+                        <SearchBox handleChange={this.handleChange} />
+                        <GroupBy handleGroupBy={this.props.handleGroupBy} />
+                    </div>
+                    <Grid container spacing={2} justify="center">
+                        {this.state.pageOfItems.map(product =>
+                            <Grid
+                                item xs={12} sm={6} md={3} key={product._id}>
+                                <div className="card-container">
+                                    <Link to={{ pathname: `/${product._id}` }}>
+                                        <div className='card-image'>
+                                            <img src={product.images[0]} alt="product" />
+                                        </div>
+                                        <div className='card-title-description'>
+                                            <h1>{product.title}</h1>
+                                            <h4>{product.solution}</h4>
+                                            <p>{product.description} </p>
+                                        </div>
+                                        {product.title}
+                                    </Link>
+                                </div>
+                            </Grid>
+                        )}
+                    </Grid>
+                    <Pagination items={this.state.products} onChangePage={this.onChangePage} />
+                </div>
+            )
+        }
     }
 }
 

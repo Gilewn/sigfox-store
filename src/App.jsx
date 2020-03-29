@@ -93,7 +93,6 @@ class App extends Component {
           <div className="Big-Container">
             <Products
               {...props}
-              items={filteredProducts}
               handleGroupBy={this.handleGroupBy} />
           </div>
         </div>
@@ -115,7 +114,15 @@ class App extends Component {
                 <Route exact path="/" >
                   <Solutions items={this.state.solutions} />
                 </Route>
-                {products}
+                <Route exact path="/products" render={(props) => (
+                  <div>
+                    <div className="Big-Container">
+                      <Products
+                        {...props}
+                        handleGroupBy={this.handleGroupBy} />
+                    </div>
+                  </div>
+                )} />
                 <Route path="/:solution_title/products" render={(props) => (
                   <div>
                     <div className="Big-Container">

@@ -18,7 +18,7 @@ class Pagination extends Component {
         pager: {}
     };
 
-    componentWillMount() {
+    componentDidMount() {
         // set page if items array isn't empty
         if (this.props.items && this.props.items.length) {
             this.setPage(this.props.initialPage);
@@ -64,7 +64,7 @@ class Pagination extends Component {
         let totalPages = Math.ceil(totalItems / pageSize);
 
         let startPage, endPage;
-        if (totalPages <= 4) {
+        if (totalPages <= 10) {
             // less than 10 total pages so show all
             startPage = 1;
             endPage = totalPages;
@@ -72,7 +72,7 @@ class Pagination extends Component {
             // more than 10 total pages so calculate start and end pages
             if (currentPage <= 6) {
                 startPage = 1;
-                endPage = 4;
+                endPage = 10;
             } else if (currentPage + 4 >= totalPages) {
                 startPage = totalPages - 9;
                 endPage = totalPages;

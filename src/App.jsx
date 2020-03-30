@@ -30,6 +30,15 @@ class App extends Component {
       .catch(function (error) {
         console.log(error);
       });
+
+      axios.get(`http://localhost:5000/products`)
+      .then(res => {
+        const products = res.data;
+        this.setState({ products });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   handleGlobalChange = (e) => {
@@ -45,50 +54,50 @@ class App extends Component {
   }
 
   render() {
-    let { globalSearchField, searchField, products } = this.state;
-    const filteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(searchField.toLowerCase())));
+    let { globalSearchField, products } = this.state;
+    // const filteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(searchField.toLowerCase())));
     const globalFilteredProducts = products.filter((product) => (product.title.toLowerCase().includes(globalSearchField.toLowerCase())));
-    const groupByCategory = filteredProducts.reduce((r, a) => {
-      r[a.solution] = [...r[a.solution] || [], a];
-      return r;
-    }, {});
+    // const groupByCategory = filteredProducts.reduce((r, a) => {
+    //   r[a.solution] = [...r[a.solution] || [], a];
+    //   return r;
+    // }, {});
 
-    let groupByCategoryToArray = Object.values(groupByCategory);
+    // let groupByCategoryToArray = Object.values(groupByCategory);
 
     let quickSearch = null;
 
-    if (globalSearchField.length > 0 && filteredProducts.length > 0) {
+    if (globalSearchField.length > 0 && globalFilteredProducts.length > 0) {
       quickSearch = <QuickSearch
         items={globalFilteredProducts}
-        handleChange={this.handleChange}
+        handleGlobalChange={this.handleGlobalChange}
       />;
     }
 
-    if (this.state.showGroubByCategory) {
-      let finalArray = [];
-      if (filteredProducts.length !== 0) {
-        finalArray = groupByCategoryToArray[0].concat(groupByCategoryToArray[1]);
-      }
-      products = <Route exact path="/products" render={(props) => (
-        <div>
-          <div className="Big-Container">
-            <Products
-              {...props}
-              items={finalArray} />
-          </div>
-        </div>
-      )} />
-    }
+    // if (this.state.showGroubByCategory) {
+    //   let finalArray = [];
+    //   if (filteredProducts.length !== 0) {
+    //     finalArray = groupByCategoryToArray[0].concat(groupByCategoryToArray[1]);
+    //   }
+    //   products = <Route exact path="/products" render={(props) => (
+    //     <div>
+    //       <div className="Big-Container">
+    //         <Products
+    //           {...props}
+    //           items={finalArray} />
+    //       </div>
+    //     </div>
+    //   )} />
+    // }
 
-    if (!this.state.showGroubByCategory) {
-      products = <Route exact path="/products" render={(props) => (
-        <div>
-          <div className="Big-Container">
-            <Products {...props} />
-          </div>
-        </div>
-      )} />
-    }
+    // if (!this.state.showGroubByCategory) {
+    //   products = <Route exact path="/products" render={(props) => (
+    //     <div>
+    //       <div className="Big-Container">
+    //         <Products {...props} />
+    //       </div>
+    //     </div>
+    //   )} />
+    // }
 
     return (
       <BrowserRouter>

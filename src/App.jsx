@@ -31,14 +31,14 @@ class App extends Component {
         console.log(error);
       });
 
-      axios.get(`http://localhost:5000/products`)
+      /*axios.get(`http://localhost:5000/products`)
       .then(res => {
         const products = res.data;
         this.setState({ products });
       })
       .catch(function (error) {
         console.log(error);
-      });
+      });*/
   }
 
   handleGlobalChange = (e) => {

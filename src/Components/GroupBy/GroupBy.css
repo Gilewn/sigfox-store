@@ -1,22 +1,56 @@
-.GroupBy button {
-    border: none;
-    border-bottom: 1px solid #ccc;
-    padding: 5px;
-    color: #575048;
-    background-color: transparent;
+.GroupBy .dropdown {
+    display: flex;
+    box-shadow: -1px 1px 3px #7824ff;
+    cursor: pointer;
+}
+
+.GroupBy .dropdown-header {
+    padding-bottom: 0;
+}
+
+.GroupBy .dropdown-header-holder {
+    margin: auto;
+}
+
+.GroupBy .dropdown-header-holder span {
+    position: relative;
+    left: 0;
+    color: #6c757d;
+    font-size: 1.5rem;
     transition: all 0.3s ease-in-out;
 }
 
-.GroupBy button:hover {
-    background-color: #ccc;
+.GroupBy .dropdown:hover .dropdown-list-holder {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+    width: 10vw;
+}
+
+.GroupBy .dropdown:hover span {
     color: #7824ff;
+    font-size: 1.8rem;
     transition: all 0.3s ease-in-out;
+    left: 15%;
 }
 
-.GroupBy button:focus {
-    outline: none;
+.GroupBy .dropdown-list-holder {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    width: 0;
 }
 
-.GroupBy button span {
+.GroupBy .dropdown-list {
+    color: #6c757d;
+    font-size: .875rem;
+}
+
+.GroupBy .dropdown-list-item {
+    list-style-type: none;
+}
+
+.GroupBy .dropdown-list-item-anchor:hover {
+    color: #7824ff !important;
     font-weight: 900;
 }

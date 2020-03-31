@@ -22,21 +22,24 @@ function GroupBy(props) {
 
     return (
         <div className="GroupBy">
-            <button
-                onClick={props.handleGroupBy}>
-                Group by <span>Category</span>
-            </button>
-            <div>
-                <div>
-                    <h1>
+            <div className="dropdown">
+                <div className="dropdown-header-holder">
+                    <h1 className="dropdown-header">
                         Group by
                     </h1>
+                    <span>
+                        &#10149;
+                    </span>
                 </div>
-                <div>
-                    <ul>
+                <div className="dropdown-list-holder">
+                    <ul className="dropdown-list">
                         {filteredValues.map((listTitle, index) =>
-                            <li key={index}>
-                                {listTitle.charAt(0).toUpperCase() + listTitle.slice(1)}
+                            <li
+                                className="dropdown-list-item"
+                                key={index}>
+                                <a className="dropdown-list-item-anchor">
+                                    {listTitle.charAt(0).toUpperCase() + listTitle.slice(1)}
+                                </a>
                             </li>
                         )}
                     </ul>

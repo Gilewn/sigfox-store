@@ -37,8 +37,16 @@ function GroupBy(props) {
                             <li
                                 className="dropdown-list-item"
                                 key={index}>
-                                <a className="dropdown-list-item-anchor">
+                                <a
+                                    onClick={() => props.handleGroupBy(listTitle)}
+                                    className="dropdown-list-item-anchor">
                                     {listTitle.charAt(0).toUpperCase() + listTitle.slice(1)}
+                                    <span>
+                                        &#11165;
+                                    </span>
+                                    <span>
+                                        &#11167;
+                                    </span>
                                 </a>
                             </li>
                         )}

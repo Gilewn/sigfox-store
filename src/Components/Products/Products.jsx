@@ -14,7 +14,7 @@ class Products extends Component {
         pageOfItems: [],
         searchField: "",
         filteredProducts: [],
-        showGroubByCategory: false
+        showGroubByOrder: false
     }
 
     onChangePage = this.onChangePage.bind(this);
@@ -71,11 +71,33 @@ class Products extends Component {
         filteredProducts = filteredProducts.filter((product) =>
             (product.solution.toLowerCase().includes(e.target.value.toLowerCase())));
 
-        this.setState({ searchField: e.target.value, filteredProducts: filteredProducts });
+        this.setState({
+            searchField: e.target.value,
+            filteredProducts: filteredProducts
+        });
     }
 
-    handleGroupBy = () => {
-        this.setState({ showGroubByCategory: !this.state.showGroubByCategory });
+    handleGroupBy = (e) => {
+        let sortedProducts = [...this.state.products];
+
+        if (!this.state.showGroubByOrder) {
+            sortedProducts = sortedProducts.sort((a, b) => {
+                if (a[e] < b[e]) { return -1; }
+                if (a[e] > b[e]) { return 1; }
+                return 0;
+            });
+        } else {
+            sortedProducts = sortedProducts.reverse((a, b) => {
+                if (a[e] < b[e]) { return -1; }
+                if (a[e] > b[e]) { return 1; }
+                return 0;
+            });
+        }
+
+        this.setState({
+            showGroubByOrder: !this.state.showGroubByOrder,
+            products: sortedProducts
+        });
     }
 
     render() {

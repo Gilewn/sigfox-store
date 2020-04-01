@@ -16,24 +16,24 @@ module.exports = {
     return await Solution.find({
         products: {
           $exists: true
-        }
-      })
+        }}, {
+            
+          _id: 1,
+          title:1,
+          image:1
+      }
+        
+      )
     }
     
 
-     async function getAllProducts() {
+    async function getAllProducts() {
         
-         return await  Solution.find({
-        products: {
-          $exists: true
+         return await  Solution.aggregate([ 
+            { "$unwind": "$products" },
+            {"$group": {_id:null, products : { $push: '$products' }}}])
         }
-      }, {
-            
-            _id: 0,
-          products: 1
-        }
-      )
-    }
+    
         
 
 
@@ -47,16 +47,20 @@ module.exports = {
 
    
     async function getProduct(id) {
-        return await  Solution.find({
-            'products._id': ObjectId(id)
-          }, 
-           {
-              _id: 0,
-              products: 1
+        return await  Solution.aggregate([
+          {"$match":{"products._id": ObjectId(id)}},
+          {"$project":{ 
+              _id : 0 ,
+              "products" :{
+              
+                "$arrayElemAt":[
+                  {"$filter":{
+                    "input":"$products" ,
+                    "cond":{"$eq":["$$this._id",ObjectId(id)]}
+                  }
+                },0]
+              }
             }
-            
-            
-          ).map(  function(e,i){
-            if( e._id === ObjectId(id) ) return e; });
-    }
+          }])
+        }
         

@@ -22,7 +22,7 @@ function getSolutions(req, res, next) {
 
 function getAllProducts(req, res, next) {
     solutionsService.getAllProducts()
-        .then( solutions => solutions? res.json(solutions) : res.sendStatus(404))
+        .then( solutions => solutions? res.json(solutions[0].products) : res.sendStatus(404))
         .catch(err => next(err));
 }
 
@@ -38,6 +38,6 @@ function getProductsOfSolution(req, res, next) {
 
 function getProduct(req, res, next) {
     solutionsService.getProduct(req.params.id)
-        .then(product => product ? res.json(product) : res.sendStatus(404))
+        .then(product => product ? res.json(product[0].products) : res.sendStatus(404))
         .catch(err => next(err));
 }

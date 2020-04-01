@@ -6,9 +6,11 @@
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    height: 50vh;
+    height: 30vh;
+    padding-bottom: 10px;
     background-color: rgba(255, 255, 255, 0.9);
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .QuickSearch .card-container {
@@ -68,4 +70,22 @@
 .fade-appear.fade-appear-active {
     opacity: 1;
     transition: opacity .5s ease-in;
+}
+
+.QuickSearch::-webkit-scrollbar {
+    width: 20px;
+}
+
+.QuickSearch::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+.QuickSearch::-webkit-scrollbar-thumb {
+    background: #7824ff80;
+    border-radius: 10px;
+}
+
+.QuickSearch::-webkit-scrollbar-thumb:hover {
+    background: #7824ff;
 }

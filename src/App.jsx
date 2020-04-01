@@ -55,7 +55,7 @@ class App extends Component {
 
   render() {
     let { globalSearchField, products } = this.state;
-    const globalFilteredProducts = products.filter((product) => (product.title.toLowerCase().includes(globalSearchField.toLowerCase())));
+    const globalFilteredProducts = products.filter((product) => (product.solution.toLowerCase().includes(globalSearchField.toLowerCase())));
 
     let quickSearch = null;
 

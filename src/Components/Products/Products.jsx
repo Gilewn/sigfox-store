@@ -116,6 +116,7 @@ class Products extends Component {
                     <GroupBy
                         handleGroupBy={this.handleGroupBy}
                         listItems={this.state.products}
+                        showGroubByOrder={this.state.showGroubByOrder}
                     />
                 </div>
                 <Grid container spacing={2} justify="center">

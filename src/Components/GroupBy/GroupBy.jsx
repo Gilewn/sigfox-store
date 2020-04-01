@@ -5,6 +5,7 @@ import './GroupBy.css';
 function GroupBy(props) {
     let allItems = props.listItems;
     let keysOfItem = [];
+    let orderSymbol = "";
     const allowedValues = ['title', 'description', 'solution'];
 
     allItems = allItems.filter(singleItem => {
@@ -19,6 +20,12 @@ function GroupBy(props) {
         }, []);
 
     filteredValues = Object.keys(filteredValues);
+
+    if (!props.showGroubByOrder) {
+        orderSymbol = '⮝';
+    } else {
+        orderSymbol = '⮟';
+    }
 
     return (
         <div className="GroupBy">
@@ -40,12 +47,11 @@ function GroupBy(props) {
                                 <a
                                     onClick={() => props.handleGroupBy(listTitle)}
                                     className="dropdown-list-item-anchor">
-                                    {listTitle.charAt(0).toUpperCase() + listTitle.slice(1)}
+                                    <text>
+                                        {listTitle.charAt(0).toUpperCase() + listTitle.slice(1)}
+                                    </text>
                                     <span>
-                                        &#11165;
-                                    </span>
-                                    <span>
-                                        &#11167;
+                                        {orderSymbol}
                                     </span>
                                 </a>
                             </li>

@@ -34,6 +34,10 @@
     transition: all 0.3s ease-in-out;
 }
 
+.GroupBy .dropdown-list-item-anchor text {
+    padding-right: 2px;
+}
+
 .GroupBy .dropdown-list-item-anchor span {
     color: #6c757d;
 }
@@ -72,4 +76,12 @@
 .GroupBy .dropdown-list-item-anchor:hover {
     color: #7824ff !important;
     font-weight: 900;
+}
+
+.GroupBy .dropdown-list-item-anchor:hover text {
+    padding-right: 5px;
+}
+
+.GroupBy .dropdown-list-item-anchor:hover span {
+    color: #7824ff;
 }

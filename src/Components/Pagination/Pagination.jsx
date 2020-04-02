@@ -114,10 +114,10 @@ class Pagination extends Component {
         return (
             <ul className="Pagination">
                 <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(1)}>First</a>
+                    <a onClick={() => this.setPage(1)}>&laquo;</a>
                 </li>
                 <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
+                    <a onClick={() => this.setPage(pager.currentPage - 1)}>&#8249;</a>
                 </li>
                 {pager.pages.map((page, index) =>
                     <li key={index} className={pager.currentPage === page ? 'active' : ''}>
@@ -125,10 +125,10 @@ class Pagination extends Component {
                     </li>
                 )}
                 <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
+                    <a onClick={() => this.setPage(pager.currentPage + 1)}>&#8250;</a>
                 </li>
                 <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
+                    <a onClick={() => this.setPage(pager.totalPages)}>&raquo;</a>
                 </li>
             </ul>
         );

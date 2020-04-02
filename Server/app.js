@@ -15,16 +15,20 @@ app.use(Express.urlencoded({
   extended: true
 }));
 
-app.use(jwt());
-
-
-
-
-app.use('/admins', require('./admins/admins.controllers'));
 app.use('/',require('./solutions/solutions.controllers'));
 app.use('/products',require('./solutions/solutions.controllers'));
 app.use('/:solution/products',require('./solutions/solutions.controllers'));
 app.use('/products/:id',require('./solutions/solutions.controllers'));
+
+
+
+
+app.use(jwt());
+
+app.use('/admins', require('./admins/admins.controllers'));
+
+
+
 app.use(errorHandler);
 
 

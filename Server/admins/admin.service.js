@@ -3,12 +3,19 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const Admin = db.Admin;
+const Solution = db.Solution;
 
 module.exports = {
     authenticate,
     create,
+    getById,
+    getAll,
     update,
-    delete: _delete
+    delete: _delete,
+
+    create_solution,
+    delete_solution,
+    update_solution
 };
 
 async function authenticate({ username, password }) {
@@ -23,9 +30,14 @@ async function authenticate({ username, password }) {
     }
 }
 
+async function getById(id) {
+    return await Admin.findById(id).select('-hash');
+}
 
 
-
+async function getAll() {
+    return await Admin.find().select('-hash');
+}
 
 async function create(adminParam) {
     // validate
@@ -66,4 +78,46 @@ async function update(id, adminParam) {
 
 async function _delete(id) {
     await Admin.findByIdAndRemove(id);
+}
+
+
+async function create_solution(adminParam) {
+    
+    if (await Solution.findOne({ title: adminParam.title })) {
+        throw 'Solution "' + adminParam.username + '" is already exists';
+    }
+
+    const admin = new Solution(adminParam);
+    await admin.save();
+}
+
+
+async function delete_solution(adminParam) {
+    
+    const solution = await Solution.findOne({ title: adminParam.title})
+        
+    if (!solution) {
+        throw 'Solution "' + adminParam.title + '" does not exist ';
+    } 
+
+    await solution.delete();
+}
+
+
+
+async function update_solution(adminParam) {
+    
+    const solution = await Solution.findOne({ title: adminParam.title})
+    
+    if (!solution) {
+        throw 'Solution "' + adminParam.title + '" does not exist ';
+    } 
+
+    if (typeof(adminParam.new_image) !== 'undefined'){var newsolution = {title :adminParam.new_title,image:adminParam.new_image}}
+    else{var newsolution = {title :adminParam.new_title,image:solution.image}}
+   
+   
+    Object.assign(solution,newsolution);
+
+    await solution.save();
 }

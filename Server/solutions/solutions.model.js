@@ -10,7 +10,7 @@ const schema = new Schema({
   products:{type: Array}
  
 },{
-collection: 'solutions'});
+collection: 'solutions'},{versionKey: false});
 
 schema.set('toJSON', { virtuals: true });
 

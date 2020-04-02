@@ -11,14 +11,7 @@ function jwt() {
         path: [
             // public routes that don't require authentication
             '/admins/authenticate',
-            '/admins/register',
-            '/',
-            '/products',
-            {url:'/^\/([^\/]*)$\/products', methods: ['GET']},
-            {url:'/products/([^\/]*)$', methods: ['GET']}
-           
-            
-            
+            '/admins/register',       
         ]   
     });
 }

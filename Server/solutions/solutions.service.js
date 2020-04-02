@@ -15,7 +15,7 @@ module.exports = {
     async function getSolutions() {
     return await Solution.find({
         products: {
-          $exists: true
+          $gt:  {$size: 0} 
         }}, {
             
           _id: 1,

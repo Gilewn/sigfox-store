@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     username: { type: String, unique: true, required: true },
     hash: { type: String, required: true },
-    
-   
+ 
 },{
 collection: 'admins'});
 

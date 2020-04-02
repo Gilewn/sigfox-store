@@ -1,6 +1,7 @@
 .Sidebar {
     position: relative !important;
-    background-color: transparent !important;
+    background-color: #e7e7e7 !important;
+    border-right: 1px solid #7824ff1a;
     height: 100vh;
 }
 
@@ -9,5 +10,9 @@
 }
 
 .sidenav---sidenav-subnavitem---1cD47 {
+    color: #7824ff !important;
+}
+
+.sidenav---navtext---1AE_f {
     color: #7824ff !important;
 }

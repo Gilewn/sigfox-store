@@ -112,12 +112,12 @@ class Products extends Component {
         return (
             <div className="Products">
                 <div className="UtilityBar">
-                    <SearchBox handleChange={this.handleChange} />
                     <GroupBy
                         handleGroupBy={this.handleGroupBy}
                         listItems={this.state.products}
                         showGroubByOrder={this.state.showGroubByOrder}
                     />
+                    <SearchBox handleChange={this.handleChange} />
                 </div>
                 <Grid container spacing={2} justify="center">
                     {this.state.pageOfItems.map(product =>

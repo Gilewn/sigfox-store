@@ -1,12 +1,22 @@
 .SearchBox {
-    width: 30vw;
+    position: relative;
+    width: 50%;
+    display: flex;
+}
+
+.SearchBox:hover input {
+    width: 90%;
+    transition: all 0.75s ease-in-out;
 }
 
 .SearchBox input {
-    width: 100%;
+    width: 0;
+    height: 50%;
+    margin: auto;
     outline: none;
     border: none;
     border-bottom: 1px solid #ccc;
+    transition: all 0.75s ease-in-out;
 }
 
 .SearchBox input:hover {
@@ -15,6 +25,15 @@
 
 .SearchBox input:active {
     border-bottom: 1px solid #7824ff;
+}
+
+.SearchBox .fa-search {
+    font-size: 1.75em;
+    color: rgb(120, 36, 255);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* Under 426px */

@@ -1,14 +1,10 @@
 .GroupBy {
-    width: 20vw;
+    width: 50%;
 }
 
 .GroupBy .dropdown {
     display: flex;
-    box-shadow: -1px 1px 3px #7824ff;
     cursor: pointer;
-    width: 10vw;
-    position: relative;
-    left: 50%;
     transition: all 0.3s ease-in-out;
 }
 

@@ -10,6 +10,7 @@ function SearchBox(props) {
                 placeholder=" Search..."
                 onChange={props.handleChange}
             />
+            <i className="fa fa-fw fa-search" />
         </div>
     );
 }

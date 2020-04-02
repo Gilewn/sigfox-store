@@ -1,4 +1,52 @@
-*{
+/*BreadCrumb*/
+
+
+[data-test="breadcrumb"]{
+    display: block;
+    
+}
+.breadcrumb-item,.breadcrumb-item[active]{
+    font-size: 1.2rem;
+}
+.breadcrumb-item a:hover{
+    text-decoration: none;
+    
+}
+
+.carousel{
+    height: 100%;
+}
+
+form{
+text-align: start;
+}
+
+form button{
+    width: 30%;
+}
+
+.accordion{
+    margin-top: 1%;
+    
+}
+
+.accordion .card{
+    background-color: rgb(218, 218, 253);
+    box-shadow: none;
+    
+}
+
+.accordion .card-header{
+    cursor: pointer;
+}
+
+.card-body{
+    background-color: whitesmoke;
+}
+
+
+
+/* *{
     font-size: 1.0rem;
 }
 .productPage-container{
@@ -9,7 +57,6 @@
     flex-direction: row;
     background-color: #fff;
 }
-
 .col1 {
     background-color: #fff;
     width: 65%;
@@ -17,27 +64,23 @@
     flex-direction: column;
     justify-content: flex-start;
 }
-
 .image {
     display: flex;
     flex-direction: row;
     height: 60%;
 }
-
 .arrows {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 10%;
 }
-
 .arrows2 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 10%;
 }
-
 #left-arrow,
 #right-arrow {
     font-size: 35px;
@@ -47,18 +90,15 @@
     background-color: rgb(247, 243, 243);
     border-radius: 100%;
 }
-
 .col1 img {
     width: 80%;
 }
-
 .col2 {
     width: 35%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
-
 .col2-infoBox{
     width: 85%;
     height: 15%;
@@ -73,21 +113,17 @@
     align-items: flex-start;
     margin-bottom: 30px;
 }
-
 .col2-container h3,
 p,
 .info {
     margin: 10px 25px 25px 20px;
 }
-
 .col2 p {
     text-align: justify;
 }
-
 .col2 h3 {
     margin-left: 20px;
 }
-
 .col2-contactForm {
     border: 1px solid #f7f7f7;
     border-radius: 2%;
@@ -99,7 +135,6 @@ p,
     flex-direction: column;
     justify-content: start;
 }
-
 .col2-contactForm .header {
     width: 100%;
     height: 10%;
@@ -110,7 +145,6 @@ p,
     letter-spacing: 0.7;
     font-weight: 600;
 }
-
 .col2-contactForm .logo {
     display: flex;
     flex-direction: row;
@@ -119,28 +153,23 @@ p,
     margin-top: 20px;
     margin-bottom: 30px;
 }
-
 .logo div {
     margin-left: 15px;
 }
-
 .sigfox-logo img {
     height: 80px;
     width: 120px;
 }
-
 .sigfox-logo-contact-text {
     margin-top: 20px;
     font-size: 1rem;
     font-weight: 600;
 }
-
 .contact-form-footer p{
     font-size: 0.65rem;
     padding-bottom:0px;
     text-align: justify;
 }
-
 #contactUs .contact-form {
     margin: 5px auto;
     padding: 0 35px;
@@ -149,7 +178,6 @@ p,
     align-items: flex-end;
     justify-content: flex-end;
 }
-
 .contact-form input {
     width: 90%;
     height: 30px;
@@ -159,7 +187,6 @@ p,
     border: 1px solid #f7f7f7;
     border-radius: 7%;
 }
-
 #message {
     width: 95%;
     font-size: 1.2rem;
@@ -170,12 +197,10 @@ p,
     border-radius: 7%;
     resize: none;
 }
-
 #message-icon {
     padding-top: 2px;
     margin-right: 5px;
 }
-
 #button {
     width: 95%;
     height: 30px;
@@ -187,7 +212,6 @@ p,
     cursor: pointer;
     font-size: 1.1rem;
 }
-
 .info {
     border: 1px solid #666;
     background-color: #ffe869;
@@ -196,20 +220,17 @@ p,
     cursor: pointer;
     text-decoration: none;
 }
-
 .info a:link,
 .info a:visited {
     text-decoration: none;
     color: black;
 }
-
 .info:hover,
 .info:active,
 #button:hover {
     background-color: #fade42;
     box-shadow: 0px 0px 10px blanchedalmond;
 }
-
 .general p {
     width: 85%;
     padding-left: 60px;
@@ -219,20 +240,16 @@ p,
     color: rgb(100, 100, 100);
     font-size: 1rem;
 }
-
 .general p ul li{
     font-size: 1rem;
 }
-
 .general p strong{
     font-size: 1.2rem;
 }
-
 p ul,
 p ul:nth-child(2) {
     margin-left: 50px;
 }
-
 .product-zoom {
     width: 100%;
     height: 10%;
@@ -242,37 +259,31 @@ p ul:nth-child(2) {
     flex-direction: row;
     justify-content: center;
 }
-
 .product-zoom a {
     padding-left: 4px;
     color: #666;
     font-size: 1.2rem;
     text-decoration: none;
 }
-
 #search-icon {
     margin-top: 4px;
     font-size: 20px;
 }
-
 .card-postal {
     width: 100%;
     display: flex;
     flex-direction: row;
     margin-left: 8%;
 }
-
 .card-postal img {
     width: 80px;
     height: 80px;
     margin: 0px 15px;
     padding: 0px;
 }
-
 .card-postal img:first-child {
     border: 1px solid rgb(48, 45, 45);
 }
-
 .tabs a:link,
 .tabs a:active,
 .tabs a:visited {
@@ -280,14 +291,12 @@ p ul:nth-child(2) {
     color: rgb(56, 54, 54);
     margin-right: 15px;
 }
-
 .tabs a:first-of-type,
 .certification-header a,
 .technical-details-header a {
     padding-bottom: 10px;
     border-bottom: 3px solid purple;
 }
-
 .tabs {
     width: 80%;
     margin-left: 100px;
@@ -295,7 +304,6 @@ p ul:nth-child(2) {
     padding-bottom: 10px;
     margin-bottom: 5px;
 }
-
 .certification-header,
 .technical-details-header {
     border-bottom: 1px solid #f3eaea;
@@ -306,13 +314,11 @@ p ul:nth-child(2) {
     width: 80%;
     margin-left: 90px;
 }
-
 .certification-body {
     display: flex;
     flex-direction: row;
     justify-content: start;
 }
-
 .certification-container{
     width: 200px;
     display: flex;
@@ -320,47 +326,38 @@ p ul:nth-child(2) {
     justify-content: start;
     margin-top: 10px;   
 }
-
 .certification-container img{
     height: 150px;
 }
-
 .certification-container:first-of-type{
     margin-left: 100px;
 }
-
 .certification-image{
     width: 250px;
 }
-
 .certification-ce {
     width: 200px;
     height: 150px;
     margin-top: 50px;
 }
-
 .certification-title{
     height: 24px;
 }
-
 .technical-details-col1 div ,.technical-details-col2 div{
     margin-left: 90px;
     margin-top: 50px;
     font-weight: 700;
 }
-
 .technical-details-col2 div {
     margin-top: 45px;
     margin-bottom: 5px;
 }
-
 .technical-details-body {
     width: 70%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
 }
-
 .also-interested-in{
     margin-top: 100px;
     background-color: #fcfcfc;
@@ -371,7 +368,6 @@ p ul:nth-child(2) {
     flex-wrap: wrap;
     flex-direction: row;
 }
-
 h2 {
     text-align: center;
     word-spacing: 2px;
@@ -380,7 +376,6 @@ h2 {
     margin-bottom: 30px;
     letter-spacing: 1px;
 }
-
 h2:after {
     display: block;
     height: 2px;
@@ -389,4 +384,4 @@ h2:after {
     margin: 0 auto;
     margin-top: 30px;
     width: 100px;
-}
+} */

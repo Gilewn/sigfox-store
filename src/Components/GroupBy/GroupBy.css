@@ -1,5 +1,7 @@
 .GroupBy {
     width: 50%;
+    box-shadow: inset -2px 0px 5px #7824ff;
+    margin-bottom: 10px;
 }
 
 .GroupBy .dropdown {
@@ -42,7 +44,7 @@
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease-in-out;
-    width: 10vw;
+    width: 50%;
 }
 
 .GroupBy .dropdown:hover>.dropdown-header-holder>span {

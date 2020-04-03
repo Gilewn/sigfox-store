@@ -4,10 +4,9 @@
 
 .UtilityBar {
     display: flex;
-    width: 50%;
-    margin: 0 auto 5% auto;
-    justify-content: space-between;
-    box-shadow: inset 0px 0px 5px #7824ff;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
 }
 
 .Big-Container a:link,

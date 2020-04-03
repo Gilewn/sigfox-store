@@ -1,11 +1,13 @@
 .SearchBox {
     position: relative;
     width: 50%;
+    height: 6vh;
     display: flex;
+    box-shadow: inset -2px 0px 5px #7824ff;
 }
 
 .SearchBox:hover input {
-    width: 90%;
+    width: 75%;
     transition: all 0.75s ease-in-out;
 }
 

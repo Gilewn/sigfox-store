@@ -9,10 +9,14 @@ router.post('/register', register);
 router.get('/', getAll);
 router.put('/:id', update);
 router.delete('/:id', _delete);
+
+
 router.post('/CreateSolution',create_solution);
 router.get('/DeleteSolution',delete_solution);
 router.post('/UpdateSolution',update_solution);
 
+
+router.post('/CreateProduct',create_product);
 
 
 module.exports = router;
@@ -75,6 +79,14 @@ function delete_solution(req, res, next) {
 
 function update_solution(req, res, next) {
     adminService.update_solution(req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+
+
+function create_product(req, res, next) {
+    adminService.create_product(req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
 }

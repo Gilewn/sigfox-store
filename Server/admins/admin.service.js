@@ -15,7 +15,10 @@ module.exports = {
 
     create_solution,
     delete_solution,
-    update_solution
+    update_solution,
+
+    create_product
+
 };
 
 async function authenticate({ username, password }) {
@@ -120,4 +123,9 @@ async function update_solution(adminParam) {
     Object.assign(solution,newsolution);
 
     await solution.save();
+}
+
+async function create_product(adminParam) {
+    
+    
 }

@@ -1,3 +1,8 @@
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
 /*BreadCrumb*/
 
 
@@ -16,19 +21,31 @@
 .carousel{
     height: 100%;
 }
-
+.carousel .carousel-control-prev-icon, .carousel .carousel-control-next-icon{
+    width: 30px !important;
+    height: 30px !important;
+    border:0px solid rgb(187, 185, 185);;;
+    border-radius: 100%;
+    background-color: rgb(187, 185, 185);
+}
 form{
 text-align: start;
 width: 90%;
 margin: 0 auto;
 }
 
+
+
 form button{
-    width: 30%;
+    width: 35%;
+    
 }
+
+
 
 .accordion{
     margin-top: 1%;
+    margin-bottom: 1%;
     
 }
 
@@ -40,14 +57,53 @@ form button{
 
 .accordion .card-header{
     cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 400;
+    
 }
 
 .card-body{
     background-color: whitesmoke;
 }
 
+.card:first-child .card-body div{
+    font-family: 'Roboto',sans-serif;
+    text-align: start;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.card-body:first-of-type div p,.card-body:first-of-type div strong,.card-body:first-of-type div ul,.card-body:first-of-type div li{
+
+    font-size: 1.15rem;
+}
 
 
+.certification-container img{
+    width: 70%;
+    height: 70%;
+}
+
+
+.certification-title{
+    height: 24px;
+}
+
+
+.technical-details-col1 div ,.technical-details-col2 div{
+    margin-left: 90px;
+    margin-top: 50px;
+    font-weight: 700;
+}
+
+.jumbotron{
+    margin-bottom: 0 !important;
+}/*  */
+/* .jumbotron .text-white{
+    width: 100% !important;
+    height:80vh !important;
+    margin: 0% !important;
+} */
 /* *{
     font-size: 1.0rem;
 }

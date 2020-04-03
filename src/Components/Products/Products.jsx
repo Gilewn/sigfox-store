@@ -5,6 +5,7 @@ import Pagination from '../Pagination/Pagination';
 import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { MDBContainer,MDBRow, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 import './Products.css';
 
@@ -122,10 +123,22 @@ class Products extends Component {
                 <Grid container spacing={2} justify="center">
                     {this.state.pageOfItems.map(product =>
                         <Grid
-                            item xs={12} sm={6} md={3} key={product._id}>
-                            <div className="card-container">
+                            item xs={12} sm={6} md={6} lg={3} key={product._id}>
+                            <div className="card-container" >
                                 <Link to={{ pathname: `/${product._id}` }}>
-                                    <div className='card-image'>
+                                <MDBCol >
+                                <MDBCard>
+                                <MDBCardImage className="img-fluid" src={product.images[0]}
+                                    waves />
+                                <MDBCardBody>
+                                <MDBCardTitle>{product.title}</MDBCardTitle>
+                                <MDBCardTitle>{product.solution}</MDBCardTitle>
+                                <MDBCardText>{product.description}</MDBCardText>
+                                </MDBCardBody>  
+                                </MDBCard>
+                                </MDBCol>
+
+                                    {/* <div className='card-image'>
                                         <img src={product.images[0]} alt="product" />
                                     </div>
                                     <div className='card-title-description'>
@@ -133,7 +146,7 @@ class Products extends Component {
                                         <h4>{product.solution}</h4>
                                         <p>{product.description} </p>
                                     </div>
-                                    {product.title}
+                                    {product.title} */}
                                 </Link>
                             </div>
                         </Grid>

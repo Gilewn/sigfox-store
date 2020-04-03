@@ -1,10 +1,11 @@
 import React from 'react';
 import HtmlComponent from '../HtmlComponent/HtmlComponent'
 import Certification from '../Certification/Certification'
-import {MDBBtn, MDBIcon, MDBInput ,MDBRow,MDBContainer,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem,MDBCarousel,MDBCarouselInner, MDBCarouselItem, MDBView,MDBMask,MDBCarouselCaption } from 'mdbreact';
+import {MDBJumbotron,MDBCardTitle,MDBBtn, MDBIcon, MDBInput ,MDBRow,MDBContainer,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem,MDBCarousel,MDBCarouselInner, MDBCarouselItem, MDBView,MDBMask,MDBCarouselCaption } from 'mdbreact';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 var decodeHTML = function (html) {
     var txt = document.createElement('textarea');
@@ -12,21 +13,52 @@ var decodeHTML = function (html) {
     return txt.value;
 };
 
+
 export default class ColumnOne extends React.Component  {
 
     state={
-        collapseID: "collapse1"
+        collapseID: "collapse1",
+        name: '',
+        lastname: '',
+        email: '',
+        message: ''
       }
+
+      handleChange = event => {
+           this.setState({ [event.target.name]: event.target.value, [event.target.lastname]: event.target.value, [event.target.email]: event.target.value, [event.target.message]: event.target.value });
+        }
+
+        handleSubmit = event => {
+              event.preventDefault();
+          
+              const user = {
+                name: this.state.name,
+                lastname: this.state.lastname,
+                email: this.state.email,
+                message: this.state.message
+              }
+              };
+
+      
+                  
       
       toggleCollapse = collapseID => () =>
       this.setState(prevState => ({
         collapseID: prevState.collapseID !== collapseID ? collapseID : ""
       }));
-    
+
+
+        setActiveFirstCarouselIndicator=()=>{
+        var liFirst=document.querySelector('#indicator0');
+
+        liFirst.setAttribute("className","active");
+        };
 
      changePhoto(e) {
-        const photo = document.querySelector("#main-photo");
-        photo.src = e.target.src;
+        var idPhoto = e.target.id;
+        console.log(idPhoto);
+        const photo=document.querySelector("#carousel-item"+idPhoto);
+        photo.setAttribute("class","carousel-item active")
     }
 render(){
     return<MDBContainer fluid>
@@ -40,126 +72,117 @@ render(){
       </MDBBreadcrumb>
 </MDBCol>
  </MDBRow>
- 
-
 <MDBRow>
-<MDBCol md="8">
-<MDBCarousel
-      activeItem={1}
-      length={3}
+<MDBCol lg="8">
+<MDBCarousel id="myCarousel"
+      activeItem={0}
+      length={this.props.album.length}
       showControls={true}
       showIndicators={true}
       className="z-depth-1"
     >
+        <ol  class="carousel-indicators">
+        {this.props.album.map((image, index) =>
+          <li onClick={this.changePhoto} id={index} data-target="#myCarousel" data-slide-to={index}></li>) }
+          
+        </ol>
       <MDBCarouselInner>
-        <MDBCarouselItem itemId="1">
-          <MDBView>
-            <img
-              className="d-block w-100"
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg"
-              alt="First slide"
-            />
-          <MDBMask overlay="black-light" />
-          </MDBView>
-          <MDBCarouselCaption>
-            <h3 className="h3-responsive">Light mask</h3>
-            <p>First text</p>
-          </MDBCarouselCaption>
-        </MDBCarouselItem>
-        <MDBCarouselItem itemId="2">
-          <MDBView>
-            <img
-              className="d-block w-100"
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg"
-              alt="Second slide"
-            />
-          <MDBMask overlay="black-strong" />
-          </MDBView>
-          <MDBCarouselCaption>
-            <h3 className="h3-responsive">Strong mask</h3>
-            <p>Second text</p>
-          </MDBCarouselCaption>
-        </MDBCarouselItem>
-        <MDBCarouselItem itemId="3">
-          <MDBView>
-            <img
-              className="d-block w-100"
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg"
-              alt="Third slide"
-            />
-          <MDBMask overlay="black-slight" />
-          </MDBView>
-          <MDBCarouselCaption>
-            <h3 className="h3-responsive">Slight Mast</h3>
-            <p>Third text</p>
-          </MDBCarouselCaption>
-        </MDBCarouselItem>
+      {this.props.album.map((image, index) =>
+      <MDBCarouselItem id={"carousel-item"+index} itemId={index}>
+        
+      <MDBView>
+        <img
+          className="d-block w-100"
+          src={image}
+          alt={'photo' + index}
+        />
+
+
+      <MDBMask overlay="black-slight" />
+      </MDBView>
+      </MDBCarouselItem>
+    
+      )}  
       </MDBCarouselInner>
     </MDBCarousel>
+</MDBCol>
+
+<MDBCol lg="4"> 
+<MDBJumbotron  style={{ padding: 0 }}>
+            <MDBCol className="text-white text-center py-6 px-6 my-0" style={{ backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)` }}>
+              <MDBCol justify-content-md-center className="py-5">
+                <MDBCardTitle className="h1-responsive pt-6 m-6 font-bold">{this.props.product.title}</MDBCardTitle>
+                <div className="mx-6 mb-6" id='col2-category'><p>{this.props.product.solution}</p></div>
+                <div className="mx-6 mb-6" id='col2-overview'><p>{this.props.product.description}</p></div>
+                {/* <p className="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                  optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
+                </p> */}
+                
+              </MDBCol>
+            </MDBCol>
+          </MDBJumbotron>
 </MDBCol>
 
 </MDBRow>
 
 <MDBRow>
-    <MDBCol md="8">
+    <MDBCol lg="8">
     <Accordion defaultActiveKey="0">
   <Card>
     <Accordion.Toggle as={Card.Header} eventKey="0">
-      Click me!
+      Description
     </Accordion.Toggle>
     <Accordion.Collapse eventKey="0">
-      <Card.Body>In computer science, artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, in contrast to the natural intelligence displayed by humans and animals. Leading AI textbooks define the field as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.[1] Colloquially, the term "artificial intelligence" is often used to describe machines (or computers) that mimic "cognitive" functions that humans associate with the human mind, such as "learning" and "problem solving".[2]
-
-As machines become increasingly capable, tasks considered to require "intelligence" are often removed from the definition of AI, a phenomenon known as the AI effect.[3] A quip in Tesler's Theorem says "AI is whatever hasn't been done yet."[4] For instance, optical character recognition is frequently excluded from things considered to be AI[5] , having become a routine technology.[6] Modern machine capabilities generally classified as AI include successfully understanding human speech,[7] competing at the highest level in strategic game systems (such as chess and Go),[8] autonomously operating cars, intelligent routing in content delivery networks, and military simulations.
-
-Artificial intelligence was founded as an academic discipline in 1955, and in the years since has experienced several waves of optimism,[9][10] followed by disappointment and the loss of funding (known as an "AI winter"),[11][12] followed by new approaches, success and renewed funding.[10][13] For most of its history, AI research has been divided into subfields that often fail to communicate with each other.[14] These sub-fields are based on technical considerations, such as particular goals (e.g. "robotics" or "machine learning"),[15] the use of particular tools ("logic" or artificial neural networks), or deep philosophical differences.[16][17][18] Subfields have also been based on social factors (particular institutions or the work of particular researchers).[14] </Card.Body>
+      <Card.Body> 
+      <HtmlComponent htmlText={decodeHTML(this.props.product.generalDetails)} />
+      </Card.Body>
     </Accordion.Collapse>
   </Card>
   <Card>
     <Accordion.Toggle as={Card.Header} eventKey="1">
-      Click me!
+      Certifications
     </Accordion.Toggle>
     <Accordion.Collapse eventKey="1">
-      <Card.Body>Hello! I'm the body</Card.Body>
+      <Card.Body>
+        <MDBContainer fluid="md">
+        <MDBRow>
+      {this.props.certifications.map((certificate, index) => <MDBCol  sm="12" md="6" ><Certification key={index} certificate={certificate} /></MDBCol>)}
+      </MDBRow>
+      </MDBContainer>
+      </Card.Body>
     </Accordion.Collapse>
   </Card>
   <Card>
     <Accordion.Toggle as={Card.Header} eventKey="2">
-      Click me!
+      Technical Details
     </Accordion.Toggle>
     <Accordion.Collapse eventKey="2">
-      <Card.Body>Hello! I'm the body</Card.Body>
+      <Card.Body>
+
+      </Card.Body>
     </Accordion.Collapse>
   </Card>
   <Card>
     <Accordion.Toggle as={Card.Header} eventKey="3">
-      Click me!
-    </Accordion.Toggle>
-    <Accordion.Collapse eventKey="3">
-      <Card.Body>Hello! I'm the body</Card.Body>
-    </Accordion.Collapse>
-  </Card>
-  <Card>
-    <Accordion.Toggle as={Card.Header} eventKey="4">
       Contact us
     </Accordion.Toggle>
-    <Accordion.Collapse eventKey="4">
+    <Accordion.Collapse eventKey="3">
       <Card.Body>
-          <form>
+          <form action="post" onSubmit={this.handleSubmit}>
         
         <div className="grey-text">
-          <MDBInput label="Your name" icon="user" group type="text" validate error="wrong"
+          <MDBInput label="Your name" icon="user" group type="text" onChange={this.handleChange} validate error="wrong"
             success="right" />
-          <MDBInput label="Your email" icon="envelope" group type="email" validate error="wrong"
+          <MDBInput label="Your email" icon="envelope" group type="email" onChange={this.handleChange} validate error="wrong"
             success="right" />
-          <MDBInput label="Subject" icon="tag" group type="text" validate error="wrong" success="right" />
-          <MDBInput type="textarea" rows="2" label="Your message" icon="pencil" />
+          <MDBInput label="Subject" icon="tag" group type="text" validate error="wrong" onChange={this.handleChange} success="right" />
+          <MDBInput type="textarea" rows="2" label="Your message" icon="pencil" onChange={this.handleChange} />
         </div>
         <div className="text-center">
-          <MDBBtn outline color="secondary">
+          <MDBBtn  name="mail-outline" outline color="secondary">
             Send
-            <MDBIcon far icon="paper-plane" className="ml-1"  />
-          </MDBBtn>
+            
+          </MDBBtn >
         </div>
       </form>
       </Card.Body>

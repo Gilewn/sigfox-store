@@ -26,12 +26,12 @@ const Navbar = (props) => {
         <NavBar style={barAnimation}>
           <FlexContainer>
             <Brand />
-            <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
             <NavLinks style={linkAnimation}>
               <a href="/">link n1</a>
               <a href="/">link n2</a>
               <a href="/">link n3</a>
             </NavLinks>
+            <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
             <BurgerWrapper>
               <BurgerMenu
                 navbarState={props.navbarState}

@@ -2,7 +2,17 @@ import React from 'react';
 
 import './GlobalSearchBox.css';
 
-function SearchBox(props) {
+function GlobalSearchBox(props) {
+
+    function toggleWidth() {
+        let a = document.querySelector('input');
+        if (a.style.width === "") {
+            a.style.width = "75%";
+        } else {
+            a.style.width = "";
+        }
+    }
+
     return (
         <div className='GlobalSearchBox'>
             <input
@@ -10,8 +20,11 @@ function SearchBox(props) {
                 placeholder=" Search..."
                 onChange={props.handleGlobalChange}
             />
+            <button onClick={toggleWidth}>
+                <i className="fa fa-fw fa-search" />
+            </button>
         </div>
     );
 }
 
-export default SearchBox;
+export default GlobalSearchBox;

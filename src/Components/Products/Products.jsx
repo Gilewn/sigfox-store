@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SearchBox from '../SearchBox/SearchBox';
 import GroupBy from '../GroupBy/GroupBy';
 import Pagination from '../Pagination/Pagination';
 import { Grid } from "@material-ui/core";
@@ -12,8 +11,6 @@ class Products extends Component {
     state = {
         products: [],
         pageOfItems: [],
-        searchField: "",
-        filteredProducts: [],
         showGroubByOrder: false
     }
 
@@ -65,18 +62,6 @@ class Products extends Component {
         this.setState({ pageOfItems: pageOfItems });
     }
 
-    handleChange = (e) => {
-        let filteredProducts = [...this.state.products];
-
-        filteredProducts = filteredProducts.filter((product) =>
-            (product.solution.toLowerCase().includes(e.target.value.toLowerCase())));
-
-        this.setState({
-            searchField: e.target.value,
-            filteredProducts: filteredProducts
-        });
-    }
-
     handleGroupBy = (e) => {
         let sortedProducts = [...this.state.products];
 
@@ -101,14 +86,6 @@ class Products extends Component {
     }
 
     render() {
-        let pagination;
-
-        if (this.state.searchField.length > 0 && this.state.filteredProducts.length > 0) {
-            pagination = <Pagination items={this.state.filteredProducts} onChangePage={this.onChangePage} />
-        } else {
-            pagination = <Pagination items={this.state.products} onChangePage={this.onChangePage} />
-        }
-
         return (
             <div className="Products">
                 <div className="UtilityBar">
@@ -117,7 +94,6 @@ class Products extends Component {
                         listItems={this.state.products}
                         showGroubByOrder={this.state.showGroubByOrder}
                     />
-                    <SearchBox handleChange={this.handleChange} />
                 </div>
                 <Grid container spacing={2} justify="center">
                     {this.state.pageOfItems.map(product =>
@@ -139,7 +115,7 @@ class Products extends Component {
                         </Grid>
                     )}
                 </Grid>
-                {pagination}
+                <Pagination items={this.state.products} onChangePage={this.onChangePage} />
             </div>
         )
     }

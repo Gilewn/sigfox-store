@@ -109,7 +109,7 @@ render(){
 
 <MDBCol lg="4"> 
 <MDBJumbotron  style={{ padding: 0 }}>
-            <MDBCol className="text-white text-center py-6 px-6 my-0" style={{ backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)` }}>
+            <MDBCol className="text-white text-center py-6 px-6 my-0" style={{ height: "100%", backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)` }}>
               <MDBCol justify-content-md-center className="py-5">
                 <MDBCardTitle className="h1-responsive pt-6 m-6 font-bold">{this.props.product.title}</MDBCardTitle>
                 <div className="mx-6 mb-6" id='col2-category'><p>{this.props.product.solution}</p></div>

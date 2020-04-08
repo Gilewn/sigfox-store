@@ -81,10 +81,10 @@ render(){
 <MDBRow>
 <MDBCol >
 <MDBBreadcrumb dark color="blue lighten-4">
-        <MDBBreadcrumbItem > <MDBLink to="/">Home</MDBLink></MDBBreadcrumbItem>
+        <MDBLink to="/">Home <span style={{paddingLeft: "1rem"}}>/</span></MDBLink>
   
-<MDBBreadcrumbItem ><MDBLink to={`/${this.props.product.solution}/products`}>{this.props.product.solution}</MDBLink></MDBBreadcrumbItem>
-      <MDBBreadcrumbItem active ><span>{this.props.product.title}</span></MDBBreadcrumbItem>
+<MDBLink to={`/${this.props.product.solution}/products`}>{this.props.product.solution}<span style={{paddingLeft: "1rem"}}>/</span></MDBLink>
+      <MDBLink style={{color: "#000" , cursor: "default"}}><span>{this.props.product.title}</span></MDBLink>
       </MDBBreadcrumb>
 </MDBCol>
  </MDBRow>

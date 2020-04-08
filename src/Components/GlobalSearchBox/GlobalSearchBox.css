@@ -1,53 +1,43 @@
 .GlobalSearchBox {
-    position: relative;
-    width: 50%;
-    display: flex;
+  position: relative;
+  width: 50%;
+  display: flex;
 }
 
 .GlobalSearchBox input {
-    width: 0;
-    height: 50%;
-    margin: auto;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    transition: all 0.75s ease-in-out;
+  width: 0;
+  height: 50%;
+  margin: auto;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  transition: all 0.75s ease-in-out;
 }
 
 .GlobalSearchBox input:hover {
-    border-bottom: 1px solid #7824ff80;
+  border-bottom: 1px solid #7824ff80;
 }
 
 .GlobalSearchBox input:active {
-    border-bottom: 1px solid #7824ff;
+  border-bottom: 1px solid #7824ff;
 }
 
 .GlobalSearchBox button {
-    border: none;
+  border: none;
 }
 
 .GlobalSearchBox .fa-search {
-    font-size: 1.5rem;
-    color: rgba(120, 36, 255, 0.75);
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: all 0.5s ease-in-out;
+  font-size: 1.5rem;
+  color: rgba(120, 36, 255, 0.75);
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.5s ease-in-out;
 }
 
 .GlobalSearchBox:hover .fa-search {
-    color: rgb(120, 36, 255);
-    font-size: 1.75rem;
-    transition: all 0.5s ease-in-out;
-}
-
-/* Under 426px */
-@media(max-width: 426px) {
-    .GlobalSearchBox {
-        position: relative;
-        top: 5rem;
-        width: 100%;
-        margin: 0 auto;
-    }
+  color: rgb(120, 36, 255);
+  font-size: 1.75rem;
+  transition: all 0.5s ease-in-out;
 }

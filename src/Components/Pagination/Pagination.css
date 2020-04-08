@@ -1,66 +1,80 @@
 .Pagination {
-    display: inline-block;
-    margin: 20px 0;
+  display: inline-block;
+  margin: 20px 0;
 }
 
-.Pagination>li {
-    display: inline;
+.Pagination > li {
+  display: inline;
 }
 
-.Pagination>li.disabled {
-    pointer-events: all !important;
+.Pagination > li.disabled {
+  pointer-events: all !important;
 }
 
-.Pagination>li>a,
-.Pagination>li>span {
-    position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: 5px;
-    line-height: 1.42857143;
-    color: #7824ff !important;
-    text-decoration: none;
-    background-color: #fff;
-    border-radius: 50%;
+.Pagination > li > a,
+.Pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: 5px;
+  line-height: 1.42857143;
+  color: #7824ff !important;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 50%;
 }
 
-.Pagination>li:first-child>a,
-.Pagination>li:first-child>span {
-    margin-left: 0;
+.Pagination > li:first-child > a,
+.Pagination > li:first-child > span {
+  margin-left: 0;
 }
 
-.Pagination>.active>a,
-.Pagination>.active>a:focus,
-.Pagination>.active>a:hover,
-.Pagination>.active>span,
-.Pagination>.active>span:focus,
-.Pagination>.active>span:hover {
-    color: #fff !important;
-    cursor: default;
-    background-color: #7824ff;
-    border-color: #7824ff;
-    border-radius: 50%;
+.Pagination > .active > a,
+.Pagination > .active > a:focus,
+.Pagination > .active > a:hover,
+.Pagination > .active > span,
+.Pagination > .active > span:focus,
+.Pagination > .active > span:hover {
+  color: #fff !important;
+  cursor: default;
+  background-color: #7824ff;
+  border-color: #7824ff;
+  border-radius: 50%;
 }
 
-.Pagination>li>a:focus,
-.Pagination>li>a:hover,
-.Pagination>li>span:focus,
-.Pagination>li>span:hover {
-    color: #7824ff;
-    background-color: #eee;
-    border-color: #ddd;
-    border-radius: 50%;
+.Pagination > li > a:focus,
+.Pagination > li > a:hover,
+.Pagination > li > span:focus,
+.Pagination > li > span:hover {
+  color: #7824ff;
+  background-color: #eee;
+  border-color: #ddd;
+  border-radius: 50%;
 }
 
-.Pagination>.disabled>a,
-.Pagination>.disabled>a:focus,
-.Pagination>.disabled>a:hover,
-.Pagination>.disabled>span,
-.Pagination>.disabled>span:focus,
-.Pagination>.disabled>span:hover {
-    color: #777 !important;
-    cursor: not-allowed !important;
-    background-color: #fff;
-    border-color: #ddd;
-    border-radius: 50%;
+.Pagination > .disabled > a,
+.Pagination > .disabled > a:focus,
+.Pagination > .disabled > a:hover,
+.Pagination > .disabled > span,
+.Pagination > .disabled > span:focus,
+.Pagination > .disabled > span:hover {
+  color: #777 !important;
+  cursor: not-allowed !important;
+  background-color: #fff;
+  border-color: #ddd;
+  border-radius: 50%;
+}
+
+@media (max-width: 735px) {
+  .Pagination > li > a,
+  .Pagination > li > span {
+    padding: 6px 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .Pagination > li > a,
+  .Pagination > li > span {
+    padding: 6px 4px;
+  }
 }

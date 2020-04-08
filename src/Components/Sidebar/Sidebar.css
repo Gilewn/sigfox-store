@@ -1,17 +1,40 @@
 .Sidebar {
-    position: relative !important;
-    background-color: #e7e7e7 !important;
-    border-right: 1px solid #7824ff1a;
+  position: relative !important;
+  background-color: #e7e7e7 !important;
+  border-right: 1px solid #7824ff1a;
+  height: 100vh;
 }
 
 .sidenav---icon-bar---u1f02 {
-    background-color: #7824ff !important;
+  background-color: #7824ff !important;
 }
 
 .sidenav---sidenav-subnavitem---1cD47 {
-    color: #7824ff !important;
+  color: #7824ff !important;
 }
 
 .sidenav---navtext---1AE_f {
-    color: #7824ff !important;
+  color: #7824ff !important;
+}
+
+@media (max-width: 550px) {
+  .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL {
+    min-width: 64px;
+    max-width: 64px;
+  }
+
+  .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL
+    .sidenav---sidenav-subnav---1EN61,
+  .sidenav---sidenav-toggle---1KRjR,
+  .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL
+    .sidenav---sidenav-nav---3tvij
+    > .sidenav---sidenav-navitem---uwIJ-.sidenav---expanded---1KdUL
+    .sidenav---sidenav-subnav---1EN61,
+  .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL
+    .sidenav---sidenav-nav---3tvij
+    > .sidenav---sidenav-navitem---uwIJ-
+    .sidenav---navicon---3gCRo
+    + .sidenav---navtext---1AE_f {
+    display: none;
+  }
 }

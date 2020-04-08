@@ -1,5 +1,6 @@
 .Products {
   margin-top: 20px;
+  margin-bottom: 20px;
   padding: 0 30px;
 }
 
@@ -102,4 +103,10 @@
 .card-container a .col {
   padding-left: 0;
   padding-right: 0;
+}
+
+@media (max-width: 321px) {
+  .Products {
+    padding: 0 20px;
+  }
 }

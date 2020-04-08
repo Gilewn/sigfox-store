@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ColumnOne from './ProductPageColumnOne';
 import ColumnTwo from './ProductPageColumnTwo';
 import axios from 'axios';
-
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import './ProductPage.css';
 
 class ProductPage extends Component {
@@ -26,10 +26,12 @@ class ProductPage extends Component {
     }
 
     render() {
-        return <div className="productPage-container">
-            <ColumnOne product={this.state.product} album={this.state.productimages} certifications={this.state.productcertifications} />
-            <ColumnTwo product={this.state.product} />
-        </div>
+        // return <div className="productPage-container">
+        return  <ColumnOne product={this.state.product} album={this.state.productimages} certifications={this.state.productcertifications} />
+           
+
+            {/* <ColumnTwo product={this.state.product} /> */}
+        
     }
 }
 

@@ -6,7 +6,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import { MDBButton,MDBContainer,MDBRow, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 import "./Solutions.css";
 
@@ -21,17 +20,7 @@ const Solutions = (props) => {
               className='solutions'
               to={{ pathname: `/${solution.title}/products` }}
             >
-              
-                                <MDBCard>
-                                <MDBCardImage className="img-fluid" src={solution.image}
-                                    waves />
-                                <MDBCardBody>
-                                <MDBCardTitle>{solution.title}</MDBCardTitle>
-                                
-                                </MDBCardBody>  
-                                </MDBCard>
-                                
-              {/* <Card style={{ height: '100%' }}>
+              <Card style={{ height: '100%' }}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
@@ -45,7 +34,7 @@ const Solutions = (props) => {
                     {solution.title}
                   </Button>
                 </CardActions>
-              </Card> */}
+              </Card>
             </Link>
           </Grid>
         ))}

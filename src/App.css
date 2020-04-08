@@ -16,6 +16,23 @@
   width: 35%;
 }
 
+.fWohKN {
+  z-index: 1020;
+  outline: none !important;
+}
+
+.Span-Style {
+  font-size: 2rem;
+  color: #fff;
+  background-color: rgba(154, 95, 248, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.Span-Style:hover {
+  background-color: rgba(154, 95, 248, 1);
+}
+
 body::-webkit-scrollbar {
   width: 15px;
 }

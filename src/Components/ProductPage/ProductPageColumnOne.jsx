@@ -80,11 +80,11 @@ render(){
    
 <MDBRow>
 <MDBCol >
-<MDBBreadcrumb dark color="blue lighten-4">
+<MDBBreadcrumb dark="true" color="blue lighten-4">
         <MDBLink to="/">Home <span style={{paddingLeft: "1rem"}}>/</span></MDBLink>
   
 <MDBLink to={`/${this.props.product.solution}/products`}>{this.props.product.solution}<span style={{paddingLeft: "1rem"}}>/</span></MDBLink>
-      <MDBLink style={{color: "#000" , cursor: "default"}}><span>{this.props.product.title}</span></MDBLink>
+      <MDBLink to="#" style={{color: "#000" , cursor: "default"}}><span>{this.props.product.title}</span></MDBLink>
       </MDBBreadcrumb>
 </MDBCol>
  </MDBRow>
@@ -99,7 +99,7 @@ render(){
     >
       <MDBCarouselInner>
       {this.props.album.map((image, index) =>
-        <MDBCarouselItem itemId={index+1}>
+        <MDBCarouselItem key={index+1} itemId={index+1}>
           <MDBView>
             <img
               className="d-block w-100"
@@ -121,7 +121,7 @@ render(){
 <MDBCol lg="4"> 
 <MDBJumbotron  style={{ padding: 0 }}>
             <MDBCol className="text-white text-center py-3 px-3 my-0" style={{ height: "100%", backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)` }}>
-              <MDBCol justify-content-md-center className="py-5">
+              <MDBCol justify-content-md-center="true" className="py-5">
                 <MDBCardTitle className="h1-responsive pt-5 mx-3 mt-5 mb-3 font-bold">{this.props.product.title}</MDBCardTitle>
                 <div className="mx-5 mb-3" id='col2-category'><p>{this.props.product.solution}</p></div>
                 <div className="mx-4 mb-5" id='col2-overview'><p>{this.props.product.description}</p></div>
@@ -156,9 +156,9 @@ render(){
     </Accordion.Toggle>
     <Accordion.Collapse eventKey="1">
       <Card.Body>
-        <MDBContainer fluid="md">
+        <MDBContainer fluid>
         <MDBRow>
-      {this.props.certifications.map((certificate, index) => <MDBCol  sm="12" md="6" ><Certification key={index} certificate={certificate} /></MDBCol>)}
+      {this.props.certifications.map((certificate, index) => <MDBCol key={index+1}  sm="12" md="6" ><Certification key={index} certificate={certificate} /></MDBCol>)}
       </MDBRow>
       </MDBContainer>
       </Card.Body>
@@ -214,7 +214,7 @@ render(){
     >
       <MDBCarouselInner>
       {this.state.products.map((product, index) =>
-        <MDBCarouselItem itemId={index+1}>
+        <MDBCarouselItem key={index+1} itemId={index+1}>
           <MDBView>
             <img
               className="d-block w-100"

@@ -1,11 +1,13 @@
 import React from 'react';
 import HtmlComponent from '../HtmlComponent/HtmlComponent'
 import Certification from '../Certification/Certification'
-import {MDBJumbotron,MDBCardTitle,MDBBtn, MDBIcon, MDBInput ,MDBRow,MDBContainer,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem,MDBCarousel,MDBCarouselInner, MDBCarouselItem, MDBView,MDBMask,MDBCarouselCaption } from 'mdbreact';
+import {MDBJumbotron,MDBCardTitle,MDBBtn, MDBIcon, MDBInput ,MDBRow,MDBContainer,MDBCol,MDBBreadcrumb,MDBBreadcrumbItem,MDBCarousel,MDBCarouselInner, MDBCarouselItem, MDBView,MDBMask,MDBCarouselCaption,MDBLink } from 'mdbreact';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import './ProductPage.css';
+import { Link } from "react-router-dom";
 
 var decodeHTML = function (html) {
     var txt = document.createElement('textarea');
@@ -17,6 +19,8 @@ var decodeHTML = function (html) {
 export default class ColumnOne extends React.Component  {
 
     state={
+        products:[],
+        productimages: [],
         collapseID: "collapse1",
         name: '',
         lastname: '',
@@ -60,60 +64,68 @@ export default class ColumnOne extends React.Component  {
         const photo=document.querySelector("#carousel-item"+idPhoto);
         photo.setAttribute("class","carousel-item active")
     }
+
+    componentDidUpdate(){
+      axios.get(`http://localhost:5000/${this.props.product.solution}/products`)
+                    .then(res => {
+                        this.setState({ products: res.data });
+                        
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+    }
 render(){
-    return<MDBContainer fluid>
-    
+   return<MDBContainer fluid> 
+   
 <MDBRow>
 <MDBCol >
 <MDBBreadcrumb dark color="blue lighten-4">
-        <MDBBreadcrumbItem > <a href="#">Home</a></MDBBreadcrumbItem>
-        <MDBBreadcrumbItem ><a href="#">Smart-Cities</a></MDBBreadcrumbItem>
-        <MDBBreadcrumbItem active >Product</MDBBreadcrumbItem>
+        <MDBBreadcrumbItem > <MDBLink to="/">Home</MDBLink></MDBBreadcrumbItem>
+  
+<MDBBreadcrumbItem ><MDBLink to={`/${this.props.product.solution}/products`}>{this.props.product.solution}</MDBLink></MDBBreadcrumbItem>
+      <MDBBreadcrumbItem active ><span>{this.props.product.title}</span></MDBBreadcrumbItem>
       </MDBBreadcrumb>
 </MDBCol>
  </MDBRow>
 <MDBRow>
 <MDBCol lg="8">
-<MDBCarousel id="myCarousel"
-      activeItem={0}
-      length={this.props.album.length}
+<MDBCarousel 
+      activeItem={1}
+      length= {2} 
       showControls={true}
       showIndicators={true}
       className="z-depth-1"
     >
-        <ol  class="carousel-indicators">
-        {this.props.album.map((image, index) =>
-          <li onClick={this.changePhoto} id={index} data-target="#myCarousel" data-slide-to={index}></li>) }
-          
-        </ol>
       <MDBCarouselInner>
       {this.props.album.map((image, index) =>
-      <MDBCarouselItem id={"carousel-item"+index} itemId={index}>
+        <MDBCarouselItem itemId={index+1}>
+          <MDBView>
+            <img
+              className="d-block w-100"
+              src={image}
+              alt={'photo' + index}
+            />
+          <MDBMask overlay="black-light" />
+          </MDBView>
+          <MDBCarouselCaption>
+      <h5 className="h5-responsive">{this.props.album.title}</h5>
+          </MDBCarouselCaption>
+        </MDBCarouselItem>
         
-      <MDBView>
-        <img
-          className="d-block w-100"
-          src={image}
-          alt={'photo' + index}
-        />
-
-
-      <MDBMask overlay="black-slight" />
-      </MDBView>
-      </MDBCarouselItem>
-    
-      )}  
+      )}
       </MDBCarouselInner>
     </MDBCarousel>
 </MDBCol>
 
 <MDBCol lg="4"> 
 <MDBJumbotron  style={{ padding: 0 }}>
-            <MDBCol className="text-white text-center py-6 px-6 my-0" style={{ height: "100%", backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)` }}>
+            <MDBCol className="text-white text-center py-3 px-3 my-0" style={{ height: "100%", backgroundImage: `url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)` }}>
               <MDBCol justify-content-md-center className="py-5">
-                <MDBCardTitle className="h1-responsive pt-6 m-6 font-bold">{this.props.product.title}</MDBCardTitle>
-                <div className="mx-6 mb-6" id='col2-category'><p>{this.props.product.solution}</p></div>
-                <div className="mx-6 mb-6" id='col2-overview'><p>{this.props.product.description}</p></div>
+                <MDBCardTitle className="h1-responsive pt-5 mx-3 mt-5 mb-3 font-bold">{this.props.product.title}</MDBCardTitle>
+                <div className="mx-5 mb-3" id='col2-category'><p>{this.props.product.solution}</p></div>
+                <div className="mx-4 mb-5" id='col2-overview'><p>{this.props.product.description}</p></div>
+                <div className='mx-4 mb-5 info'><a href='#contactUs'><ion-icon name="information-outline"></ion-icon>Request Information</a></div>
                 {/* <p className="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
                   optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
                 </p> */}
@@ -162,12 +174,12 @@ render(){
       </Card.Body>
     </Accordion.Collapse>
   </Card>
-  <Card>
+  <Card id="contactUs">
     <Accordion.Toggle as={Card.Header} eventKey="3">
       Contact us
     </Accordion.Toggle>
-    <Accordion.Collapse eventKey="3">
-      <Card.Body>
+    <Accordion.Collapse  eventKey="3">
+      <Card.Body >
           <form action="post" onSubmit={this.handleSubmit}>
         
         <div className="grey-text">
@@ -191,8 +203,34 @@ render(){
 </Accordion>
     </MDBCol>
 
-    <MDBCol id="contact-form" md="4">
-      
+    <MDBCol className="my-2" lg="4">
+    <div><h2 id="alsoInterestedHeader"> You Might also Interested</h2></div>
+    <MDBCarousel id="alsoInterested"
+      activeItem={1}
+      length= {2} 
+      showControls={false}
+      showIndicators={true}
+      className="z-depth-1"
+    >
+      <MDBCarouselInner>
+      {this.state.products.map((product, index) =>
+        <MDBCarouselItem itemId={index+1}>
+          <MDBView>
+            <img
+              className="d-block w-100"
+              src={product.images[0]}
+              alt={'photo' + index}
+            />
+          <MDBMask overlay="black-slight" />
+          </MDBView>
+          <MDBCarouselCaption>
+      <h5 className="h5-responsive">{this.props.album.title}</h5>
+          </MDBCarouselCaption>
+        </MDBCarouselItem>
+        
+      )}
+      </MDBCarouselInner>
+    </MDBCarousel>
     </MDBCol> 
 </MDBRow>
 {/* <Carousel>

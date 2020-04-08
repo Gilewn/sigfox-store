@@ -1,6 +1,7 @@
 
 *{
     font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }
 
 /*BreadCrumb*/
@@ -8,14 +9,14 @@
 
 [data-test="breadcrumb"]{
     display: block;
-    
+
 }
 .breadcrumb-item,.breadcrumb-item[active]{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .breadcrumb-item a:hover{
     text-decoration: none;
-    
+
 }
 
 .carousel{
@@ -38,7 +39,7 @@ margin: 0 auto;
 
 form button{
     width: 35%;
-    
+
 }
 
 
@@ -46,20 +47,20 @@ form button{
 .accordion{
     margin-top: 1%;
     margin-bottom: 1%;
-    
+
 }
 
 .accordion .card{
     background-color: rgb(218, 218, 253);
     box-shadow: none;
-    
+
 }
 
 .accordion .card-header{
     cursor: pointer;
     font-size: 1.2rem;
     font-weight: 400;
-    
+
 }
 
 .card-body{
@@ -99,7 +100,145 @@ form button{
 .jumbotron{
     margin-bottom: 0 !important;
     height: 100%;
-}/*  */
+    font-size: 1.5rem !important;
+}
+
+/* .jumbotron text */
+.text-white p{
+
+    font-size: 1.2rem;
+}
+
+.text-white h4{
+    font-size: 1.5rem;
+}
+
+
+.info a:link,.info a:visited,.info a:active{
+    color: white !important;
+    background-color: rgb(49, 136, 207);
+    font-size: 1.2em;
+    border: 0.5px solid rgb(49, 136, 207);
+    padding: 2%;
+    text-decoration: none;
+
+}
+
+.info a:hover{
+    background-color: rgb(16, 50, 78) ;
+    box-shadow:1px 0.5px 10px rgb(255, 255, 255);
+}
+
+  /*XSM*/
+    @media only screen and (min-width: 300px) and (max-width:575px){
+        .text-white p,.text-white h4{
+            margin: 0 ;
+            padding: 0 ;
+        }
+
+        *{
+            
+            font-size: 12px;
+        }
+
+     
+    
+
+        /* .text-white h4{
+            font-size: 1.2rem;
+        } */
+    }
+
+    #alsoInterested{
+        height: 30vh;
+        position: sticky;
+    }
+
+    .view{
+        height:100% !important;
+    }
+
+    #alsoInterestedHeader{
+
+        background-color:rgba(185, 182, 182, 0.027);
+        padding: 2%;
+        margin-bottom: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    @media only screen and (min-width: 300px) {
+        #alsoInterested{
+            height: 40vh;
+        }
+
+
+    }
+    /*sm*/
+    @media only screen and (min-width: 576px) {
+        #alsoInterested{
+            height: 50vh;
+        }
+
+        *{
+            
+            font-size: 14px;
+        }
+
+    }
+
+
+    /*md*/
+    @media only screen and (min-width: 768px) {
+        #alsoInterested{
+            height: 65vh;
+        }
+
+        *{
+            
+            font-size: 14px;
+        }
+
+    }
+
+    /*lg*/
+    @media only screen and (min-width: 992px) {
+        /* .text-white p,.text-white h4{
+            margin: 0 ;
+            padding: 0 ;
+        } */
+
+        /* .text-white div{
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 0 ;
+        } */
+        /* .text-white p{
+
+            font-size: 1.1rem;
+        } */
+
+        .info a:link,.info a:visited,.info a:active{
+            font-size: 1.1rem;
+
+        }
+
+        .text-white h4{
+            font-size: 1.1rem;
+        }
+
+        #alsoInterested{
+            height: 40vh;
+        }
+    }
+
+    /*xl*/
+    @media only screen and (min-width: 1200px) {
+
+        #alsoInterested{
+            height: 50vh;
+        }
+    }
+/*  */
 /* .jumbotron .text-white{
     width: 100% !important;
     height:80vh !important;
@@ -383,7 +522,7 @@ p ul:nth-child(2) {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    margin-top: 10px;   
+    margin-top: 10px;
 }
 .certification-container img{
     height: 150px;

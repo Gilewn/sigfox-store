@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ColumnOne from './ProductPageColumnOne';
 import ColumnTwo from './ProductPageColumnTwo';
 import axios from 'axios';
-import './ProductPage.css';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import './ProductPage.css';
 
 class ProductPage extends Component {
     state = {

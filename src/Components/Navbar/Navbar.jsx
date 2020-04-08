@@ -1,21 +1,21 @@
-import React from 'react'
+import React from "react";
 import Brand from "./Brand";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
-import GlobalSearchBox from '../GlobalSearchBox/GlobalSearchBox';
-import { Column, Row } from 'styled-grid-system-component';
+import GlobalSearchBox from "../GlobalSearchBox/GlobalSearchBox";
+import { Column, Row } from "styled-grid-system-component";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 
 const Navbar = (props) => {
   const barAnimation = useSpring({
-    from: { transform: 'translate3d(0, -10rem, 0)' },
-    transform: 'translate3d(0, 0, 0)',
+    from: { transform: "translate3d(0, -10rem, 0)" },
+    transform: "translate3d(0, 0, 0)",
   });
 
   const linkAnimation = useSpring({
-    from: { transform: 'translate3d(0, 30px, 0)', opacity: 0 },
-    to: { transform: 'translate3d(0, 0, 0)', opacity: 1 },
+    from: { transform: "translate3d(0, 30px, 0)", opacity: 0 },
+    to: { transform: "translate3d(0, 0, 0)", opacity: 1 },
     delay: 800,
     config: config.wobbly,
   });
@@ -27,9 +27,11 @@ const Navbar = (props) => {
           <FlexContainer>
             <Brand />
             <NavLinks style={linkAnimation}>
-              <a href="/">link n1</a>
-              <a href="/">link n2</a>
-              <a href="/">link n3</a>
+              <a href="/">Home</a>
+              <a href="/products">All Products</a>
+              <a href="https://sigfox.gr/" target="_blank">
+                Sigfox Hellas
+              </a>
             </NavLinks>
             <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
             <BurgerWrapper>
@@ -46,16 +48,16 @@ const Navbar = (props) => {
         />
       </Column>
     </Row>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
 
 const NavBar = styled(animated.nav)`
   position: relative;
   width: 100%;
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   top: 0;
   left: 0;
   background: #fff;
@@ -67,7 +69,7 @@ const FlexContainer = styled.div`
   width: 90vw;
   display: flex;
   margin: auto;
-  padding: 0 2rem;;
+  padding: 0 2rem;
   justify-content: space-between;
   height: 5rem;
 `;

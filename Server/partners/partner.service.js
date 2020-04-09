@@ -26,7 +26,7 @@ let transport = nodemailer.createTransport({
 
 
 async function create_partner(request) {
-console.log(request);
+
 
     const partner = new Partner(request);
     await partner.save();

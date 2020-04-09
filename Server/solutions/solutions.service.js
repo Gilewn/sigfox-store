@@ -38,6 +38,7 @@ module.exports = {
 
 
     async function getProductsOfSolution(solutionParam) {
+     
         return await Solution.findOne({
             
           "title": solutionParam

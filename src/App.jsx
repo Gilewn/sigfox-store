@@ -81,7 +81,7 @@ class App extends Component {
                 <Route exact path="/" >
                   <Solutions items={this.state.solutions} />
                 </Route>
-                <Route exact path="/products" render={(props) => (
+                <Route exact path="/All_products" render={(props) => (
                   <div>
                     <div className="Big-Container">
                       <Products {...props} />

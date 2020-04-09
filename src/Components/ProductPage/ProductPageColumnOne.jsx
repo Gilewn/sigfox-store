@@ -23,29 +23,37 @@ export default class ColumnOne extends React.Component  {
         productimages: [],
         collapseID: "collapse1",
         name: '',
-        lastname: '',
         email: '',
         message: ''
       }
 
       handleChange = event => {
-           this.setState({ [event.target.name]: event.target.value, [event.target.lastname]: event.target.value, [event.target.email]: event.target.value, [event.target.message]: event.target.value });
+           this.setState({ [event.target.name]: event.target.value, [event.target.email]: event.target.value, [event.target.message]: event.target.value });
         }
 
         handleSubmit = event => {
-              event.preventDefault();
+               event.preventDefault();
           
-              const user = {
-                name: this.state.name,
-                lastname: this.state.lastname,
-                email: this.state.email,
-                message: this.state.message
-              }
+               const user = {
+                 name: this.state.name,
+                
+                 email: this.state.email,
+                 message: this.state.message
+          
+          
               };
-
-      
+          
+              axios.post(`http://localhost:5000/partners/submit`, { user })
+                .then(res => {
+                  console.log(res);
+                  console.log(res.data);
+                })
+             }
                   
       
+
+
+
       toggleCollapse = collapseID => () =>
       this.setState(prevState => ({
         collapseID: prevState.collapseID !== collapseID ? collapseID : ""
@@ -183,16 +191,17 @@ render(){
           <form action="post" onSubmit={this.handleSubmit}>
         
         <div className="grey-text">
-          <MDBInput label="Your name" icon="user" group type="text" onChange={this.handleChange} validate error="wrong"
+          <MDBInput label="Your name" icon="user" name="name" group type="text" onChange={this.handleChange} validate error="wrong"
             success="right" />
-          <MDBInput label="Your email" icon="envelope" group type="email" onChange={this.handleChange} validate error="wrong"
+          <MDBInput label="Your email" icon="envelope" name="email" group type="email" onChange={this.handleChange} validate error="wrong"
             success="right" />
-          <MDBInput label="Subject" icon="tag" group type="text" validate error="wrong" onChange={this.handleChange} success="right" />
-          <MDBInput type="textarea" rows="2" label="Your message" icon="pencil" onChange={this.handleChange} />
+         
+          <MDBInput label="Your message" icon="pencil"  name="message"  type="textarea" rows="2" onChange={this.handleChange} />
         </div>
         <div className="text-center">
-          <MDBBtn  name="mail-outline" outline color="secondary">
-            Send
+          
+          <MDBBtn type='submit' name="mail-outline" outline color="secondary">
+           Order Now
             
           </MDBBtn >
         </div>

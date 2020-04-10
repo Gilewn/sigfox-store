@@ -28,9 +28,21 @@ export default class ColumnOne extends React.Component  {
         message: ''
       }
 
+      RequestInfo=event=>{
+        var contactUsCollapse=document.querySelector("#contactUs-collapse");
+        var contactUsHeader=document.querySelector("#contactUs .card-header")
+        if(contactUsCollapse.className==="collapse"){
+          
+          contactUsHeader.click();
+        }
+        
+      }
+
       handleChange = event => {
            this.setState({ [event.target.name]: event.target.value, [event.target.lastname]: event.target.value, [event.target.email]: event.target.value, [event.target.message]: event.target.value });
         }
+
+
 
         handleSubmit = event => {
               event.preventDefault();
@@ -125,7 +137,7 @@ render(){
                 <MDBCardTitle className="h1-responsive pt-5 mx-3 mt-5 mb-3 font-bold">{this.props.product.title}</MDBCardTitle>
                 <div className="mx-5 mb-3" id='col2-category'><p>{this.props.product.solution}</p></div>
                 <div className="mx-4 mb-5" id='col2-overview'><p>{this.props.product.description}</p></div>
-                <div className='mx-4 mb-5 info'><a href='#contactUs'><ion-icon name="information-outline"></ion-icon>Request Information</a></div>
+                <div className='mx-4 mb-5 info'><a href='#contactUs' onClick={this.RequestInfo}><ion-icon name="information-outline"></ion-icon>Request Information</a></div>
                 {/* <p className="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
                   optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
                 </p> */}
@@ -178,7 +190,7 @@ render(){
     <Accordion.Toggle as={Card.Header} eventKey="3">
       Contact us
     </Accordion.Toggle>
-    <Accordion.Collapse  eventKey="3">
+    <Accordion.Collapse id="contactUs-collapse" eventKey="3">
       <Card.Body >
           <form action="post" onSubmit={this.handleSubmit}>
         

@@ -45,73 +45,42 @@ class ProductPage extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.id !== this.props.match.params.id) {
       axios
-        .get(`http://localhost:5000/products/${this.props.match.params.id}`)
-        .then((res) => {
-          console.log(res.data);
-          this.setState({ product: res.data });
-          this.setState({ isLoaded: true });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-      axios
-        .get(`http://localhost:5000/products`)
-        .then((res) => {
-          let alsoInterestedProducts = res.data;
-          let paramsId = this.props.match.params.id;
-          alsoInterestedProducts = alsoInterestedProducts.filter((el) => {
-            if (
-              el._id !== paramsId &&
-              el.solution === this.state.product.solution
-            ) {
-              return el;
-            }
-          });
-
-          this.setState({
-            alsoInterestedProducts: alsoInterestedProducts,
-            isLoaded2: true,
-          });
-        })
-
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  }
-
-  componentDidMount() {
-    axios
       .get(`http://localhost:5000/products/${this.props.match.params.id}`)
       .then((res) => {
-        this.setState({ product: res.data });
-        this.setState({ isLoaded: true });
+        let alsoInterestedProducts = res.data;
+        let product
+        alsoInterestedProducts = alsoInterestedProducts.filter((el) => {
+          if (el._id !== this.props.match.params.id ) {
+            return el;
+          }else{product = el}
+        });
+        console.log(alsoInterestedProducts)
+      this.setState({ product: product,alsoInterestedProducts:alsoInterestedProducts,  isLoaded: true})
+        
       })
+     
       .catch(function (error) {
         console.log(error);
       });
 
+  }
+  }
+  componentDidMount() {
     axios
-      .get(`http://localhost:5000/products`)
+      .get(`http://localhost:5000/products/${this.props.match.params.id}`)
       .then((res) => {
         let alsoInterestedProducts = res.data;
-        let paramsId = this.props.match.params.id;
+        let product
         alsoInterestedProducts = alsoInterestedProducts.filter((el) => {
-          if (
-            el._id !== paramsId &&
-            el.solution === this.state.product.solution
-          ) {
+          if (el._id !== this.props.match.params.id ) {
             return el;
-          }
+          }else{product = el}
         });
-
-        this.setState({
-          alsoInterestedProducts: alsoInterestedProducts,
-          isLoaded2: true,
-        });
+        console.log(alsoInterestedProducts)
+      this.setState({ product: product,alsoInterestedProducts:alsoInterestedProducts, isLoaded: true})
+        
       })
-
+     
       .catch(function (error) {
         console.log(error);
       });
@@ -164,17 +133,12 @@ class ProductPage extends Component {
     if (
       this.state.isLoaded === false &&
       typeof this.state.product.images === "undefined" &&
-      typeof this.state.product.certifications === "undefined"
-    ) {
-      return <div />;
-    }
-
-    if (
-      this.state.isLoaded2 === false &&
+      typeof this.state.product.certifications === "undefined" &&
       this.state.alsoInterestedProducts === null
     ) {
       return <div />;
     }
+
 
     return (
       <MDBContainer fluid>

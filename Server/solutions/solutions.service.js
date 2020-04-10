@@ -49,7 +49,7 @@ module.exports = {
    
     async function getProduct(id) {
         return await  Solution.aggregate([
-          {"$match":{"products._id": ObjectId(id)}},
+          /*{"$match":{"products._id": ObjectId(id)}},
           {"$project":{ 
               _id : 0 ,
               
@@ -62,7 +62,9 @@ module.exports = {
                   }
                 },0]
               }
-            }
+            }*/
+            {"$match":{"products._id": ObjectId(id)}
+
           }])
         }
         

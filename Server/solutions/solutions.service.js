@@ -52,6 +52,7 @@ module.exports = {
           {"$match":{"products._id": ObjectId(id)}},
           {"$project":{ 
               _id : 0 ,
+              
               "products" :{
               
                 "$arrayElemAt":[

@@ -23,27 +23,38 @@ class ProductPage extends Component {
         name: '',
         email: '',
         message: '',
-        productimages: [],
-        productcertifications: [],
+       // productimages: [],
+        //productcertifications: [],
+        products : [],
+        isLoaded: false,
        
     }
 
     componentDidMount() {
         axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
             .then(res => {
-                console.log(res)
+                console.log(res.data)
                 this.setState({ product: res.data  });
-                this.setState({ productimages: res.data.images });
-                this.setState({ productcertifications: res.data.certifications });
+                this.setState({ isLoaded: true });
+               // this.setState({ productimages: res.data.images });
+               // this.setState({ productcertifications: res.data.certifications });
+               
+               
             })
             .catch(function (error) {
                 console.log(error);
             });
-
-            
-            
-
-    }
+           
+            axios.get(`http://localhost:5000/${this.props.location.state.params.title}/products`)
+            .then(res => {
+                console.log(this.props.location.state.params.title)
+                this.setState({ products: res.data  });
+                //this.setState({ isLoaded: true });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value, [event.target.email]: event.target.value, [event.target.message]: event.target.value });
@@ -85,19 +96,18 @@ class ProductPage extends Component {
 }
 
   
-    
+        
     render() {
-        let a = this.state.productimages.length;
-        console.log(a);
-        if (this.state.productimages.length === 0) {
-          return (a = "");
-        } else {
-          a = this.state.productimages.length;
+       
+        if (this.state.isLoaded === false && typeof this.state.product.images === 'undefined' &&  typeof this.state.product.certifications === 'undefined') {
+            return <div />
         }
-     
-        return<MDBContainer fluid> 
-   
-        <MDBRow>
+        return(
+           
+        <MDBContainer fluid> 
+           
+      
+        <MDBRow >
         <MDBCol >
         <MDBBreadcrumb dark="true" color="blue lighten-4">
                 <MDBLink to="/">Home <span style={{paddingLeft: "1rem"}}>/</span></MDBLink>
@@ -107,17 +117,19 @@ class ProductPage extends Component {
               </MDBBreadcrumb>
         </MDBCol>
          </MDBRow>
+        
         <MDBRow>
         <MDBCol lg="8">
-        <MDBCarousel 
+       
+        <MDBCarousel  
               activeItem={1}
-              length= {a} 
+              length= { this.state.product.images.length} 
               showControls={true}
               showIndicators={true}
               className="z-depth-1"
             >
               <MDBCarouselInner>
-              {this.state.productimages.map((image, index) =>
+              {this.state.product.images.map((image, index) =>
                 <MDBCarouselItem key={index+1} itemId={index+1}>
                   <MDBView>
                     <img
@@ -133,6 +145,7 @@ class ProductPage extends Component {
               )}
               </MDBCarouselInner>
             </MDBCarousel>
+    
         </MDBCol>
         
         <MDBCol lg="4"> 
@@ -151,7 +164,7 @@ class ProductPage extends Component {
         </MDBCol>
         
         </MDBRow>
-        
+            
         <MDBRow>
             <MDBCol lg="8">
             <Accordion defaultActiveKey="0">
@@ -173,9 +186,9 @@ class ProductPage extends Component {
               <Card.Body>
                 <MDBContainer fluid>
                 <MDBRow>
-              {this.state.productcertifications.map((certificate, index) => <MDBCol key={index+1}  sm="12" md="6" ><Certification key={index} certificate={certificate} /></MDBCol>)}
+              {this.state.product.certifications.map((certificate, index) => <MDBCol key={index+1}  sm="12" md="6" ><Certification key={index} certificate={certificate} /></MDBCol>)}
               </MDBRow>
-              </MDBContainer>
+              </MDBContainer> 
               </Card.Body>
             </Accordion.Collapse>
           </Card>
@@ -229,12 +242,12 @@ class ProductPage extends Component {
               className="z-depth-1"
             >
               <MDBCarouselInner>
-              {this.state.productimages.map((product, index) =>
+              {this.state.product.images.map((product, index) =>
                 <MDBCarouselItem key={index+1} itemId={index+1}>
                   <MDBView>
                     <img
                       className="d-block w-100"
-                      src={this.state.productimages[0]}
+                      src={this.state.product.images[0]}
                       alt={'photo' + index}
                     />
                   <MDBMask overlay="black-slight" />
@@ -247,7 +260,7 @@ class ProductPage extends Component {
             </MDBCarousel>
             </MDBCol> 
         </MDBRow>
-   </MDBContainer>
+   </MDBContainer>);
   
         }
         }

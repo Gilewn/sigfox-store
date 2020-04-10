@@ -101,7 +101,7 @@ class Products extends Component {
                         <Grid
                             item xs={12} sm={6} md={6} lg={3} key={product._id}>
                             <div className="card-container" >
-                                <Link to={{ pathname: `/${product._id}` }}>
+                                <Link to={{ pathname: `/${product._id}`  , state :{ params:{title:product.solution}}}}>
                                 <MDBCol >
                                 <MDBCard>
                                 <MDBCardImage className="img-fluid" src={product.images[0]}

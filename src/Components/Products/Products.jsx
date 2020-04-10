@@ -25,11 +25,11 @@ class Products extends Component {
   onChangePage = this.onChangePage.bind(this);
 
   componentDidUpdate(prevProps) {
-    window.scrollTo(0, 0);
     if (
       prevProps.match.params.solution_title !==
       this.props.match.params.solution_title
     ) {
+      window.scrollTo(0, 0);
       if (typeof this.props.match.params.solution_title === "undefined") {
         axios
           .get(`http://localhost:5000/products`)

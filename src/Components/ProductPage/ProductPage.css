@@ -1,294 +1,282 @@
-
-*{
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+* {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
 }
 
-#completion-message{
-   margin: 10px auto;
+#completion-message {
+  margin: 10px auto;
 }
 
-#success-icon +span,#error-icon+span
-{
-    background-color: rgb(255, 254, 254,0.9);
-    padding: 0.5%;
-    
+#success-icon + span,
+#error-icon + span {
+  background-color: rgb(255, 254, 254, 0.9);
+  padding: 0.5%;
 }
-#success-icon,#error-icon,#success-icon +span,#error-icon+span
-{
-    font-size: 2rem;
-}
-
-#success-icon{
-    color:green;
-    margin-right: 5px;
-    
+#success-icon,
+#error-icon,
+#success-icon + span,
+#error-icon + span {
+  font-size: 2rem;
 }
 
-#error-icon{
-    color:red;
-    margin-right: 5px;
-    
+#success-icon {
+  color: green;
+  margin-right: 5px;
+}
+
+#error-icon {
+  color: red;
+  margin-right: 5px;
 }
 
 /*BreadCrumb*/
 
-
-[data-test="breadcrumb"]{
-    display: block;
-
+[data-test="breadcrumb"] {
+  display: block;
 }
-.breadcrumb-item,.breadcrumb-item[active]{
-    font-size: 1rem;
+.breadcrumb-item,
+.breadcrumb-item[active] {
+  font-size: 1rem;
 }
-.breadcrumb-item a:hover{
-    text-decoration: none;
-
+.breadcrumb-item a:hover {
+  text-decoration: none;
 }
 
-.carousel{
-    height: 100%;
+.carousel {
+  height: 100%;
 }
-.carousel .carousel-control-prev-icon, .carousel .carousel-control-next-icon{
-    width: 30px !important;
-    height: 30px !important;
-    border:0px solid rgb(187, 185, 185);;;
-    border-radius: 100%;
-    background-color: rgb(187, 185, 185);
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+  width: 30px !important;
+  height: 30px !important;
+  border: 0px solid rgb(187, 185, 185);
+  border-radius: 100%;
+  background-color: rgb(187, 185, 185);
 }
-form{
-text-align: start;
-width: 90%;
-margin: 0 auto;
-}
-
-
-
-form button{
-    width: 35%;
-
+form {
+  text-align: start;
+  width: 90%;
+  margin: 0 auto;
 }
 
-
-
-.accordion{
-    margin-top: 1%;
-    margin-bottom: 1%;
-
+form button {
+  width: 35%;
 }
 
-.accordion .card{
-    background-color: rgb(218, 218, 253);
-    box-shadow: none;
-
+.accordion {
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
-.accordion .card-header{
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: 400;
-
+.accordion .card {
+  background-color: rgb(218, 218, 253);
+  box-shadow: none;
 }
 
-.card-body{
-    background-color: whitesmoke;
+.accordion .card-header {
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
-.card:first-child .card-body div{
-    font-family: 'Roboto',sans-serif;
-    text-align: start;
-    width: 90%;
-    margin: 0 auto;
+.card-body {
+  background-color: whitesmoke;
 }
 
-.card-body:first-of-type div p,.card-body:first-of-type div strong,.card-body:first-of-type div ul,.card-body:first-of-type div li{
-
-    font-size: 1.15rem;
+.card:first-child .card-body div {
+  font-family: "Roboto", sans-serif;
+  text-align: start;
+  width: 90%;
+  margin: 0 auto;
 }
 
-
-.certification-container img{
-    width: 70%;
-    height: 70%;
+.card-body:first-of-type div p,
+.card-body:first-of-type div strong,
+.card-body:first-of-type div ul,
+.card-body:first-of-type div li {
+  font-size: 1.15rem;
 }
 
-
-.certification-title{
-    height: 24px;
+.certification-container img {
+  width: 70%;
+  height: 70%;
 }
 
-
-.technical-details-col1 div ,.technical-details-col2 div{
-    margin-left: 90px;
-    margin-top: 50px;
-    font-weight: 700;
+.certification-title {
+  height: 24px;
 }
 
-.jumbotron{
-    margin-bottom: 0 !important;
-    height: 100%;
-    font-size: 1.5rem !important;
+.technical-details-col1 div,
+.technical-details-col2 div {
+  margin-left: 90px;
+  margin-top: 50px;
+  font-weight: 700;
+}
+
+.jumbotron {
+  margin-bottom: 0 !important;
+  height: 100%;
+  font-size: 1.5rem !important;
 }
 
 /* .jumbotron text */
-.text-white p{
-
-    font-size: 1.2rem;
+.text-white p {
+  font-size: 1.2rem;
 }
 
-.text-white h4{
-    font-size: 1.5rem;
+.text-white h4 {
+  font-size: 1.5rem;
 }
 
-
-.info a:link,.info a:visited,.info a:active{
-    color: white !important;
-    background-color: rgb(49, 136, 207);
-    font-size: 1.2em;
-    border: 0.5px solid rgb(49, 136, 207);
-    padding: 2%;
-    text-decoration: none;
-
+.info a:link,
+.info a:visited,
+.info a:active {
+  color: white !important;
+  background-color: rgb(49, 136, 207);
+  font-size: 1.2em;
+  border: 0.5px solid rgb(49, 136, 207);
+  padding: 2%;
+  text-decoration: none;
 }
 
-.info a:hover{
-    background-color: rgb(16, 50, 78) ;
-    box-shadow:1px 0.5px 10px rgb(255, 255, 255);
+.info a:hover {
+  background-color: rgb(16, 50, 78);
+  box-shadow: 1px 0.5px 10px rgb(255, 255, 255);
 }
 
-  /*XSM*/
-    @media only screen and (min-width: 300px) and (max-width:575px){
-        .text-white p,.text-white h4{
-            margin: 0 ;
-            padding: 0 ;
-        }
+/*XSM*/
+@media only screen and (min-width: 300px) and (max-width: 575px) {
+  .text-white p,
+  .text-white h4 {
+    margin: 0;
+    padding: 0;
+  }
 
-        *{
-            
-            font-size: 12px;
-        }
+  * {
+    font-size: 12px;
+  }
 
-        #success-icon,#error-icon,#success-icon +span,#error-icon+span
-        {
-            font-size: 0.8rem;
-        }
-    
+  #success-icon,
+  #error-icon,
+  #success-icon + span,
+  #error-icon + span {
+    font-size: 0.8rem;
+  }
 
-        /* .text-white h4{
+  /* .text-white h4{
             font-size: 1.2rem;
         } */
-    }
-
-    #alsoInterested{
-        height: 30vh;
-        position: sticky;
-    }
-
-    .view{
-        height:100% !important;
-    }
-
-    #alsoInterestedHeader{
-
-        background-color:rgba(185, 182, 182, 0.027);
-        padding: 2%;
-        margin-bottom: 0;
-        font-family: 'Roboto', sans-serif;
-    }
-
-    @media only screen and (min-width: 300px) {
-        #alsoInterested{
-            height: 40vh;
-        }
-
-        #success-icon,#error-icon,#success-icon +span,#error-icon+span
-{
-    font-size: 1.1rem;
 }
 
+#alsoInterested {
+  height: 30vh;
+  position: sticky;
+}
 
-    }
-    /*sm*/
-    @media only screen and (min-width: 576px) {
-        #alsoInterested{
-            height: 50vh;
-        }
+.view {
+  height: 100% !important;
+}
 
-        *{
-            
-            font-size: 14px;
-        }
+#alsoInterestedHeader {
+  background-color: rgba(185, 182, 182, 0.027);
+  padding: 2%;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif;
+}
 
-        #success-icon,#error-icon,#success-icon +span,#error-icon+span
-        {
-            font-size: 1.3rem;
-        }
+@media only screen and (min-width: 300px) {
+  #alsoInterested {
+    height: 40vh;
+  }
 
-    }
+  #success-icon,
+  #error-icon,
+  #success-icon + span,
+  #error-icon + span {
+    font-size: 1.1rem;
+  }
+}
+/*sm*/
+@media only screen and (min-width: 576px) {
+  #alsoInterested {
+    height: 50vh;
+  }
 
+  * {
+    font-size: 14px;
+  }
 
-    /*md*/
-    @media only screen and (min-width: 768px) {
-        #alsoInterested{
-            height: 65vh;
-        }
+  #success-icon,
+  #error-icon,
+  #success-icon + span,
+  #error-icon + span {
+    font-size: 1.3rem;
+  }
+}
 
-        *{
-            
-            font-size: 14px;
-        }
+/*md*/
+@media only screen and (min-width: 768px) {
+  #alsoInterested {
+    height: 65vh;
+  }
 
-        #success-icon,#error-icon,#success-icon +span,#error-icon+span
-        {
-            font-size: 1.4rem;
-        }
+  * {
+    font-size: 14px;
+  }
 
-    }
+  #success-icon,
+  #error-icon,
+  #success-icon + span,
+  #error-icon + span {
+    font-size: 1.4rem;
+  }
+}
 
-    /*lg*/
-    @media only screen and (min-width: 992px) {
-        /* .text-white p,.text-white h4{
+/*lg*/
+@media only screen and (min-width: 992px) {
+  /* .text-white p,.text-white h4{
             margin: 0 ;
             padding: 0 ;
         } */
 
-        /* .text-white div{
+  /* .text-white div{
             padding-left: 0;
             padding-right: 0;
             padding-bottom: 0 ;
         } */
-        /* .text-white p{
+  /* .text-white p{
 
             font-size: 1.1rem;
         } */
 
-        .info a:link,.info a:visited,.info a:active{
-            font-size: 1.1rem;
+  .info a:link,
+  .info a:visited,
+  .info a:active {
+    font-size: 1.1rem;
+  }
 
-        }
+  #success-icon,
+  #error-icon,
+  #success-icon + span,
+  #error-icon + span {
+    font-size: 1.7rem;
+  }
 
-        #success-icon,#error-icon,#success-icon +span,#error-icon+span
-        {
-            font-size: 1.7rem;
-        }
+  .text-white h4 {
+    font-size: 1.1rem;
+  }
 
-        .text-white h4{
-            font-size: 1.1rem;
-        }
+  #alsoInterested {
+    height: 40vh;
+  }
+}
 
-        #alsoInterested{
-            height: 40vh;
-        }
-    }
-
-    /*xl*/
-    @media only screen and (min-width: 1200px) {
-
-        #alsoInterested{
-            height: 50vh;
-        }
-        
-    }
+/*xl*/
+@media only screen and (min-width: 1200px) {
+  #alsoInterested {
+    height: 50vh;
+  }
+}
 /*  */
 /* .jumbotron .text-white{
     width: 100% !important;

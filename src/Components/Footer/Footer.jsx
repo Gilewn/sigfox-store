@@ -30,7 +30,7 @@ const Footer = () => {
                 <a href="/">Home</a>
               </li>
               <li className="list-unstyled">
-                <a href="/products">All Products</a>
+                <a href="/All_products">All Products</a>
               </li>
               <li className="list-unstyled">
                 <a href="https://sigfox.gr/" target="_blank">

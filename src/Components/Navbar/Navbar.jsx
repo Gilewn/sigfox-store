@@ -28,7 +28,7 @@ const Navbar = (props) => {
             <Brand />
             <NavLinks style={linkAnimation}>
               <a href="/">Home</a>
-              <a href="/products">All Products</a>
+              <a href="/All_products">All Products</a>
               <a href="https://sigfox.gr/" target="_blank">
                 Sigfox Hellas
               </a>

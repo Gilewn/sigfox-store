@@ -24,8 +24,8 @@ import { Link } from "react-router-dom";
 
 import "./ProductPage.css";
 
-var decodeHTML = function (html) {
-  var txt = document.createElement("textarea");
+let decodeHTML = function (html) {
+  let txt = document.createElement("textarea");
   txt.innerHTML = html;
   return txt.value;
 };
@@ -42,8 +42,8 @@ class ProductPage extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    window.scrollTo(0, 0);
     if (prevProps.match.params.id !== this.props.match.params.id) {
+      window.scrollTo(0, 0);
       axios
         .get(`http://localhost:5000/products/${this.props.match.params.id}`)
         .then((res) => {
@@ -96,6 +96,33 @@ class ProductPage extends Component {
       });
   }
 
+  RequestInfo = (event) => {
+    let contactUsCollapse = document.querySelector("#contactUs-collapse");
+    let contactUsHeader = document.querySelector("#contactUs .card-header");
+    let contactUs = document.querySelector("#contactUs");
+
+    if (contactUsCollapse.className === "collapse") {
+      contactUs.scrollIntoView({
+        behavior: "smooth",
+      });
+
+      contactUsHeader.click();
+    }
+  };
+
+  ShowSuccessOrErrorMessage = (event) => {
+    let successMessage = document.querySelector("#success");
+    let errorMessage = document.querySelector("#error");
+    let displaySuccess = () => {
+      successMessage.style.display = "block";
+    };
+    let hideSuccess = () => {
+      successMessage.style.display = "none";
+    };
+
+    setTimeout(displaySuccess, 800);
+  };
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -127,13 +154,13 @@ class ProductPage extends Component {
     }));
 
   setActiveFirstCarouselIndicator = () => {
-    var liFirst = document.querySelector("#indicator0");
+    let liFirst = document.querySelector("#indicator0");
 
     liFirst.setAttribute("className", "active");
   };
 
   changePhoto(e) {
-    var idPhoto = e.target.id;
+    let idPhoto = e.target.id;
     const photo = document.querySelector("#carousel-item" + idPhoto);
     photo.setAttribute("class", "carousel-item active");
   }
@@ -211,9 +238,9 @@ class ProductPage extends Component {
                     <p>{this.state.product.description}</p>
                   </div>
                   <div className="mx-4 mb-5 info">
-                    <a href="#contactUs">
-                      <ion-icon name="information-outline"></ion-icon>Request
-                      Information
+                    <a href="#contactUs" onClick={this.RequestInfo}>
+                      <ion-icon name="information-outline"></ion-icon>
+                      Request Information
                     </a>
                   </div>
                 </MDBCol>
@@ -271,7 +298,7 @@ class ProductPage extends Component {
                 <Accordion.Toggle as={Card.Header} eventKey="3">
                   Contact us
                 </Accordion.Toggle>
-                <Accordion.Collapse eventKey="3">
+                <Accordion.Collapse id="contactUs-collapse" eventKey="3">
                   <Card.Body>
                     <form action="post" onSubmit={this.handleSubmit}>
                       <div className="grey-text">
@@ -306,8 +333,26 @@ class ProductPage extends Component {
                           onChange={this.handleChange}
                         />
                       </div>
+                      <div id="completion-message">
+                        <div style={{ display: "none" }} id="success">
+                          <ion-icon
+                            id="success-icon"
+                            name="checkmark-circle-sharp"
+                          ></ion-icon>
+                          <span>Email Sent!</span>
+                        </div>
+                        <div style={{ display: "none" }} id="error">
+                          <ion-icon
+                            id="error-icon"
+                            name="close-circle"
+                          ></ion-icon>
+                          <span>There was an error.Please try again</span>
+                        </div>
+                      </div>
                       <div className="text-center">
                         <MDBBtn
+                          onClick={this.ShowSuccessOrErrorMessage}
+                          id="send-message"
                           type="submit"
                           name="mail-outline"
                           outline

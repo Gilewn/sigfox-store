@@ -94,7 +94,7 @@ class App extends Component {
                 </Route>
                 <Route
                   exact
-                  path="/products"
+                  path="/All_products"
                   render={(props) => (
                     <div>
                       <div className="Big-Container">

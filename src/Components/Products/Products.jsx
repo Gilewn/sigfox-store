@@ -5,8 +5,6 @@ import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {
-  MDBContainer,
-  MDBRow,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -27,6 +25,7 @@ class Products extends Component {
   onChangePage = this.onChangePage.bind(this);
 
   componentDidUpdate(prevProps) {
+    window.scrollTo(0, 0);
     if (
       prevProps.match.params.solution_title !==
       this.props.match.params.solution_title
@@ -144,16 +143,6 @@ class Products extends Component {
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>
-
-                  {/* <div className='card-image'>
-                                        <img src={product.images[0]} alt="product" />
-                                    </div>
-                                    <div className='card-title-description'>
-                                        <h1>{product.title}</h1>
-                                        <h4>{product.solution}</h4>
-                                        <p>{product.description} </p>
-                                    </div>
-                                    {product.title} */}
                 </Link>
               </div>
             </Grid>

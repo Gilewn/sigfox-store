@@ -43,7 +43,7 @@ class Sidebar extends Component {
           </NavItem>
           <NavItem eventKey="products">
             <NavIcon>
-              <Link to={`/products`}>
+              <Link to={`/All_products`}>
                 <i
                   className="fa fa-fw fa-cart-plus"
                   style={{ fontSize: "1.75em", color: "#7824ff" }}
@@ -53,7 +53,7 @@ class Sidebar extends Component {
             <NavText>Find all our products</NavText>
             <NavItem>
               <NavText>
-                <Link to={`/products`}>All Products</Link>
+                <Link to={`/All_products`}>All Products</Link>
               </NavText>
             </NavItem>
           </NavItem>

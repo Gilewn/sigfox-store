@@ -11,7 +11,8 @@ function jwt() {
         path: [
             // public routes that don't require authentication
             '/admins/authenticate',
-            '/admins/register',       
+            '/admins/register',
+            '/partners/submit'       
         ]   
     });
 }

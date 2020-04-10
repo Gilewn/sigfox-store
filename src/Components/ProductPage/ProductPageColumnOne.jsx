@@ -30,12 +30,28 @@ export default class ColumnOne extends React.Component  {
 
       RequestInfo=event=>{
         var contactUsCollapse=document.querySelector("#contactUs-collapse");
-        var contactUsHeader=document.querySelector("#contactUs .card-header")
+        var contactUsHeader=document.querySelector("#contactUs .card-header");
+        var contactUs=document.querySelector("#contactUs");
+        
         if(contactUsCollapse.className==="collapse"){
           
+          contactUs.scrollIntoView({ 
+            behavior: 'smooth' 
+          });
+
           contactUsHeader.click();
         }
         
+      }
+
+      ShowSuccessOrErrorMessage=event=>{
+        var successMessage=document.querySelector("#success");
+        var errorMessage=document.querySelector("#error");
+        var displaySuccess=()=>{successMessage.style.display="block"}
+        var hideSuccess=()=>{successMessage.style.display="none"}
+        
+        setTimeout(displaySuccess,800);
+
       }
 
       handleChange = event => {
@@ -202,8 +218,12 @@ render(){
           <MDBInput label="Subject" icon="tag" group type="text" validate error="wrong" onChange={this.handleChange} success="right" />
           <MDBInput type="textarea" rows="2" label="Your message" icon="pencil" onChange={this.handleChange} />
         </div>
+        <div id="completion-message">
+        <div style={{display:"none"}} id="success"><ion-icon  id="success-icon"name="checkmark-circle-sharp"></ion-icon><span>Email Sent!</span></div>
+        <div style={{display:"none"}} id="error"><ion-icon id="error-icon" name="close-circle"></ion-icon><span>There was an error.Please try again</span></div>
+        </div>
         <div className="text-center">
-          <MDBBtn  name="mail-outline" outline color="secondary">
+          <MDBBtn onClick={this.ShowSuccessOrErrorMessage} id="send-message" name="mail-outline" outline color="secondary">
             Send
             
           </MDBBtn >

@@ -37,9 +37,9 @@ class ProductPage extends Component {
       />
     );
 
-    {
-      /* <ColumnTwo product={this.state.product} /> */
-    }
+    // {
+    //   /* <ColumnTwo product={this.state.product} /> */
+    // }
   }
 }
 

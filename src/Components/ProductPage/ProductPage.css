@@ -4,6 +4,33 @@
     font-size: 15px;
 }
 
+#completion-message{
+   margin: 10px auto;
+}
+
+#success-icon +span,#error-icon+span
+{
+    background-color: rgb(255, 254, 254,0.9);
+    padding: 0.5%;
+    
+}
+#success-icon,#error-icon,#success-icon +span,#error-icon+span
+{
+    font-size: 2rem;
+}
+
+#success-icon{
+    color:green;
+    margin-right: 5px;
+    
+}
+
+#error-icon{
+    color:red;
+    margin-right: 5px;
+    
+}
+
 /*BreadCrumb*/
 
 
@@ -141,7 +168,10 @@ form button{
             font-size: 12px;
         }
 
-     
+        #success-icon,#error-icon,#success-icon +span,#error-icon+span
+        {
+            font-size: 0.8rem;
+        }
     
 
         /* .text-white h4{
@@ -171,6 +201,11 @@ form button{
             height: 40vh;
         }
 
+        #success-icon,#error-icon,#success-icon +span,#error-icon+span
+{
+    font-size: 1.1rem;
+}
+
 
     }
     /*sm*/
@@ -182,6 +217,11 @@ form button{
         *{
             
             font-size: 14px;
+        }
+
+        #success-icon,#error-icon,#success-icon +span,#error-icon+span
+        {
+            font-size: 1.3rem;
         }
 
     }
@@ -196,6 +236,11 @@ form button{
         *{
             
             font-size: 14px;
+        }
+
+        #success-icon,#error-icon,#success-icon +span,#error-icon+span
+        {
+            font-size: 1.4rem;
         }
 
     }
@@ -222,6 +267,11 @@ form button{
 
         }
 
+        #success-icon,#error-icon,#success-icon +span,#error-icon+span
+        {
+            font-size: 1.7rem;
+        }
+
         .text-white h4{
             font-size: 1.1rem;
         }
@@ -237,6 +287,7 @@ form button{
         #alsoInterested{
             height: 50vh;
         }
+        
     }
 /*  */
 /* .jumbotron .text-white{

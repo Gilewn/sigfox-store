@@ -36,7 +36,8 @@ var decodeHTML = function (html) {
 class ProductPage extends Component {
   state = {
     product: [],
-    alsoInterestedProducts: [],
+    alsoInterestedProductsIds: [],
+    alsoInterestedProductsImages: [],
     collapseID: "collapse1",
     name: "",
     email: "",
@@ -73,15 +74,24 @@ class ProductPage extends Component {
         //   }, [])
         // );
         alsoInterestedProducts = alsoInterestedProducts.reduce((arr, el) => {
-          if (el._id != this.props.match.params.id) {
-            return arr.concat(el._id, el.images[0]);
+          if (el._id !== this.props.match.params.id) {
+            arr[el._id] = el.images[0];
+            return arr;
           }
           return arr;
         }, []);
 
         console.log(alsoInterestedProducts);
+        let alsoInterestedProductsIds = Object.keys(alsoInterestedProducts);
+        let alsoInterestedProductsImages = Object.values(
+          alsoInterestedProducts
+        );
+        console.log(alsoInterestedProductsIds, alsoInterestedProductsImages);
 
-        this.setState({ alsoInterestedProducts: alsoInterestedProducts });
+        this.setState({
+          alsoInterestedProductsIds: alsoInterestedProductsIds,
+          alsoInterestedProductsImages: alsoInterestedProductsImages,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -139,6 +149,25 @@ class ProductPage extends Component {
     } else {
       a = this.state.productimages.length;
     }
+
+    let b = this.state.alsoInterestedProductsImages.length;
+    let c = this.state.alsoInterestedProductsIds;
+
+    console.log(b, c);
+
+    if (this.state.alsoInterestedProductsImages.length === 0) {
+      return (c = "");
+    } else {
+      c = this.state.alsoInterestedProductsImages;
+    }
+
+    if (this.state.alsoInterestedProductsImages.length === 0) {
+      return (b = "");
+    } else {
+      b = this.state.alsoInterestedProductsImages.length;
+    }
+
+    console.log(b, c);
 
     return (
       <MDBContainer fluid>
@@ -326,18 +355,18 @@ class ProductPage extends Component {
             <MDBCarousel
               id="alsoInterested"
               activeItem={1}
-              length={2}
+              length={b}
               showControls={false}
               showIndicators={true}
               className="z-depth-1"
             >
               <MDBCarouselInner>
-                {this.state.alsoInterestedProducts.map((product, index) => (
+                {c.map((product, index) => (
                   <MDBCarouselItem key={index + 1} itemId={index + 1}>
                     <MDBView>
                       <img
                         className="d-block w-100"
-                        src={this.state.productimages[0]}
+                        src={product}
                         alt={"photo" + index}
                       />
                       <MDBMask overlay="black-slight" />

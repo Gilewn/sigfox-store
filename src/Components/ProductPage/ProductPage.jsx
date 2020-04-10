@@ -7,7 +7,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+
 
 var decodeHTML = function (html) {
     var txt = document.createElement('textarea');
@@ -23,14 +23,17 @@ class ProductPage extends Component {
         name: '',
         email: '',
         message: '',
-       // productimages: [],
+        //productimages: [],
         //productcertifications: [],
-        products : [],
         isLoaded: false,
+        isLoaded2: false,
+        alsoInterestedProductsIds: null,
+        alsoInterestedProductsImages: null,
        
     }
 
     componentDidMount() {
+        
         axios.get(`http://localhost:5000/products/${this.props.match.params.id}`)
             .then(res => {
                 console.log(res.data)
@@ -44,13 +47,32 @@ class ProductPage extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+            
            
+
             axios.get(`http://localhost:5000/${this.props.location.state.params.title}/products`)
             .then(res => {
-                console.log(this.props.location.state.params.title)
-                this.setState({ products: res.data  });
-                //this.setState({ isLoaded: true });
-            })
+                
+               
+                let alsoInterestedProducts = res.data;
+                alsoInterestedProducts = alsoInterestedProducts.reduce((arr, el) => {
+                  if (el._id !==this.props.match.params.id) {
+                    arr[el._id] = el.images[0];
+                    return arr;
+                  }
+                  return arr;
+                }, []);
+              let alsoInterestedProductsIds = Object.keys(alsoInterestedProducts);
+              let alsoInterestedProductsImages = Object.values(alsoInterestedProducts);
+              console.log(alsoInterestedProductsIds)
+              this.setState({
+                  alsoInterestedProductsIds: alsoInterestedProductsIds,
+                  alsoInterestedProductsImages: alsoInterestedProductsImages,
+                  isLoaded2: true
+                  });
+                })
+                
+            
             .catch(function (error) {
                 console.log(error);
             });
@@ -99,9 +121,14 @@ class ProductPage extends Component {
         
     render() {
        
-        if (this.state.isLoaded === false && typeof this.state.product.images === 'undefined' &&  typeof this.state.product.certifications === 'undefined') {
+        if (this.state.isLoaded === false && typeof this.state.product.images === 'undefined' && typeof this.state.product.certifications === 'undefined' ) {
             return <div />
         }
+
+        if (this.state.isLoaded2 === false &&  this.state.alsoInterestedProductsIds === null &&  this.state.alsoInterestedProductsImages === null ) {
+            return <div />
+        }
+
         return(
            
         <MDBContainer fluid> 
@@ -236,18 +263,18 @@ class ProductPage extends Component {
             <div><h2 id="alsoInterestedHeader"> You Might also Interested</h2></div>
             <MDBCarousel id="alsoInterested"
               activeItem={1}
-              length= {2} 
+              length= {this.state.alsoInterestedProductsImages.length} 
               showControls={false}
               showIndicators={true}
               className="z-depth-1"
             >
               <MDBCarouselInner>
-              {this.state.product.images.map((product, index) =>
+              {this.state.alsoInterestedProductsImages.map((product, index) =>
                 <MDBCarouselItem key={index+1} itemId={index+1}>
                   <MDBView>
                     <img
                       className="d-block w-100"
-                      src={this.state.product.images[0]}
+                      src={product}
                       alt={'photo' + index}
                     />
                   <MDBMask overlay="black-slight" />

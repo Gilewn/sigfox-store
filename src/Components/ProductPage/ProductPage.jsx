@@ -110,18 +110,7 @@ class ProductPage extends Component {
     }
   };
 
-  ShowSuccessOrErrorMessage = (event) => {
-    let successMessage = document.querySelector("#success");
-    let errorMessage = document.querySelector("#error");
-    let displaySuccess = () => {
-      successMessage.style.display = "block";
-    };
-    let hideSuccess = () => {
-      successMessage.style.display = "none";
-    };
-
-    setTimeout(displaySuccess, 800);
-  };
+  
 
   handleChange = (event) => {
     this.setState({
@@ -143,8 +132,31 @@ class ProductPage extends Component {
     axios
       .post(`http://localhost:5000/partners/submit`, { user })
       .then((res) => {
+        let successMessage = document.querySelector("#success");
+        let displaySuccess = () => {
+          successMessage.style.display = "block";
+        };
+        let hideSuccess = () => {
+          successMessage.style.display = "none";
+        };
+        setTimeout(displaySuccess, 800);
+        setTimeout(hideSuccess,8000);
         console.log(res);
         console.log(res.data);
+      })
+      .catch(function (error) {
+       
+       let errorMessage = document.querySelector("#error");
+       let displayError = () => {
+        errorMessage.style.display = "block";
+      };
+      let hideError = () => {
+        errorMessage.style.display = "none";
+      };
+      setTimeout(displayError, 800);
+      setTimeout(hideError, 8000);
+
+        console.log(error);
       });
   };
 
@@ -351,7 +363,7 @@ class ProductPage extends Component {
                       </div>
                       <div className="text-center">
                         <MDBBtn
-                          onClick={this.ShowSuccessOrErrorMessage}
+                         
                           id="send-message"
                           type="submit"
                           name="mail-outline"

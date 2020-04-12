@@ -1,8 +1,8 @@
 {
     
     
-    "secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
-    "connectionString": "mongodb+srv://JGS:JGSJGS@jkcluster-ydbsz.mongodb.net/sigfox-eshop-db?retryWrites=true&w=majority",
-    "DATABASE_NAME" :"sigfox-eshop-db"
+    "secret": "Hello World!!!!!!Nice to meet you.!!!!!!!",
+    "connectionString": "mongodb+srv://JGSJGS:sigfoxsigfox@sigfox-store-8rims.mongodb.net/SigfoxStore?retryWrites=true&w=majority",
+    "DATABASE_NAME" :"SigfoxStore"
 
 }

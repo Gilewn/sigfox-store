@@ -18,6 +18,10 @@
   width: 100%;
 }
 
+.MuiGrid-grid-md-6 {
+  max-width: 35% !important;
+}
+
 /* Under 426px */
 @media (max-width: 426px) {
   .UtilityBar {

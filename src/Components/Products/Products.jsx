@@ -14,12 +14,14 @@ import {
 } from "mdbreact";
 
 import "./Products.css";
+import NotFound from "../NotFound/NotFound";
 
 class Products extends Component {
   state = {
     products: [],
     pageOfItems: [],
     showGroubByOrder: false,
+    isLoaded : ""
   };
 
   onChangePage = this.onChangePage.bind(this);
@@ -35,10 +37,9 @@ class Products extends Component {
           .get(`http://localhost:5000/products`)
           .then((res) => {
             this.setState({ products: res.data });
+            this.setState({ isLoaded : true });
           })
-          .catch(function (error) {
-            console.log(error);
-          });
+          .catch(error => this.setState({isLoaded:false}))
       } else {
         axios
           .get(
@@ -46,10 +47,9 @@ class Products extends Component {
           )
           .then((res) => {
             this.setState({ products: res.data });
+            this.setState({ isLoaded : true });
           })
-          .catch(function (error) {
-            console.log(error);
-          });
+          .catch(error => this.setState({isLoaded:false}))
       }
     }
   }
@@ -61,10 +61,9 @@ class Products extends Component {
         .get(`http://localhost:5000/products`)
         .then((res) => {
           this.setState({ products: res.data });
+          this.setState({ isLoaded : true });
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+        .catch(error => this.setState({isLoaded:false}))
     } else {
       axios
         .get(
@@ -72,10 +71,9 @@ class Products extends Component {
         )
         .then((res) => {
           this.setState({ products: res.data });
+          this.setState({ isLoaded : true });
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+        .catch(error => this.setState({isLoaded:false}))
     }
   }
 
@@ -115,6 +113,7 @@ class Products extends Component {
   };
 
   render() {
+    if(this.state.isLoaded === false){return <NotFound/>}
     return (
       <div className="Products">
         <div className="UtilityBar">

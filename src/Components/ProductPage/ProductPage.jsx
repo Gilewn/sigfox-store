@@ -21,7 +21,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import NotFound from "../NotFound/NotFound"
 import "./ProductPage.css";
 
 let decodeHTML = function (html) {
@@ -37,8 +37,9 @@ class ProductPage extends Component {
     name: "",
     email: "",
     message: "",
-    isLoaded: false,
+    isLoaded: "",
     alsoInterestedProducts: null,
+   
   };
 
   componentDidUpdate(prevProps) {
@@ -64,16 +65,17 @@ class ProductPage extends Component {
           });
         })
 
-        .catch(function (error) {
-          console.log(error);
-        });
+        .catch(error => this.setState({isLoaded:false}))
     }
   }
+
+ 
   componentDidMount() {
     window.scrollTo(0, 0);
     axios
       .get(`http://localhost:5000/products/${this.props.match.params.id}`)
       .then((res) => {
+       
         let alsoInterestedProducts = res.data;
         let product;
         alsoInterestedProducts = alsoInterestedProducts.filter((el) => {
@@ -89,11 +91,16 @@ class ProductPage extends Component {
           alsoInterestedProducts: alsoInterestedProducts,
           isLoaded: true,
         });
-      })
+      }
+      )
 
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(error => this.setState({isLoaded:false}))
+        
+       
+      
+
+      
+
   }
 
   RequestInfo = (event) => {
@@ -110,8 +117,7 @@ class ProductPage extends Component {
     }
   };
 
-  
-
+ 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -138,9 +144,12 @@ class ProductPage extends Component {
         };
         let hideSuccess = () => {
           successMessage.style.display = "none";
+          window.location.replace(`http://localhost:3000/${this.props.match.params.id}`);
         };
-        setTimeout(displaySuccess, 800);
-        setTimeout(hideSuccess,8000);
+        setTimeout(displaySuccess, 600);
+        setTimeout(hideSuccess,2500);
+       
+       
         console.log(res);
         console.log(res.data);
       })
@@ -152,10 +161,11 @@ class ProductPage extends Component {
       };
       let hideError = () => {
         errorMessage.style.display = "none";
+        window.location.reload(false);
       };
-      setTimeout(displayError, 800);
-      setTimeout(hideError, 8000);
-
+      setTimeout(displayError, 600);
+      setTimeout(hideError, 2500);
+      window.location.replace(`http://localhost:3000/${this.props.match.params.id}`);
         console.log(error);
       });
   };
@@ -179,13 +189,13 @@ class ProductPage extends Component {
 
   render() {
     if (
-      this.state.isLoaded === false &&
-      typeof this.state.product.images === "undefined" &&
+      this.state.isLoaded === "" &&
+      typeof this.state.product.images === "undefined" && 
       typeof this.state.product.certifications === "undefined" &&
       this.state.alsoInterestedProducts === null
     ) {
       return <div />;
-    }
+    }else if( this.state.isLoaded === false ){return <NotFound />}else{
 
     return (
       <MDBContainer fluid>
@@ -412,7 +422,7 @@ class ProductPage extends Component {
         </MDBRow>
       </MDBContainer>
     );
-  }
+  }}
 }
 
 export default ProductPage;

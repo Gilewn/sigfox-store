@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  z-index: 1;
+  z-index: 1020;
   left: 50%;
   transform: translateX(-5%);
   width: 50%;
-  height: 35vh;
+  max-height: 35vh;
   padding-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.9);
   overflow-y: scroll;

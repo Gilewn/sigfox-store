@@ -195,11 +195,22 @@ class ProductPage extends Component {
             <MDBCol>
               <MDBBreadcrumb dark="true" color="blue lighten-4">
                 <MDBLink to="/">
-                  Home <span style={{ paddingLeft: "1rem" }}>/</span>
+                  Home{" "}
+                  <span
+                    className={"MdbLink-Span"}
+                    style={{ paddingLeft: "1rem" }}
+                  >
+                    /
+                  </span>
                 </MDBLink>
                 <MDBLink to={`/${this.state.product.solution}/products`}>
                   {this.state.product.solution}
-                  <span style={{ paddingLeft: "1rem" }}>/</span>
+                  <span
+                    className={"MdbLink-Span"}
+                    style={{ paddingLeft: "1rem" }}
+                  >
+                    /
+                  </span>
                 </MDBLink>
                 <MDBLink to="#" style={{ color: "#000", cursor: "default" }}>
                   <span>{this.state.product.title}</span>

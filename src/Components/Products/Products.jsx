@@ -127,7 +127,7 @@ class Products extends Component {
         </div>
         <Grid container spacing={2} justify="center">
           {this.state.pageOfItems.map((product) => (
-            <Grid item xs={12} sm={6} md={6} lg={3} key={product._id}>
+            <Grid item xs={12} sm={12} md={6} lg={6} key={product._id}>
               <div className="card-container">
                 <Link to={{ pathname: `/${product._id}` }}>
                   <MDBCol>

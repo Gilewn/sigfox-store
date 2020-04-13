@@ -166,6 +166,14 @@ form button {
   #error-icon + span {
     font-size: 0.8rem;
   }
+
+  .MdbLink-Span {
+    display: none;
+  }
+
+  .breadcrumb {
+    flex-direction: column;
+  }
 }
 
 #alsoInterested {

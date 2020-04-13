@@ -21,7 +21,7 @@ class Products extends Component {
     products: [],
     pageOfItems: [],
     showGroubByOrder: false,
-    isLoaded : ""
+    isLoaded: "",
   };
 
   onChangePage = this.onChangePage.bind(this);
@@ -37,9 +37,9 @@ class Products extends Component {
           .get(`http://localhost:5000/products`)
           .then((res) => {
             this.setState({ products: res.data });
-            this.setState({ isLoaded : true });
+            this.setState({ isLoaded: true });
           })
-          .catch(error => this.setState({isLoaded:false}))
+          .catch((error) => this.setState({ isLoaded: false }));
       } else {
         axios
           .get(
@@ -47,9 +47,9 @@ class Products extends Component {
           )
           .then((res) => {
             this.setState({ products: res.data });
-            this.setState({ isLoaded : true });
+            this.setState({ isLoaded: true });
           })
-          .catch(error => this.setState({isLoaded:false}))
+          .catch((error) => this.setState({ isLoaded: false }));
       }
     }
   }
@@ -61,9 +61,9 @@ class Products extends Component {
         .get(`http://localhost:5000/products`)
         .then((res) => {
           this.setState({ products: res.data });
-          this.setState({ isLoaded : true });
+          this.setState({ isLoaded: true });
         })
-        .catch(error => this.setState({isLoaded:false}))
+        .catch((error) => this.setState({ isLoaded: false }));
     } else {
       axios
         .get(
@@ -71,9 +71,9 @@ class Products extends Component {
         )
         .then((res) => {
           this.setState({ products: res.data });
-          this.setState({ isLoaded : true });
+          this.setState({ isLoaded: true });
         })
-        .catch(error => this.setState({isLoaded:false}))
+        .catch((error) => this.setState({ isLoaded: false }));
     }
   }
 
@@ -113,7 +113,9 @@ class Products extends Component {
   };
 
   render() {
-    if(this.state.isLoaded === false){return <NotFound/>}
+    if (this.state.isLoaded === false) {
+      return <NotFound />;
+    }
     return (
       <div className="Products">
         <div className="UtilityBar">

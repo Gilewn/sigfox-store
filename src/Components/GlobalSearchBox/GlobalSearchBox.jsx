@@ -1,30 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import './GlobalSearchBox.css';
+import "./GlobalSearchBox.css";
 
 function GlobalSearchBox(props) {
-
-    function toggleWidth() {
-        let a = document.querySelector('input');
-        if (a.style.width === "") {
-            a.style.width = "75%";
-        } else {
-            a.style.width = "";
-        }
-    }
-
-    return (
-        <div className='GlobalSearchBox'>
-            <input
-                type="text"
-                placeholder=" Search..."
-                onChange={props.handleGlobalChange}
-            />
-            <button onClick={toggleWidth}>
-                <i className="fa fa-fw fa-search" />
-            </button>
-        </div>
-    );
+  return (
+    <div className="GlobalSearchBox">
+      <input
+        type="text"
+        placeholder=" Search..."
+        onChange={props.handleGlobalChange}
+      />
+      <i className="fa fa-fw fa-search" />
+    </div>
+  );
 }
 
 export default GlobalSearchBox;

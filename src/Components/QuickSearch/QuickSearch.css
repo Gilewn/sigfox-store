@@ -4,7 +4,7 @@
   position: absolute;
   z-index: 1020;
   left: 50%;
-  transform: translateX(-5%);
+  transform: translateX(-50%);
   width: 50%;
   max-height: 35vh;
   padding-bottom: 10px;
@@ -90,17 +90,8 @@
   background: #7824ff;
 }
 
-@media (max-width: 769px) {
-  .QuickSearch {
-    transform: translateX(-25%);
-    z-index: 1020;
-  }
-}
-
 @media (max-width: 550px) {
   .QuickSearch {
-    transform: translateX(-40%);
-    z-index: 1020;
-    width: 60%;
+    width: 75%;
   }
 }

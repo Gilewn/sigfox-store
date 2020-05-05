@@ -8,6 +8,7 @@ import NotFound from "./Components/NotFound/NotFound";
 import Footer from "./Components/Footer/Footer";
 import ProductPage from "./Components/ProductPage/ProductPage";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import GlobalSearchBox from "./Components/GlobalSearchBox/GlobalSearchBox";
 import BackToTop from "react-back-to-top-button";
 import axios from "axios";
 import { Helmet } from "react-helmet";
@@ -84,6 +85,7 @@ class App extends Component {
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar}
           />
+          <GlobalSearchBox handleGlobalChange={this.handleGlobalChange} />
           <div className="App">
             <Sidebar items={this.state.solutions} />
             {quickSearch}

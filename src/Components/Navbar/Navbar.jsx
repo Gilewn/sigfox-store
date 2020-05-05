@@ -2,7 +2,6 @@ import React from "react";
 import Brand from "./Brand";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
-import GlobalSearchBox from "../GlobalSearchBox/GlobalSearchBox";
 import { Column, Row } from "styled-grid-system-component";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
@@ -34,7 +33,6 @@ const Navbar = (props) => {
                 About Us
               </a>
             </NavLinks>
-            <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
             <BurgerWrapper>
               <BurgerMenu
                 navbarState={props.navbarState}

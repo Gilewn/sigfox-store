@@ -1,8 +1,9 @@
 .Footer-Social {
-  display: flex;
-  justify-content: space-evenly;
-  margin: auto;
-  width: 50%;
+  margin: 15px 0;
+}
+
+.Footer-Social-a {
+  padding: 10px;
 }
 
 .Footer-Social i {

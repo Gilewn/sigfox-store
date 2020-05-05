@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 import "./Footer.css";
@@ -27,29 +28,29 @@ const Footer = () => {
             <h5 className="title">Usefull Links</h5>
             <ul>
               <li className="list-unstyled">
-                <a href="/">Home</a>
+                <Link to="/">Solution Sectors</Link>
               </li>
               <li className="list-unstyled">
-                <a href="/All_products">All Products</a>
+                <Link to="/All_products">All Products</Link>
               </li>
               <li className="list-unstyled">
-                <a href="https://sigfox.gr/" target="_blank">
-                  Sigfox Hellas
+                <a href="https://sigfox.gr/#about-us" target="_blank">
+                  About Us
                 </a>
               </li>
             </ul>
             <h5>Social</h5>
             <div className="Footer-Social">
-              <a href="#">
+              <a href="#" className="Footer-Social-a">
                 <i className="fa fa-twitter"></i>
               </a>
-              <a href="#">
+              <a href="#" className="Footer-Social-a">
                 <i className="fa fa-facebook"></i>
               </a>
-              <a href="#">
+              <a href="#" className="Footer-Social-a">
                 <i className="fa fa-youtube-play"></i>
               </a>
-              <a href="#">
+              <a href="#" className="Footer-Social-a">
                 <i className="fa fa-linkedin"></i>
               </a>
             </div>

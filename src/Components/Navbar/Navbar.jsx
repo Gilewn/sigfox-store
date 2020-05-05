@@ -6,6 +6,7 @@ import GlobalSearchBox from "../GlobalSearchBox/GlobalSearchBox";
 import { Column, Row } from "styled-grid-system-component";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const barAnimation = useSpring({
@@ -27,10 +28,10 @@ const Navbar = (props) => {
           <FlexContainer>
             <Brand />
             <NavLinks style={linkAnimation}>
-              <a href="/">Home</a>
-              <a href="/All_products">All Products</a>
-              <a href="https://sigfox.gr/" target="_blank">
-                Sigfox Hellas
+              <Link to="/">Solution Sectors</Link>
+              <Link to="/All_products">All Products</Link>
+              <a href="https://sigfox.gr/#about-us" target="_blank">
+                About Us
               </a>
             </NavLinks>
             <GlobalSearchBox handleGlobalChange={props.handleGlobalChange} />
@@ -79,7 +80,7 @@ const NavLinks = styled(animated.ul)`
   list-style-type: none;
   margin: auto 0;
   & a {
-    color: #666;
+    color: #666 !important;
     text-transform: uppercase;
     font-weight: 600;
     border-bottom: 1px solid transparent;

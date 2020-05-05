@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.8.4",
+    "@iconify/icons-typcn": "^1.0.5",
+    "@iconify/react": "^1.1.3",
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
     "@svgr/webpack": "4.3.3",

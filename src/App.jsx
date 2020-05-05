@@ -34,7 +34,6 @@ class App extends Component {
       .catch(function (error) {
         console.log(error);
       });
-
     axios
       .get(`http://localhost:5000/products`)
       .then((res) => {
@@ -59,7 +58,6 @@ class App extends Component {
   };
 
   render() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     let { globalSearchField, products } = this.state;
     const globalFilteredProducts = products.filter((product) =>
       product.solution.toLowerCase().includes(globalSearchField.toLowerCase())
@@ -79,7 +77,23 @@ class App extends Component {
     return (
       <BrowserRouter>
         <BackToTop showAt={50} speed={1500} easing="easeInOutQuint">
-          <span className="Span-Style">🢁</span>
+          <span className="Span-Style">
+            <svg
+              class="svg-inline--fa fa-angle-double-up fa-w-10"
+              aria-hidden="true"
+              data-prefix="fas"
+              data-icon="angle-double-up"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M177 255.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 351.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 425.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1zm-34-192L7 199.7c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l96.4-96.4 96.4 96.4c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9l-136-136c-9.2-9.4-24.4-9.4-33.8 0z"
+              ></path>
+            </svg>
+          </span>
         </BackToTop>
         <div onClick={this.closeSearchField}>
           <Navbar

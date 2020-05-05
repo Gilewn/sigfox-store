@@ -23,3 +23,9 @@
     padding: 0;
   }
 }
+
+@media (max-width: 375px) {
+  .GroupBy .dropdown-list-item-anchor span {
+    padding: 0;
+  }
+}

@@ -9,6 +9,7 @@ import Footer from "./Components/Footer/Footer";
 import ProductPage from "./Components/ProductPage/ProductPage";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import GlobalSearchBox from "./Components/GlobalSearchBox/GlobalSearchBox";
+import LogIn from "./Components/Auth/LogIn";
 import BackToTop from "react-back-to-top-button";
 import axios from "axios";
 import { Helmet } from "react-helmet";
@@ -79,7 +80,7 @@ class App extends Component {
         <BackToTop showAt={50} speed={1500} easing="easeInOutQuint">
           <span className="Span-Style">
             <svg
-              class="svg-inline--fa fa-angle-double-up fa-w-10"
+              className="svg-inline--fa fa-angle-double-up fa-w-10"
               aria-hidden="true"
               data-prefix="fas"
               data-icon="angle-double-up"
@@ -110,6 +111,7 @@ class App extends Component {
                 <Route exact path="/">
                   <Solutions items={this.state.solutions} />
                 </Route>
+                <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
                 <Route
                   exact
                   path="/All_products"

@@ -1,0 +1,33 @@
+.LogIn {
+  margin-top: 70px;
+  color: #666;
+}
+
+.LogInSpan {
+  color: #7824ff;
+  font-size: 1.75rem;
+}
+
+.LogInForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.LogInInput,
+.LogInButton {
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #eee;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.LogInInput {
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.LogInButton {
+  color: #666;
+}

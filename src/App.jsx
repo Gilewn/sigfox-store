@@ -24,6 +24,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     axios
       .get(`http://localhost:5000/`)
       .then((res) => {
@@ -58,6 +59,7 @@ class App extends Component {
   };
 
   render() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     let { globalSearchField, products } = this.state;
     const globalFilteredProducts = products.filter((product) =>
       product.solution.toLowerCase().includes(globalSearchField.toLowerCase())

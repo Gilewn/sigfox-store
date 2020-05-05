@@ -31,7 +31,7 @@ class Products extends Component {
       prevProps.match.params.solution_title !==
       this.props.match.params.solution_title
     ) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "smooth" });
       if (typeof this.props.match.params.solution_title === "undefined") {
         axios
           .get(`http://localhost:5000/products`)
@@ -55,7 +55,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (typeof this.props.match.params.solution_title === "undefined") {
       axios
         .get(`http://localhost:5000/products`)

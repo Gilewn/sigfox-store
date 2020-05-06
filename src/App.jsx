@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import QuickSearch from "./Components/QuickSearch/QuickSearch";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Solutions from "./Components/Solutions/Solutions";
 import Products from "./Components/Products/Products";
 import NotFound from "./Components/NotFound/NotFound";
@@ -75,8 +75,8 @@ class App extends Component {
       );
     }
 
-    return (
-      <BrowserRouter>
+    let routes = (
+      <div>
         <BackToTop showAt={50} speed={1500} easing="easeInOutQuint">
           <span className="Span-Style">
             <svg
@@ -111,7 +111,6 @@ class App extends Component {
                 <Route exact path="/">
                   <Solutions items={this.state.solutions} />
                 </Route>
-                <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
                 <Route
                   exact
                   path="/All_products"
@@ -156,9 +155,15 @@ class App extends Component {
           </div>
           <Footer />
         </div>
-      </BrowserRouter>
+      </div>
     );
+
+    if (this.props.location.pathname === "/sigfox-store-admin-sgfx") {
+      routes = <Route path="/sigfox-store-admin-sgfx" component={LogIn} />;
+    }
+
+    return <div>{routes}</div>;
   }
 }
 
-export default App;
+export default withRouter(App);

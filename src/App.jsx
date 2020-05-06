@@ -158,8 +158,23 @@ class App extends Component {
       </div>
     );
 
-    if (this.props.location.pathname === "/sigfox-store-admin-sgfx") {
-      routes = <Route path="/sigfox-store-admin-sgfx" component={LogIn} />;
+    if (
+      this.props.location.pathname === "/sigfox-store-admin-sgfx" ||
+      this.props.location.pathname === "/adminpanel"
+    ) {
+      routes = (
+        <Switch>
+          <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
+          <Route
+            path="/adminpanel"
+            render={() => (
+              <h1 style={{ textAlign: "center" }}>
+                This will be the admin Panel
+              </h1>
+            )}
+          />
+        </Switch>
+      );
     }
 
     return <div>{routes}</div>;

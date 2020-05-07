@@ -5,6 +5,9 @@ const adminService = require('./admin.service');
 // routes
 
 router.post('/authenticate', authenticate);
+router.post('/token', token);
+router.post('/logout', logout);
+
 router.post('/register', register);
 router.get('/', getAll);
 router.put('/:id', update);
@@ -12,9 +15,8 @@ router.delete('/:id', _delete);
 
 
 router.post('/CreateSolution',create_solution);
-router.get('/DeleteSolution',delete_solution);
-router.post('/UpdateSolution',update_solution);
-
+router.delete('/DeleteSolution/:solution_title',delete_solution);
+router.put('/UpdateSolution/:solution_title',update_solution);
 
 router.post('/CreateProduct',create_product);
 
@@ -26,6 +28,22 @@ function authenticate(req, res, next) {
         .then(admin => admin ? res.json(admin) : res.status(400).json({ message: 'Username or password is incorrect' }))
         .catch(err => next(err));
 }
+
+
+function token(req, res, next) {
+    adminService.token(req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function logout(req, res, next) {
+    adminService.logout(req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+
+
 
 function register(req, res, next) {
     adminService.create(req.body)
@@ -71,17 +89,18 @@ function create_solution(req, res, next) {
 }
 
 function delete_solution(req, res, next) {
-    adminService.delete_solution(req.body)
+    adminService.delete_solution(req)
         .then(() => res.json({}))
         .catch(err => next(err));
 }
 
 
 function update_solution(req, res, next) {
-    adminService.update_solution(req.body)
+    adminService.update_solution(req)
         .then(() => res.json({}))
         .catch(err => next(err));
 }
+
 
 
 

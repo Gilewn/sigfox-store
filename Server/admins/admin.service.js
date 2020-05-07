@@ -7,6 +7,8 @@ const Solution = db.Solution;
 
 module.exports = {
     authenticate,
+    token,
+    logout,
     create,
     getById,
     getAll,
@@ -21,17 +23,58 @@ module.exports = {
 
 };
 
+
+
 async function authenticate({ username, password }) {
+    const refreshTokens = [];
     const admin = await Admin.findOne({ username });
     if (admin && bcrypt.compareSync(password, admin.hash)) {
         const { hash, ...adminWithoutHash } = admin.toObject();
-        const token = jwt.sign({ sub: admin.id }, config.secret);
+        const token = jwt.sign({ sub: admin.id }, config.secret,{ expiresIn: '1m' });
+        const refreshToken = jwt.sign({ sub: admin.id }, config.refreshTokenSecret);
+        refreshTokens.push(refreshToken);
         return {
-            ...adminWithoutHash,
-            token
+           
+            token,
+            refreshToken
         };
     }
 }
+
+
+async function token(body) {
+    const { token } = body;
+
+    if (!token) {
+        return res.sendStatus(401);
+    }
+
+    if (!refreshTokens.includes(token)) {
+        return res.sendStatus(403);
+    }
+
+    jwt.verify(token, config.refreshTokenSecret, (err, admin) => {
+        if (err) {
+            return res.sendStatus(403);
+        }
+        const token = jwt.sign({ sub: admin.id }, config.secret,{ expiresIn: '1m' });
+        return {
+            ...adminWithoutHash,
+            token,
+           
+        };
+})
+
+}
+
+async function logout(body) {
+    const { token } = body;
+    refreshTokens = refreshTokens.filter(token => t !== token);
+   return;
+}
+
+
+
 
 async function getById(id) {
     return await Admin.findById(id).select('-hash');
@@ -84,45 +127,48 @@ async function _delete(id) {
 }
 
 
-async function create_solution(adminParam) {
+async function create_solution(solution) {
     
-    if (await Solution.findOne({ title: adminParam.title })) {
-        throw 'Solution "' + adminParam.username + '" is already exists';
+    if (await Solution.findOne({ title: solution.title })) {
+        throw 'Solution "' + solution.title + '" is already exists';
     }
 
-    const admin = new Solution(adminParam);
+    const admin = new Solution(solution);
     await admin.save();
 }
 
 
-async function delete_solution(adminParam) {
+async function delete_solution(req) {
     
-    const solution = await Solution.findOne({ title: adminParam.title})
-        
+    const solution = await Solution.findOne({ title: req.params.solution_title})
+   
     if (!solution) {
-        throw 'Solution "' + adminParam.title + '" does not exist ';
+        throw 'Solution "' + req.paramas.solution_title + '" does not exist ';
     } 
 
     await solution.delete();
 }
 
 
-
-async function update_solution(adminParam) {
+async function update_solution(req) {
     
-    const solution = await Solution.findOne({ title: adminParam.title})
+    const solution = await Solution.findOne({ title: req.params.solution_title})
     
     if (!solution) {
-        throw 'Solution "' + adminParam.title + '" does not exist ';
-    } 
-
-    if (typeof(adminParam.new_image) !== 'undefined'){var newsolution = {title :adminParam.new_title,image:adminParam.new_image}}
-    else{var newsolution = {title :adminParam.new_title,image:solution.image}}
-   
+        throw 'Solution "' + req.paramas.solution_title + '" does not exist ';
+    }
+    
+  
+    if (typeof(req.body.new_image) == 'undefined' && typeof(req.body.new_title) == 'undefined'){var newsolution = {title :solution.title,image:solution.image}}
+    else if (typeof(req.body.new_image) == 'undefined'){var newsolution = {title :req.body.new_title,image:solution.image}}
+    else if(typeof(req.body.new_title) == 'undefined'){var newsolution = {title :solution.title,image:req.body.new_image}}
+    
    
     Object.assign(solution,newsolution);
 
     await solution.save();
+
+
 }
 
 async function create_product(adminParam) {

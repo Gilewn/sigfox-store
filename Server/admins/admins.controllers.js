@@ -1,11 +1,37 @@
 const express = require('express');
 const router = express.Router();
 const adminService = require('./admin.service');
-
+const config = require('../config.json');
+const jwt = require('jsonwebtoken');
 // routes
 
-router.post('/authenticate', authenticate);
-router.post('/token', token);
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+        
+        jwt.verify(token, config.accessTokenSecret, (err, admin) => {
+            
+            if (err) {
+                return res.sendStatus(403);
+            }
+            
+            req.admin = admin;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
+
+
+
+
+router.post('/login', login);
+router.post('/refreshtoken', refreshtoken);
 router.post('/logout', logout);
 
 router.post('/register', register);
@@ -14,8 +40,8 @@ router.put('/:id', update);
 router.delete('/:id', _delete);
 
 
-router.post('/CreateSolution',create_solution);
-router.delete('/DeleteSolution/:solution_title',delete_solution);
+router.post('/CreateSolution',authenticateJWT,create_solution);
+router.delete('/DeleteSolution/:solution_title',authenticateJWT,delete_solution);
 router.put('/UpdateSolution/:solution_title',update_solution);
 
 router.post('/CreateProduct',create_product);
@@ -23,22 +49,29 @@ router.post('/CreateProduct',create_product);
 
 module.exports = router;
 
-function authenticate(req, res, next) {
-    adminService.authenticate(req.body)
-        .then(admin => admin ? res.json(admin) : res.status(400).json({ message: 'Username or password is incorrect' }))
+
+
+
+
+
+
+
+function login(req, res, next) {
+    adminService.login(req.body)
+        .then(admin => admin? res.json(admin) : res.status(400).json({ message: 'Username or password is incorrect' }))
         .catch(err => next(err));
 }
 
 
-function token(req, res, next) {
-    adminService.token(req.body)
-        .then(() => res.json({}))
+function refreshtoken(req, res, next) {
+    adminService.refreshtoken(req.body,res)
+       
         .catch(err => next(err));
 }
 
 function logout(req, res, next) {
-    adminService.logout(req.body)
-        .then(() => res.json({}))
+    adminService.logout(req.body,res)
+       
         .catch(err => next(err));
 }
 
@@ -46,7 +79,7 @@ function logout(req, res, next) {
 
 
 function register(req, res, next) {
-    adminService.create(req.body)
+    adminService.create(req)
         .then(() => res.json({}))
         .catch(err => next(err));
 }

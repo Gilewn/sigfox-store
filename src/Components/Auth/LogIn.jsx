@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-
 import "./LogIn.css";
+import {login,useAuth} from "./AuthProvider.ts"
+import axios from "axios";
 
 class LogIn extends Component {
   state = {
     controls: {
-      email: {
+      username: {
         value: "",
-        valueType: "Email Address",
-        type: "email",
-        placeholder: "E-mail",
+        valueType: "Username",
+        type: "username",
+        placeholder: "Username",
         validation: {
           required: true,
-          isEmail: true,
+          
         },
         valid: false,
         touched: false,
@@ -24,7 +25,7 @@ class LogIn extends Component {
         placeholder: "Password",
         validation: {
           required: true,
-          minLength: 6,
+          minLength: 4,
         },
         valid: false,
         touched: false,
@@ -32,6 +33,7 @@ class LogIn extends Component {
     },
     formIsValid: false,
   };
+  
 
   checkValidity = (value, rules) => {
     let isValid = true;
@@ -51,10 +53,7 @@ class LogIn extends Component {
       isValid = value.length <= rules.maxLength && isValid;
     }
 
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
-    }
+  
 
     return isValid;
   };
@@ -97,16 +96,25 @@ class LogIn extends Component {
       adminData[controlName] = this.state.controls[controlName].value;
     }
 
-    console.log(adminData);
-    if (
-      adminData.email === "test@test.com" &&
-      adminData.password === "123456"
-    ) {
-      this.props.history.push("/adminpanel");
-    }
+    
+    console.log(adminData)
+  
+   
+    axios.post(`http://localhost:5000/admins/login`, { username:adminData.username,password:adminData.password })
+         .then(res => {
+          
+          login(res.data)
+          console.log(res)
+         })
+
+   
+
   };
 
+  
   render() {
+    
+
     let formControls = [];
 
     for (let key in this.state.controls) {
@@ -136,6 +144,7 @@ class LogIn extends Component {
         </button>
       </form>
     );
+    
 
     return <div className="LogIn">{form}</div>;
   }

@@ -1,10 +1,10 @@
 
 const Express = require("express");
 const nodemailer = require('nodemailer');
-const jwt = require('./helpers/jwt');
+//const jwt = require('./helpers/jwt');
 var cors = require('cors')
 const errorHandler = require('./helpers/error-handler');
-
+//const jwt = require('jsonwebtoken');
 
 
 var app = Express();
@@ -16,14 +16,14 @@ app.use(Express.urlencoded({
 }));
 
 app.use('/',require('./solutions/solutions.controllers'));
-app.use('/products',require('./solutions/solutions.controllers'));
-app.use('/:solution/products',require('./solutions/solutions.controllers'));
-app.use('/products/:id',require('./solutions/solutions.controllers'));
+//app.use('/products',require('./solutions/solutions.controllers'));
+//app.use('/:solution/products',require('./solutions/solutions.controllers'));
+//app.use('/products/:id',require('./solutions/solutions.controllers'));
 
 
 
 
-app.use(jwt());
+//app.use(jwt);
 
 app.use('/admins', require('./admins/admins.controllers'));
 app.use('/partners', require('./partners/partner.controllers'));

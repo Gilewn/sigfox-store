@@ -13,8 +13,9 @@ import LogIn from "./Components/Auth/LogIn";
 import BackToTop from "react-back-to-top-button";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-
+import { Redirect } from 'react-router-dom'
 import "./App.css";
+import {useAuth} from "./Components/Auth/AuthProvider.ts"
 
 class App extends Component {
   state = {
@@ -22,16 +23,21 @@ class App extends Component {
     globalSearchField: "",
     navbarOpen: false,
     solutions: [],
+    logged : []
   };
 
+  
   componentDidMount() {
+    
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
       .get(`http://localhost:5000/`)
       .then((res) => {
         const solutions = res.data;
         this.setState({ solutions });
+        
       })
+
       .catch(function (error) {
         console.log(error);
       });
@@ -58,7 +64,12 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   };
 
+
+
   render() {
+    
+   
+    
     let { globalSearchField, products } = this.state;
     const globalFilteredProducts = products.filter((product) =>
       product.solution.toLowerCase().includes(globalSearchField.toLowerCase())
@@ -74,7 +85,7 @@ class App extends Component {
         />
       );
     }
-
+    
     let routes = (
       <div>
         <BackToTop showAt={50} speed={1500} easing="easeInOutQuint">
@@ -108,6 +119,7 @@ class App extends Component {
             {quickSearch}
             <div className="Fullwidth">
               <Switch>
+            
                 <Route exact path="/">
                   <Solutions items={this.state.solutions} />
                 </Route>
@@ -150,6 +162,7 @@ class App extends Component {
                   )}
                 ></Route>
                 <Route path="*" component={NotFound} />
+              
               </Switch>
             </div>
           </div>
@@ -164,6 +177,7 @@ class App extends Component {
     ) {
       routes = (
         <Switch>
+        
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
           <Route
             path="/adminpanel"
@@ -173,6 +187,8 @@ class App extends Component {
               </h1>
             )}
           />
+           <Redirect to="/" />
+            
         </Switch>
       );
     }

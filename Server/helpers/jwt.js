@@ -1,4 +1,4 @@
-const expressJwt = require('express-jwt');
+/*const expressJwt = require('express-jwt');
 const config = require('../config.json');
 const adminService = require('../admins/admin.service');
 const solutionsService = require('../admins/admin.service');
@@ -12,6 +12,9 @@ function jwt() {
             // public routes that don't require authentication
             '/admins/authenticate',
             '/admins/register',
+            '/admins/refreshtoken',
+            '/admins/logout',
+
             '/partners/submit'       
         ]   
     });
@@ -26,4 +29,4 @@ async function isRevoked(req, payload, done) {
     }
 
     done();
-};
+};*/

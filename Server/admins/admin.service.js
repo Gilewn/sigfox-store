@@ -6,8 +6,8 @@ const Admin = db.Admin;
 const Solution = db.Solution;
 
 module.exports = {
-    authenticate,
-    token,
+    login,
+    refreshtoken,
     logout,
     create,
     getById,
@@ -25,52 +25,65 @@ module.exports = {
 
 
 
-async function authenticate({ username, password }) {
-    const refreshTokens = [];
+
+const refreshTokens = [];
+
+async function login({ username, password }) {
+    
+    
     const admin = await Admin.findOne({ username });
     if (admin && bcrypt.compareSync(password, admin.hash)) {
         const { hash, ...adminWithoutHash } = admin.toObject();
-        const token = jwt.sign({ sub: admin.id }, config.secret,{ expiresIn: '1m' });
+        const accessToken = jwt.sign({ sub: admin.id }, config.accessTokenSecret,{ expiresIn: '1m' });
         const refreshToken = jwt.sign({ sub: admin.id }, config.refreshTokenSecret);
         refreshTokens.push(refreshToken);
         return {
            
-            token,
+            accessToken,
             refreshToken
         };
     }
 }
 
 
-async function token(body) {
-    const { token } = body;
-
+async function refreshtoken(body,res) {
+    
+  console.log("refresh")
+   const  token  = body.refreshToken;
     if (!token) {
-        return res.sendStatus(401);
+        throw 'Error 401';
     }
 
     if (!refreshTokens.includes(token)) {
-        return res.sendStatus(403);
+        throw 'Error 403';
     }
 
+   
     jwt.verify(token, config.refreshTokenSecret, (err, admin) => {
         if (err) {
-            return res.sendStatus(403);
+            throw 'Error 403';
         }
-        const token = jwt.sign({ sub: admin.id }, config.secret,{ expiresIn: '1m' });
-        return {
-            ...adminWithoutHash,
-            token,
-           
-        };
+        const accessToken = jwt.sign({ sub: admin.id }, config.accessTokenSecret,{ expiresIn: '1m' });
+      
+        res.json({
+            accessToken
+        });
+        console.log(refreshTokens)
+
 })
 
 }
 
-async function logout(body) {
-    const { token } = body;
-    refreshTokens = refreshTokens.filter(token => t !== token);
-   return;
+async function logout(req,res) {
+    
+    const token  = req.refreshToken;
+    if (!refreshTokens.includes(token)) {
+        throw 'Error 403';
+    }
+    
+   refreshTokens = refreshTokens.filter(t => t !== token);
+    
+    res.send("Logout successful");
 }
 
 

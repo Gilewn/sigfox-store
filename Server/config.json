@@ -1,5 +1,5 @@
 {
-    "secret": "Hello World!!!!!!Nice to meet you.!!!!!!!",
+    "accessTokenSecret": "Hello World!!!!!!Nice to meet you.!!!!!!!",
     "refreshTokenSecret" : "myrefreshtokensecretkeyjohnhelloworld!!!!!!!!!!",
     "connectionString": "mongodb+srv://JGSJGS:sigfoxsigfox@sigfox-store-8rims.mongodb.net/SigfoxStore?retryWrites=true&w=majority",
     "DATABASE_NAME" :"SigfoxStore"

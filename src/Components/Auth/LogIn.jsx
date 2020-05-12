@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./LogIn.css";
-import {login,useAuth} from "./AuthProvider.ts"
 import axios from "axios";
+import AuthService from "../../Services/auth.service"
 
 class LogIn extends Component {
   state = {
@@ -97,14 +97,12 @@ class LogIn extends Component {
     }
 
     
-    console.log(adminData)
-  
-   
-    axios.post(`http://localhost:5000/admins/login`, { username:adminData.username,password:adminData.password })
-         .then(res => {
-          
-          login(res.data)
-          console.log(res)
+    
+    AuthService.login(adminData.username, adminData.password ).then(
+            () => {
+              this.props.history.push("/adminpanel");
+              //window.location.reload();
+         
          })
 
    

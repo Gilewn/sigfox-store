@@ -15,7 +15,8 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
 import "./App.css";
-import {useAuth} from "./Components/Auth/AuthProvider.ts"
+import AuthService from "./Services/auth.service"
+
 
 class App extends Component {
   state = {
@@ -23,12 +24,19 @@ class App extends Component {
     globalSearchField: "",
     navbarOpen: false,
     solutions: [],
-    logged : []
+    currentUser: undefined
   };
-
+  
   
   componentDidMount() {
-    
+    const admin= AuthService.getCurrentUser();
+    if (admin) {
+      this.setState({
+        currentUser: AuthService.getCurrentUser(),
+       
+      });
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
       .get(`http://localhost:5000/`)
@@ -52,6 +60,9 @@ class App extends Component {
       });
   }
 
+
+  
+
   handleGlobalChange = (e) => {
     this.setState({ globalSearchField: e.target.value });
   };
@@ -64,11 +75,24 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   };
 
+  logOut() {
+    AuthService.logout();
+  }
+
+
+
+ 
 
 
   render() {
+
+    window.onbeforeunload = function() {
+      localStorage.clear();
+   }
     
-   
+    
+
+    
     
     let { globalSearchField, products } = this.state;
     const globalFilteredProducts = products.filter((product) =>
@@ -170,6 +194,8 @@ class App extends Component {
         </div>
       </div>
     );
+   
+   
 
     if (
       this.props.location.pathname === "/sigfox-store-admin-sgfx" ||
@@ -177,17 +203,23 @@ class App extends Component {
     ) {
       routes = (
         <Switch>
-        
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
-          <Route
+          
+          {console.log(this.currentUser)}
+          {JSON.parse(localStorage.getItem('admin')) &&  <Route
             path="/adminpanel"
             render={() => (
               <h1 style={{ textAlign: "center" }}>
                 This will be the admin Panel
               </h1>
             )}
-          />
-           <Redirect to="/" />
+          />}
+
+            
+            
+
+          
+          
             
         </Switch>
       );

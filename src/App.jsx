@@ -16,7 +16,7 @@ import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
 import "./App.css";
 import {useAuth} from "./Components/Auth/AuthProvider.ts"
-
+import Adminpanel from "./Components/Admin/Adminpanel"
 class App extends Component {
   state = {
     products: [],
@@ -181,11 +181,9 @@ class App extends Component {
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
           <Route
             path="/adminpanel"
-            render={() => (
-              <h1 style={{ textAlign: "center" }}>
-                This will be the admin Panel
-              </h1>
-            )}
+            component={Adminpanel}
+             
+            
           />
            <Redirect to="/" />
             

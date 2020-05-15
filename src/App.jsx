@@ -14,10 +14,8 @@ import BackToTop from "react-back-to-top-button";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
+import AdminPanel from "./Components/Admin/Adminpanel"
 import "./App.css";
-
-import Adminpanel from "./Components/Admin/Adminpanel"
-import AuthService from "./Services/auth.service"
 
 
 class App extends Component {
@@ -31,18 +29,14 @@ class App extends Component {
   
   
   componentDidMount() {
-    const admin= AuthService.getCurrentUser();
-    if (admin) {
-      this.setState({
-        currentUser: AuthService.getCurrentUser(),
-       
-      });
-    }
+    
+  
 
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
-      .get(`http://localhost:5000/`)
+      .get(`http://localhost:5000/solutions`)
       .then((res) => {
+        console.log(res)
         const solutions = res.data;
         this.setState({ solutions });
         
@@ -78,10 +72,7 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   };
 
-  logOut() {
-    AuthService.logout();
-  }
-
+ 
 
 
  
@@ -208,17 +199,12 @@ class App extends Component {
         <Switch>
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
           
-        
-          {JSON.parse(localStorage.getItem('admin')) &&  <Route
+         <Route
             path="/adminpanel"
-            component={Adminpanel}
-          />}
-
+            component={AdminPanel}
             
-            
-
-          
-          
+          />
+           
             
         </Switch>
       );

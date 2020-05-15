@@ -3,7 +3,8 @@ const router = express.Router();
 const adminService = require('./admin.service');
 const config = require('../config.json');
 const jwt = require('jsonwebtoken');
-// routes
+
+
 
 
 const authenticateJWT = (req, res, next) => {
@@ -27,8 +28,8 @@ const authenticateJWT = (req, res, next) => {
 };
 
 
-
-
+router.get('/solutions', getSolutions);
+router.get('/solutions/:id', getSolution);
 
 router.post('/login', login);
 router.post('/refreshtoken', refreshtoken);
@@ -50,14 +51,22 @@ router.post('/CreateProduct',create_product);
 module.exports = router;
 
 
+function getSolutions(req, res, next) {
+    adminService.getSolutions()
+        .then(solutions=> res.header({'Content-Range':"7",'X-Total-Count': "10" }).json(solutions))
+        .catch(err => next(err));
+}
 
-
-
+function getSolution(req, res, next) {
+    adminService.getSolution(req.params.id)
+    .then(solution => solution ? res.json(solution) : res.sendStatus(404))
+    .catch(err => next(err));
+}
 
 
 
 function login(req, res, next) {
-    adminService.login(req.body)
+    adminService.login(req.body.username,req.body.password)
         .then(admin => admin? res.json(admin) : res.status(400).json({ message: 'Username or password is incorrect' }))
         .catch(err => next(err));
 }

@@ -4,7 +4,7 @@ const solutionsService = require('./solutions.service');
 
 
 
-router.get('/', getSolutions);
+router.get('/solutions', getSolutions);
 router.get('/products',getAllProducts);
 router.get('/:solution/products',getProductsOfSolution);
 router.get('/products/:id',getProduct);
@@ -13,12 +13,9 @@ module.exports = router;
 
 function getSolutions(req, res, next) {
     solutionsService.getSolutions()
-        .then(solutions=> res.json(solutions))
+        .then(solutions=> res.header({'Content-Range':"7",'X-Total-Count': "10" }).json(solutions))
         .catch(err => next(err));
 }
-
-
-
 
 function getAllProducts(req, res, next) {
     solutionsService.getAllProducts()

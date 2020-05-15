@@ -16,7 +16,11 @@ import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
 import AdminPanel from "./Components/Admin/Adminpanel"
 import "./App.css";
+<<<<<<< HEAD
 
+=======
+import AuthService from "./Services/auth.service"
+>>>>>>> c72568887e26df99a0a2aa117853b58ab0030d5d
 
 
 class App extends Component {
@@ -25,12 +29,19 @@ class App extends Component {
     globalSearchField: "",
     navbarOpen: false,
     solutions: [],
-    logged : []
+    currentUser: undefined
   };
-
+  
   
   componentDidMount() {
-    
+    const admin= AuthService.getCurrentUser();
+    if (admin) {
+      this.setState({
+        currentUser: AuthService.getCurrentUser(),
+       
+      });
+    }
+
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
       .get(`http://localhost:5000/solutions`)
@@ -55,6 +66,9 @@ class App extends Component {
       });
   }
 
+
+  
+
   handleGlobalChange = (e) => {
     this.setState({ globalSearchField: e.target.value });
   };
@@ -67,11 +81,24 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   };
 
+  logOut() {
+    AuthService.logout();
+  }
+
+
+
+ 
 
 
   render() {
+
+    window.onbeforeunload = function() {
+      localStorage.clear();
+   }
     
-   
+    
+
+    
     
     let { globalSearchField, products } = this.state;
     const globalFilteredProducts = products.filter((product) =>
@@ -173,6 +200,8 @@ class App extends Component {
         </div>
       </div>
     );
+   
+   
 
     if (
       this.props.location.pathname === "/sigfox-store-admin-sgfx" ||
@@ -180,9 +209,9 @@ class App extends Component {
     ) {
       routes = (
         <Switch>
-        
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
-          <Route
+          
+         <Route
             path="/adminpanel"
             component={AdminPanel}
             

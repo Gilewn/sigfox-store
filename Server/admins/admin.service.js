@@ -84,7 +84,7 @@ async function login(username,password) {
 
 async function refreshtoken(body,res) {
     
-  console.log("refresh")
+  
    const  token  = body.refreshToken;
     if (!token) {
         throw 'Error 401';
@@ -104,7 +104,7 @@ async function refreshtoken(body,res) {
         res.json({
             accessToken
         });
-        console.log(refreshTokens)
+   
 
 })
 
@@ -112,14 +112,13 @@ async function refreshtoken(body,res) {
 
 async function logout(req,res) {
     
-    const token  = req.refreshToken;
-    if (!refreshTokens.includes(token)) {
-        throw 'Error 403';
-    }
-    
-   refreshTokens = refreshTokens.filter(t => t !== token);
-    
-    res.send("Logout successful");
+   
+   
+    if( refreshTokens.filter(t => t !== req.refreshToken)){res.send("Logout successful");}else{res.send("Error");}
+
+
+   
+     
 }
 
 

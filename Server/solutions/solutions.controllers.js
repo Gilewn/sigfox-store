@@ -4,7 +4,7 @@ const solutionsService = require('./solutions.service');
 
 
 
-router.get('/', getSolutions);
+router.get('/solutions', getSolutions);
 router.get('/products',getAllProducts);
 router.get('/:solution/products',getProductsOfSolution);
 router.get('/products/:id',getProduct);

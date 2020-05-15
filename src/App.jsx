@@ -15,7 +15,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
 import "./App.css";
-import {useAuth} from "./Components/Auth/AuthProvider.ts"
+
 
 class App extends Component {
   state = {
@@ -31,7 +31,7 @@ class App extends Component {
     
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
-      .get(`http://localhost:5000/`)
+      .get(`http://localhost:5000/solutions`)
       .then((res) => {
         const solutions = res.data;
         this.setState({ solutions });
@@ -181,11 +181,7 @@ class App extends Component {
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
           <Route
             path="/adminpanel"
-            render={() => (
-              <h1 style={{ textAlign: "center" }}>
-                This will be the admin Panel
-              </h1>
-            )}
+           
           />
            <Redirect to="/" />
             

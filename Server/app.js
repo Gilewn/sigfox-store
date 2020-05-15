@@ -8,7 +8,9 @@ const errorHandler = require('./helpers/error-handler');
 
 
 var app = Express();
-app.use(cors())
+app.use(cors({
+  exposedHeaders: [''],
+}));
 
 app.use(Express.json());
 app.use(Express.urlencoded({

@@ -13,6 +13,7 @@ import LogIn from "./Components/Auth/LogIn";
 import BackToTop from "react-back-to-top-button";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import AdminPanel from "./Components/Admin/Adminpanel"
 
 import "./App.css";
 
@@ -29,6 +30,7 @@ class App extends Component {
     axios
       .get(`http://localhost:5000/`)
       .then((res) => {
+        console.log(res)
         const solutions = res.data;
         this.setState({ solutions });
       })
@@ -167,11 +169,8 @@ class App extends Component {
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
           <Route
             path="/adminpanel"
-            render={() => (
-              <h1 style={{ textAlign: "center" }}>
-                This will be the admin Panel
-              </h1>
-            )}
+            component={AdminPanel}
+            
           />
         </Switch>
       );

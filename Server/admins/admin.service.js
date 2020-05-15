@@ -6,6 +6,8 @@ const Admin = db.Admin;
 const Solution = db.Solution;
 
 module.exports = {
+    getSolutions,
+    getSolution,
     login,
     refreshtoken,
     logout,
@@ -28,15 +30,49 @@ module.exports = {
 
 const refreshTokens = [];
 
-async function login({ username, password }) {
+
+async function getSolutions() {
+    return await Solution.find({
+        products: {
+          $gt:  {$size: 0} 
+        }}, {
+            
+          _id: 1,
+          title:1,
+          image:1
+      }
+        
+      )
+    }
+
+
+
+
+async function getSolution(id) {
+    return await Solution.findOne({
+          
+      "_id": id
+      })
+    }
+
+
+
+
+
+
+
+
+async function login(username,password) {
     
-    
+    console.log(username,password)
     const admin = await Admin.findOne({ username });
+    console.log(admin)
     if (admin && bcrypt.compareSync(password, admin.hash)) {
         const { hash, ...adminWithoutHash } = admin.toObject();
-        const accessToken = jwt.sign({ sub: admin.id }, config.accessTokenSecret,{ expiresIn: '1m' });
+        const accessToken = jwt.sign({ sub: admin.id }, config.accessTokenSecret,{ expiresIn: '10m' });
         const refreshToken = jwt.sign({ sub: admin.id }, config.refreshTokenSecret);
         refreshTokens.push(refreshToken);
+        console.log(accessToken)
         return {
            
             accessToken,

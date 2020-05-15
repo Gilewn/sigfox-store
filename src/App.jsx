@@ -14,7 +14,9 @@ import BackToTop from "react-back-to-top-button";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
+import AdminPanel from "./Components/Admin/Adminpanel"
 import "./App.css";
+
 
 
 class App extends Component {
@@ -33,6 +35,7 @@ class App extends Component {
     axios
       .get(`http://localhost:5000/solutions`)
       .then((res) => {
+        console.log(res)
         const solutions = res.data;
         this.setState({ solutions });
         
@@ -181,9 +184,10 @@ class App extends Component {
           <Route path="/sigfox-store-admin-sgfx" component={LogIn} />
           <Route
             path="/adminpanel"
-           
+            component={AdminPanel}
+            
           />
-           <Redirect to="/" />
+           
             
         </Switch>
       );

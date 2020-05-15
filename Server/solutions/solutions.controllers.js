@@ -13,12 +13,9 @@ module.exports = router;
 
 function getSolutions(req, res, next) {
     solutionsService.getSolutions()
-        .then(solutions=> res.json(solutions))
+        .then(solutions=> res.header({'Content-Range':"7",'X-Total-Count': "10" }).json(solutions))
         .catch(err => next(err));
 }
-
-
-
 
 function getAllProducts(req, res, next) {
     solutionsService.getAllProducts()

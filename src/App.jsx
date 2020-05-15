@@ -16,11 +16,6 @@ import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom'
 import AdminPanel from "./Components/Admin/Adminpanel"
 import "./App.css";
-<<<<<<< HEAD
-
-=======
-import AuthService from "./Services/auth.service"
->>>>>>> c72568887e26df99a0a2aa117853b58ab0030d5d
 
 
 class App extends Component {
@@ -34,13 +29,8 @@ class App extends Component {
   
   
   componentDidMount() {
-    const admin= AuthService.getCurrentUser();
-    if (admin) {
-      this.setState({
-        currentUser: AuthService.getCurrentUser(),
-       
-      });
-    }
+    
+  
 
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
@@ -81,10 +71,7 @@ class App extends Component {
     this.setState({ navbarOpen: !this.state.navbarOpen });
   };
 
-  logOut() {
-    AuthService.logout();
-  }
-
+ 
 
 
  

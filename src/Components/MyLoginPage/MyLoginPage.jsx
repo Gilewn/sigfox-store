@@ -5,8 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 
 
 
-
-const MyLoginPage = ({ theme }) => {
+const MyLoginPage = ({theme }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const login = useLogin();

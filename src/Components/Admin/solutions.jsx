@@ -20,9 +20,14 @@ export const SolutionList = props => (
 export const SolutionEdit = props => (
     <Edit {...props}>
         <SimpleForm>
-            <ReferenceInput source="_id" reference="solutions"><SelectInput optionText="id" /></ReferenceInput>
+            
+            <ReferenceInput source="id" reference="solutions">
+                <SelectInput optionText="title" />
+            </ReferenceInput>
+           
             <TextInput source="title" />
             <TextInput source="image" />
+           
             
         </SimpleForm>
     </Edit>

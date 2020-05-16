@@ -1,10 +1,20 @@
 const authProvider = {
-    logout: params => Promise.resolve(),
+    logout: () => {
+        localStorage.removeItem('accessToken');
+        return Promise.resolve();
+    },
     
     checkAuth: () => localStorage.getItem('accessToken')
     ? Promise.resolve()
     : Promise.reject(),
-    checkError: error => Promise.resolve(),
+    checkError: (error) => {
+        const status = error.status;
+        if (status === 401 || status === 403) {
+            localStorage.removeItem('accessToken');
+            return Promise.reject();
+        }
+        return Promise.resolve();
+    },
     getPermissions: params => Promise.resolve(),
    
 

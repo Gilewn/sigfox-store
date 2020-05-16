@@ -28,8 +28,8 @@ const authenticateJWT = (req, res, next) => {
 };
 
 
-router.get('/solutions', getSolutions);
-router.get('/solutions/:id', getSolution);
+router.get('/solutions',authenticateJWT, getSolutions);
+router.get('/solutions/:id',authenticateJWT,getSolution);
 
 router.post('/login', login);
 router.post('/refreshtoken', refreshtoken);

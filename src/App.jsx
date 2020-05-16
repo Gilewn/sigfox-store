@@ -36,7 +36,7 @@ class App extends Component {
     axios
       .get(`http://localhost:5000/solutions`)
       .then((res) => {
-        console.log(res)
+        
         const solutions = res.data;
         this.setState({ solutions });
         
@@ -48,7 +48,7 @@ class App extends Component {
     axios
       .get(`http://localhost:5000/products`)
       .then((res) => {
-        console.log(res)
+       
         const products = res.data;
         this.setState({ products });
       })

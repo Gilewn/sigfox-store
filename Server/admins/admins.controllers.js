@@ -42,8 +42,8 @@ router.delete('/:id', _delete);
 
 
 router.post('/CreateSolution',authenticateJWT,create_solution);
-router.delete('/DeleteSolution/:solution_title',authenticateJWT,delete_solution);
-router.put('/UpdateSolution/:solution_title',update_solution);
+router.delete('/DeleteSolution/:id',authenticateJWT,delete_solution);
+router.put('/UpdateSolution/:id',update_solution);
 
 router.post('/CreateProduct',create_product);
 

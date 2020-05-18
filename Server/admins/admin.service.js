@@ -188,10 +188,10 @@ async function create_solution(solution) {
 
 async function delete_solution(req) {
     
-    const solution = await Solution.findOne({ title: req.params.solution_title})
+    const solution = await Solution.findOne({ _id: req.params.id})
    
     if (!solution) {
-        throw 'Solution "' + req.paramas.solution_title + '" does not exist ';
+        throw 'Solution "' + req.paramas.id + '" does not exist ';
     } 
 
     await solution.delete();
@@ -200,17 +200,19 @@ async function delete_solution(req) {
 
 async function update_solution(req) {
     
-    const solution = await Solution.findOne({ title: req.params.solution_title})
+    const solution = await Solution.findOne( {_id : req.params.id})
     
+    
+
     if (!solution) {
-        throw 'Solution "' + req.paramas.solution_title + '" does not exist ';
+        throw 'Solution "' + req.paramas.id + '" does not exist ';
     }
-    
+    console.log(solution)
   
     if (typeof(req.body.new_image) == 'undefined' && typeof(req.body.new_title) == 'undefined'){var newsolution = {title :solution.title,image:solution.image}}
     else if (typeof(req.body.new_image) == 'undefined'){var newsolution = {title :req.body.new_title,image:solution.image}}
     else if(typeof(req.body.new_title) == 'undefined'){var newsolution = {title :solution.title,image:req.body.new_image}}
-    
+    else{var newsolution = {title :req.body.new_title,image:req.body.new_image}}
    
     Object.assign(solution,newsolution);
 

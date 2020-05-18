@@ -16,65 +16,55 @@ module.exports = {
     getAll,
     update,
     delete: _delete,
-
     create_solution,
     delete_solution,
     update_solution,
-
     create_product
-
 };
 
-
-
-
 const refreshTokens = [];
-
 
 async function getSolutions() {
     return await Solution.find({
         products: {
-          $gt:  {$size: 0} 
-        }}, {
-            
-          _id: 1,
-          title:1,
-          image:1
-      }
-        
-      )
-    }
-
-
-
+            $gt: {
+                $size: 0
+            }
+        }
+    }, {
+        _id: 1,
+        title: 1,
+        image: 1
+    })
+}
 
 async function getSolution(id) {
     return await Solution.findOne({
-          
-      "_id": id
-      })
-    }
 
+        "_id": id
+    })
+}
 
-
-
-
-
-
-
-async function login(username,password) {
-    
-    console.log(username,password)
-    const admin = await Admin.findOne({ username });
-    console.log(admin)
+async function login(username, password) {
+    const admin = await Admin.findOne({
+        username
+    });
     if (admin && bcrypt.compareSync(password, admin.hash)) {
-        const { hash, ...adminWithoutHash } = admin.toObject();
-        const accessToken = jwt.sign({ sub: admin.id }, config.accessTokenSecret,{ expiresIn: '10m' });
-        const refreshToken = jwt.sign({ sub: admin.id }, config.refreshTokenSecret);
+        const {
+            hash,
+            ...adminWithoutHash
+        } = admin.toObject();
+        const accessToken = jwt.sign({
+            sub: admin.id
+        }, config.accessTokenSecret, {
+            expiresIn: '10m'
+        });
+        const refreshToken = jwt.sign({
+            sub: admin.id
+        }, config.refreshTokenSecret);
         refreshTokens.push(refreshToken);
         console.log(accessToken)
         return {
-           
             accessToken,
             refreshToken
         };
@@ -82,10 +72,10 @@ async function login(username,password) {
 }
 
 
-async function refreshtoken(body,res) {
-    
-  
-   const  token  = body.refreshToken;
+async function refreshtoken(body, res) {
+
+
+    const token = body.refreshToken;
     if (!token) {
         throw 'Error 401';
     }
@@ -94,31 +84,39 @@ async function refreshtoken(body,res) {
         throw 'Error 403';
     }
 
-   
+
     jwt.verify(token, config.refreshTokenSecret, (err, admin) => {
         if (err) {
             throw 'Error 403';
         }
-        const accessToken = jwt.sign({ sub: admin.id }, config.accessTokenSecret,{ expiresIn: '1m' });
-      
+        const accessToken = jwt.sign({
+            sub: admin.id
+        }, config.accessTokenSecret, {
+            expiresIn: '1m'
+        });
+
         res.json({
             accessToken
         });
-   
 
-})
+
+    })
 
 }
 
-async function logout(req,res) {
-    
-   
-   
-    if( refreshTokens.filter(t => t !== req.refreshToken)){res.send("Logout successful");}else{res.send("Error");}
+async function logout(req, res) {
 
 
-   
-     
+
+    if (refreshTokens.filter(t => t !== req.refreshToken)) {
+        res.send("Logout successful");
+    } else {
+        res.send("Error");
+    }
+
+
+
+
 }
 
 
@@ -135,7 +133,9 @@ async function getAll() {
 
 async function create(adminParam) {
     // validate
-    if (await Admin.findOne({ username: adminParam.username })) {
+    if (await Admin.findOne({
+            username: adminParam.username
+        })) {
         throw 'Username "' + adminParam.username + '" is already taken';
     }
 
@@ -155,7 +155,9 @@ async function update(id, adminParam) {
 
     // validate
     if (!admin) throw 'Admin not found';
-    if (admin.username !== adminParam.username && await Admin.findOne({ username: adminParam.username })) {
+    if (admin.username !== adminParam.username && await Admin.findOne({
+            username: adminParam.username
+        })) {
         throw 'Username "' + adminParam.username + '" is already taken';
     }
 
@@ -176,8 +178,10 @@ async function _delete(id) {
 
 
 async function create_solution(solution) {
-    
-    if (await Solution.findOne({ title: solution.title })) {
+
+    if (await Solution.findOne({
+            title: solution.title
+        })) {
         throw 'Solution "' + solution.title + '" is already exists';
     }
 
@@ -187,34 +191,55 @@ async function create_solution(solution) {
 
 
 async function delete_solution(req) {
-    
-    const solution = await Solution.findOne({ _id: req.params.id})
-   
+
+    const solution = await Solution.findOne({
+        _id: req.params.id
+    })
+
     if (!solution) {
         throw 'Solution "' + req.paramas.id + '" does not exist ';
-    } 
+    }
 
     await solution.delete();
 }
 
 
 async function update_solution(req) {
-    
-    const solution = await Solution.findOne( {_id : req.params.id})
-    
-    
+
+    const solution = await Solution.findOne({
+        _id: req.params.id
+    })
+
+    console.log(req);
 
     if (!solution) {
         throw 'Solution "' + req.paramas.id + '" does not exist ';
     }
     console.log(solution)
-  
-    if (typeof(req.body.new_image) == 'undefined' && typeof(req.body.new_title) == 'undefined'){var newsolution = {title :solution.title,image:solution.image}}
-    else if (typeof(req.body.new_image) == 'undefined'){var newsolution = {title :req.body.new_title,image:solution.image}}
-    else if(typeof(req.body.new_title) == 'undefined'){var newsolution = {title :solution.title,image:req.body.new_image}}
-    else{var newsolution = {title :req.body.new_title,image:req.body.new_image}}
-   
-    Object.assign(solution,newsolution);
+
+    if (typeof (req.body.new_image) == 'undefined' && typeof (req.body.new_title) == 'undefined') {
+        var newsolution = {
+            title: solution.title,
+            image: solution.image
+        }
+    } else if (typeof (req.body.new_image) == 'undefined') {
+        var newsolution = {
+            title: req.body.new_title,
+            image: solution.image
+        }
+    } else if (typeof (req.body.new_title) == 'undefined') {
+        var newsolution = {
+            title: solution.title,
+            image: req.body.new_image
+        }
+    } else {
+        var newsolution = {
+            title: req.body.new_title,
+            image: req.body.new_image
+        }
+    }
+
+    Object.assign(solution, newsolution);
 
     await solution.save();
 
@@ -222,6 +247,6 @@ async function update_solution(req) {
 }
 
 async function create_product(adminParam) {
-    
-    
+
+
 }

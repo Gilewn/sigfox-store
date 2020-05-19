@@ -27,6 +27,8 @@ export const SolutionEdit = props => (
            
             <TextInput source="title" />
             <TextInput source="image" />
+           
+            
         </SimpleForm>
     </Edit>
 );

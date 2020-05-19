@@ -28,8 +28,8 @@ const authenticateJWT = (req, res, next) => {
 };
 
 
-router.get('/solutions',authenticateJWT, getSolutions);
-router.get('/solutions/:id',authenticateJWT,getSolution);
+router.get('/solutions', getSolutions);
+router.get('/solutions/:id',getSolution);
 
 router.post('/login', login);
 router.post('/refreshtoken', refreshtoken);
@@ -43,7 +43,7 @@ router.delete('/:id', _delete);
 
 router.post('/CreateSolution',authenticateJWT,create_solution);
 router.delete('/DeleteSolution/:id',authenticateJWT,delete_solution);
-router.put('/UpdateSolution/:id',update_solution);
+router.put('/UpdateSolution/:id',authenticateJWT,update_solution);
 
 router.post('/CreateProduct',create_product);
 

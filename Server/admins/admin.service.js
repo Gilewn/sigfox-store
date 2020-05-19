@@ -32,17 +32,7 @@ const refreshTokens = [];
 
 
 async function getSolutions() {
-    return await Solution.find({
-        products: {
-          $gt:  {$size: 0} 
-        }}, {
-            
-          _id: 1,
-          title:1,
-          image:1
-      }
-        
-      )
+    return await Solution.find({},{products:0})
     }
 
 

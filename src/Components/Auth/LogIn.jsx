@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./LogIn.css";
 import axios from "axios";
-import AuthService from "../../Services/auth.service"
+import AuthService from "../../Services/auth.service";
 
 class LogIn extends Component {
   state = {
@@ -13,7 +13,6 @@ class LogIn extends Component {
         placeholder: "Username",
         validation: {
           required: true,
-          
         },
         valid: false,
         touched: false,
@@ -33,7 +32,6 @@ class LogIn extends Component {
     },
     formIsValid: false,
   };
-  
 
   checkValidity = (value, rules) => {
     let isValid = true;
@@ -52,8 +50,6 @@ class LogIn extends Component {
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
     }
-
-  
 
     return isValid;
   };
@@ -96,23 +92,13 @@ class LogIn extends Component {
       adminData[controlName] = this.state.controls[controlName].value;
     }
 
-    
-    
-    AuthService.login(adminData.username, adminData.password ).then(
-            () => {
-              this.props.history.push("/adminpanel");
-              //window.location.reload();
-         
-         })
-
-   
-
+    AuthService.login(adminData.username, adminData.password).then(() => {
+      this.props.history.push("/adminpanel");
+      //window.location.reload();
+    });
   };
 
-  
   render() {
-    
-
     let formControls = [];
 
     for (let key in this.state.controls) {
@@ -142,7 +128,6 @@ class LogIn extends Component {
         </button>
       </form>
     );
-    
 
     return <div className="LogIn">{form}</div>;
   }

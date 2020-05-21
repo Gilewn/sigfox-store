@@ -28,10 +28,10 @@ router.post('/login', login);
 router.post('/refreshtoken', refreshtoken);
 router.post('/logout', logout); 
 
-router.post('/register', register);
-router.get('/', getAll);
-router.put('/:id', update);
-router.delete('/:id', _delete);
+//router.post('/register', register);
+//router.get('/', getAll);
+//router.put('/:id', update);
+//router.delete('/:id', _delete);
 
 router.get('/solutions/', authenticateJWT, getSolutions);
 router.get('/solutions/:id', authenticateJWT, getSolution);
@@ -40,16 +40,16 @@ router.delete('/solutions/:id',authenticateJWT,delete_solution);
 router.put('/solutions/:id',authenticateJWT,update_solution);
 
 
+router.get('/products',authenticateJWT, getProducts);
 
-router.post('/CreateProduct', create_product);
 
 module.exports = router;
 
 function getSolutions(req, res, next) {
     adminService.getSolutions()
         .then(solutions => res.header({
-            'Content-Range': "7",
-            'X-Total-Count': "10"
+            'Content-Range': "8"
+            
         }).json(solutions))
         .catch(err => next(err));
 }
@@ -111,7 +111,7 @@ function _delete(req, res, next) {
 }
 
 function create_solution(req, res, next) {
-    adminService.create_solution(req.body)
+    adminService.create_solution(req)
         .then(() => res.json({}))
         .catch(err => next(err));
 }
@@ -126,10 +126,11 @@ function update_solution(req, res, next) {
     adminService.update_solution(req)
         .then(() => res.json({}))
         .catch(err => next(err));
-}
+}   
 
-function create_product(req, res, next) {
-    adminService.create_product(req.body)
-        .then(() => res.json({}))
+function getProducts(req, res, next) {
+   
+    adminService.getProducts(req)
+        .then( solutions => solutions? res.json(solutions[0].products) : res.sendStatus(404))
         .catch(err => next(err));
 }

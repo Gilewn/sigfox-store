@@ -1,12 +1,14 @@
 
 const Express = require("express");
 const nodemailer = require('nodemailer');
-//const jwt = require('./helpers/jwt');
-var cors = require('cors')
 const errorHandler = require('./helpers/error-handler');
+const https = require('https');
+const fs = require('fs');
+
 //const jwt = require('jsonwebtoken');
+//const jwt = require('./helpers/jwt');
 
-
+var cors = require('cors')
 var app = Express();
 
 
@@ -21,18 +23,16 @@ app.use(Express.urlencoded({
   extended: true
 }));
 
-app.use('/',require('./solutions/solutions.controllers'));
+app.use('/public',require('./solutions/solutions.controllers'));
+app.use('/admins', require('./admins/admins.controllers'));
+app.use('/partners', require('./partners/partner.controllers'));
+
+
 //app.use('/products',require('./solutions/solutions.controllers'));
 //app.use('/:solution/products',require('./solutions/solutions.controllers'));
 //app.use('/products/:id',require('./solutions/solutions.controllers'));
-
-
-
-
 //app.use(jwt);
 
-app.use('/admins', require('./admins/admins.controllers'));
-app.use('/partners', require('./partners/partner.controllers'));
 
 
 app.use(errorHandler);
@@ -44,7 +44,12 @@ const server = app.listen(port, function () {
 });
 
 
-
+/*https.createServer({
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem'),
+  passphrase: 'Hello World!!!!Im John!!!!!'
+}, app)
+.listen(5000);*/
 
 
 

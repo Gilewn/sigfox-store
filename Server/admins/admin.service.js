@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const Admin = db.Admin;
 const Solution = db.Solution;
+const ObjectId = require("mongodb").ObjectID;
+
 
 module.exports = {
     getSolutions,
@@ -19,31 +21,20 @@ module.exports = {
     create_solution,
     delete_solution,
     update_solution,
-    create_product
+    
+    getProducts,
+    getProduct,
+    delete_product,
+    update_product
+
 };
 
 const refreshTokens = [];
 
-async function getSolutions() {
-    return await Solution.find({
-        products: {
-            $gt: {
-                $size: 0
-            }
-        }
-    }, {
-        _id: 1,
-        title: 1,
-        image: 1
-    })
-}
 
-async function getSolution(id) {
-    return await Solution.findOne({
 
-        "_id": id
-    })
-}
+
+
 
 async function login(username, password) {
     const admin = await Admin.findOne({
@@ -57,13 +48,13 @@ async function login(username, password) {
         const accessToken = jwt.sign({
             sub: admin.id
         }, config.accessTokenSecret, {
-            expiresIn: '10m'
+            expiresIn: '1m'
         });
         const refreshToken = jwt.sign({
             sub: admin.id
         }, config.refreshTokenSecret);
         refreshTokens.push(refreshToken);
-        console.log(accessToken)
+        
         return {
             accessToken,
             refreshToken
@@ -92,31 +83,21 @@ async function refreshtoken(body, res) {
         const accessToken = jwt.sign({
             sub: admin.id
         }, config.accessTokenSecret, {
-            expiresIn: '1m'
+            expiresIn: '10m'
         });
 
         res.json({
             accessToken
         });
-
-
     })
-
 }
 
 async function logout(req, res) {
-
-
-
     if (refreshTokens.filter(t => t !== req.refreshToken)) {
         res.send("Logout successful");
     } else {
         res.send("Error");
     }
-
-
-
-
 }
 
 
@@ -177,16 +158,33 @@ async function _delete(id) {
 }
 
 
-async function create_solution(solution) {
+async function getSolutions() {
+    return await Solution.find({},{products:0})
+}
+
+
+
+
+async function getSolution(id) {
+    return await Solution.findOne({
+        "_id": id
+    })
+}
+
+
+
+
+
+async function create_solution(req) {
 
     if (await Solution.findOne({
-            title: solution.title
+            _id: req.params.id
         })) {
-        throw 'Solution "' + solution.title + '" is already exists';
+        throw 'Solution "' + req.params.id + '" is already exists';
     }
 
-    const admin = new Solution(solution);
-    await admin.save();
+    const solution = new Solution(req.body);
+    await solution.save();
 }
 
 
@@ -210,14 +208,14 @@ async function update_solution(req) {
         _id: req.params.id
     })
 
-    console.log(req);
+    console.log(req.body);
 
     if (!solution) {
         throw 'Solution "' + req.paramas.id + '" does not exist ';
     }
-    console.log(solution)
+    
 
-    if (typeof (req.body.new_image) == 'undefined' && typeof (req.body.new_title) == 'undefined') {
+    /*if (typeof (req.body.new_image) == 'undefined' && typeof (req.body.new_title) == 'undefined') {
         var newsolution = {
             title: solution.title,
             image: solution.image
@@ -237,8 +235,11 @@ async function update_solution(req) {
             title: req.body.new_title,
             image: req.body.new_image
         }
-    }
-
+    }*/
+    var newsolution = {
+        title: req.body.title,
+        image: req.body.image
+    }   
     Object.assign(solution, newsolution);
 
     await solution.save();
@@ -246,7 +247,94 @@ async function update_solution(req) {
 
 }
 
-async function create_product(adminParam) {
 
 
-}
+async function getProducts() {
+    
+   
+   return await  Solution.aggregate([ 
+        { "$unwind": "$products" },
+        {"$group": {_id:null, products : { $push: '$products' }}}])
+    }
+
+
+
+    async function getProduct(id) {
+        return await  Solution.aggregate([
+          {"$match":{"products._id": ObjectId(id)}},
+          {"$project":{ 
+              _id : 0 ,
+              
+              "products" :{
+              
+                "$arrayElemAt":[
+                  {"$filter":{
+                    "input":"$products" ,
+                    "cond":{"$eq":["$$this._id",ObjectId(id)]}
+                  }
+                },0]
+              }
+            }
+          }])
+        }
+        
+        
+
+        async function delete_product(req) {
+
+            const product = await   Solution.aggregate([
+                {"$match":{"products._id": ObjectId(req.params.id)}},
+                {"$project":{ 
+                    _id : 0 ,
+                    
+                    "products" :{
+                    
+                      "$arrayElemAt":[
+                        {"$filter":{
+                          "input":"$products" ,
+                          "cond":{"$eq":["$$this._id",ObjectId(req.params.id)]}
+                        }
+                      },0]
+                    }
+                  }
+                }])
+                if (!product) {
+                    throw 'Product "' + req.paramas.id + '" does not exist ';
+                }
+            
+            await product.delete();
+        }
+
+
+
+        async function update_product(req) {
+
+            const product = await   Solution.aggregate([
+                {"$match":{"products._id": ObjectId(req.params.id)}},
+                {"$project":{ 
+                    _id : 0 ,
+                    
+                    "products" :{
+                    
+                      "$arrayElemAt":[
+                        {"$filter":{
+                          "input":"$products" ,
+                          "cond":{"$eq":["$$this._id",ObjectId(req.params.id)]}
+                        }
+                      },0]
+                    }
+                  }
+                }])
+                if (!product) {
+                    throw 'Product "' + req.paramas.id + '" does not exist ';
+                }
+            
+                var newproduct = {
+                title: req.body.title,
+                image: req.body.image
+            }   
+            Object.assign(product, newproduct);
+        
+            await product.save();
+             }
+        

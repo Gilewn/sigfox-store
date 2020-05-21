@@ -45,7 +45,7 @@ class ProductPage extends Component {
     if (prevProps.match.params.id !== this.props.match.params.id) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       axios
-        .get(`http://localhost:5000/products/${this.props.match.params.id}`)
+        .get(`http://localhost:5000/public/products/${this.props.match.params.id}`)
         .then((res) => {
           let alsoInterestedProducts = res.data;
           let product;
@@ -71,7 +71,7 @@ class ProductPage extends Component {
   componentDidMount() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
-      .get(`http://localhost:5000/products/${this.props.match.params.id}`)
+      .get(`http://localhost:5000/public/products/${this.props.match.params.id}`)
       .then((res) => {
         let alsoInterestedProducts = res.data;
         let product;

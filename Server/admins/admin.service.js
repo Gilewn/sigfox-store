@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const Admin = db.Admin;
 const Solution = db.Solution;
+const ObjectId = require("mongodb").ObjectID;
+
 
 module.exports = {
     getSolutions,
@@ -20,7 +22,9 @@ module.exports = {
     delete_solution,
     update_solution,
     
-    getProducts
+    getProducts,
+    getProduct,
+    delete_product
 
 };
 
@@ -29,18 +33,7 @@ const refreshTokens = [];
 
 
 
-async function getSolutions() {
-    return await Solution.find({},{products:0})
-}
 
-
-
-
-async function getSolution(id) {
-    return await Solution.findOne({
-        "_id": id
-    })
-}
 
 async function login(username, password) {
     const admin = await Admin.findOne({
@@ -54,7 +47,7 @@ async function login(username, password) {
         const accessToken = jwt.sign({
             sub: admin.id
         }, config.accessTokenSecret, {
-            expiresIn: '10m'
+            expiresIn: '1m'
         });
         const refreshToken = jwt.sign({
             sub: admin.id
@@ -164,6 +157,23 @@ async function _delete(id) {
 }
 
 
+async function getSolutions() {
+    return await Solution.find({},{products:0})
+}
+
+
+
+
+async function getSolution(id) {
+    return await Solution.findOne({
+        "_id": id
+    })
+}
+
+
+
+
+
 async function create_solution(req) {
 
     if (await Solution.findOne({
@@ -238,10 +248,58 @@ async function update_solution(req) {
 
 
 
-async function getProducts(req) {
+async function getProducts() {
     console.log("hello")
    
    return await  Solution.aggregate([ 
         { "$unwind": "$products" },
         {"$group": {_id:null, products : { $push: '$products' }}}])
     }
+
+
+
+    async function getProduct(id) {
+        return await  Solution.aggregate([
+          {"$match":{"products._id": ObjectId(id)}},
+          {"$project":{ 
+              _id : 0 ,
+              
+              "products" :{
+              
+                "$arrayElemAt":[
+                  {"$filter":{
+                    "input":"$products" ,
+                    "cond":{"$eq":["$$this._id",ObjectId(id)]}
+                  }
+                },0]
+              }
+            }
+          }])
+        }
+        
+        
+
+        async function delete_product(req) {
+
+            product=await   Solution.aggregate([
+                {"$match":{"products._id": ObjectId(req.params.id)}},
+                {"$project":{ 
+                    _id : 0 ,
+                    
+                    "products" :{
+                    
+                      "$arrayElemAt":[
+                        {"$filter":{
+                          "input":"$products" ,
+                          "cond":{"$eq":["$$this._id",ObjectId(req.params.id)]}
+                        }
+                      },0]
+                    }
+                  }
+                }])
+                if (!product) {
+                    throw 'Product "' + req.paramas.id + '" does not exist ';
+                }
+            
+            await product.delete();
+        }

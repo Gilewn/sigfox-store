@@ -34,7 +34,7 @@ class Products extends Component {
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (typeof this.props.match.params.solution_title === "undefined") {
         axios
-          .get(`http://localhost:5000/products`)
+          .get(`http://localhost:5000/public/products`)
           .then((res) => {
             this.setState({ products: res.data });
             this.setState({ isLoaded: true });
@@ -43,7 +43,7 @@ class Products extends Component {
       } else {
         axios
           .get(
-            `http://localhost:5000/${this.props.match.params.solution_title}/products`
+            `http://localhost:5000/public/${this.props.match.params.solution_title}/products`
           )
           .then((res) => {
             this.setState({ products: res.data });
@@ -58,7 +58,7 @@ class Products extends Component {
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (typeof this.props.match.params.solution_title === "undefined") {
       axios
-        .get(`http://localhost:5000/products`)
+        .get(`http://localhost:5000/public/products`)
         .then((res) => {
           this.setState({ products: res.data });
           this.setState({ isLoaded: true });
@@ -67,7 +67,7 @@ class Products extends Component {
     } else {
       axios
         .get(
-          `http://localhost:5000/${this.props.match.params.solution_title}/products`
+          `http://localhost:5000/public/${this.props.match.params.solution_title}/products`
         )
         .then((res) => {
           this.setState({ products: res.data });

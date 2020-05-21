@@ -8,7 +8,7 @@ const schema = new Schema({
    solution: { type: String, required: true },
    images: { type: Array},
    certifications: { type: Array}
-  
+   
 
 },{
 collection: 'solutions'});

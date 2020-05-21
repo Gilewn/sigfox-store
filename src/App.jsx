@@ -34,7 +34,7 @@ class App extends Component {
 
     window.scrollTo({ top: 0, behavior: "smooth" });
     axios
-      .get(`http://localhost:5000/solutions`)
+      .get(`http://localhost:5000/public/solutions`)
       .then((res) => {
         
         const solutions = res.data;
@@ -46,7 +46,7 @@ class App extends Component {
         console.log(error);
       });
     axios
-      .get(`http://localhost:5000/products`)
+      .get(`http://localhost:5000/public/products`)
       .then((res) => {
        
         const products = res.data;

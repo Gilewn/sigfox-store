@@ -33,14 +33,18 @@ router.post('/logout', logout);
 //router.put('/:id', update);
 //router.delete('/:id', _delete);
 
-router.get('/solutions/', authenticateJWT, getSolutions);
-router.get('/solutions/:id', authenticateJWT, getSolution);
+router.get('/products',authenticateJWT,getProducts);
+router.get('/products/:id',authenticateJWT,getProduct);
+router.delete('/products/:id',authenticateJWT,delete_product);
+
+router.get('/solutions', authenticateJWT, getSolutions);
+router.get('/solutions/:id', authenticateJWT, getSolution); 
 router.post('/solutions',authenticateJWT,create_solution);
 router.delete('/solutions/:id',authenticateJWT,delete_solution);
 router.put('/solutions/:id',authenticateJWT,update_solution);
 
 
-router.get('/products',authenticateJWT, getProducts);
+
 
 
 module.exports = router;
@@ -130,7 +134,25 @@ function update_solution(req, res, next) {
 
 function getProducts(req, res, next) {
    
-    adminService.getProducts(req)
-        .then( solutions => solutions? res.json(solutions[0].products) : res.sendStatus(404))
+    adminService.getProducts()
+        .then( solutions => solutions? res.header({
+            'Content-Range': "30"
+            
+        }).json(solutions[0].products) : res.sendStatus(404))
+        .catch(err => next(err));
+}
+
+
+function getProduct(req, res, next) {
+    adminService.getProduct(req.params.id)
+        .then(product => product ? res.json(product[0].products) : res.sendStatus(404))
+        .catch(err => next(err));
+}   
+
+
+
+function delete_product(req, res, next) {
+    adminService.delete_product(req)
+        .then(() => res.json({}))
         .catch(err => next(err));
 }

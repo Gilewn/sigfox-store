@@ -23,7 +23,7 @@ app.use(Express.urlencoded({
   extended: true
 }));
 
-app.use('/',require('./solutions/solutions.controllers'));
+app.use('/public',require('./solutions/solutions.controllers'));
 app.use('/admins', require('./admins/admins.controllers'));
 app.use('/partners', require('./partners/partner.controllers'));
 

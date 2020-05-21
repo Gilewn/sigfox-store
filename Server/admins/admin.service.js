@@ -24,7 +24,8 @@ module.exports = {
     
     getProducts,
     getProduct,
-    delete_product
+    delete_product,
+    update_product
 
 };
 
@@ -249,7 +250,7 @@ async function update_solution(req) {
 
 
 async function getProducts() {
-    console.log("hello")
+    
    
    return await  Solution.aggregate([ 
         { "$unwind": "$products" },
@@ -281,7 +282,7 @@ async function getProducts() {
 
         async function delete_product(req) {
 
-            product=await   Solution.aggregate([
+            const product = await   Solution.aggregate([
                 {"$match":{"products._id": ObjectId(req.params.id)}},
                 {"$project":{ 
                     _id : 0 ,
@@ -303,3 +304,37 @@ async function getProducts() {
             
             await product.delete();
         }
+
+
+
+        async function update_product(req) {
+
+            const product = await   Solution.aggregate([
+                {"$match":{"products._id": ObjectId(req.params.id)}},
+                {"$project":{ 
+                    _id : 0 ,
+                    
+                    "products" :{
+                    
+                      "$arrayElemAt":[
+                        {"$filter":{
+                          "input":"$products" ,
+                          "cond":{"$eq":["$$this._id",ObjectId(req.params.id)]}
+                        }
+                      },0]
+                    }
+                  }
+                }])
+                if (!product) {
+                    throw 'Product "' + req.paramas.id + '" does not exist ';
+                }
+            
+                var newproduct = {
+                title: req.body.title,
+                image: req.body.image
+            }   
+            Object.assign(product, newproduct);
+        
+            await product.save();
+             }
+        

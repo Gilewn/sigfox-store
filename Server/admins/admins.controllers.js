@@ -33,9 +33,6 @@ router.post('/logout', logout);
 //router.put('/:id', update);
 //router.delete('/:id', _delete);
 
-router.get('/products',authenticateJWT,getProducts);
-router.get('/products/:id',authenticateJWT,getProduct);
-router.delete('/products/:id',authenticateJWT,delete_product);
 
 router.get('/solutions', authenticateJWT, getSolutions);
 router.get('/solutions/:id', authenticateJWT, getSolution); 
@@ -45,6 +42,10 @@ router.put('/solutions/:id',authenticateJWT,update_solution);
 
 
 
+router.get('/products',authenticateJWT,getProducts);
+router.get('/products/:id',authenticateJWT,getProduct);
+router.delete('/products/:id',authenticateJWT,delete_product);
+router.put('/products/:id',authenticateJWT,update_product);
 
 
 module.exports = router;
@@ -149,10 +150,14 @@ function getProduct(req, res, next) {
         .catch(err => next(err));
 }   
 
-
-
 function delete_product(req, res, next) {
     adminService.delete_product(req)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function update_product(req, res, next) {
+    adminService.update_product(req)
         .then(() => res.json({}))
         .catch(err => next(err));
 }

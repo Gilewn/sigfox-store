@@ -233,7 +233,7 @@ class ProductPage extends Component {
                       <MDBView>
                         <img
                           className="d-block w-100"
-                          src={image}
+                          src={image.url}
                           alt={"photo" + index}
                         />
                         <MDBMask overlay="black-light" />
@@ -410,7 +410,7 @@ class ProductPage extends Component {
                         <MDBView>
                           <img
                             className="d-block w-100"
-                            src={product.images[0]}
+                            src={product.images[0].url}
                             alt={"photo" + index}
                           />
                           <MDBMask overlay="black-slight" />

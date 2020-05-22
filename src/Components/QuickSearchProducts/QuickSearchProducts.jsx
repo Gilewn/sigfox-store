@@ -8,7 +8,7 @@ const QuickSearchProducts = (props) => {
         <div className="card-container">
             <Link to={{ pathname: `/${props.item._id}` }}>
                 <div className='card-image'>
-                    <img src={props.item.images[0]} alt="product" />
+                    <img src={props.item.images[0].url} alt="product" />
                 </div>
                 <div className='card-title-description'>
                     <h1>{props.item.title}</h1>

@@ -33,9 +33,6 @@ const refreshTokens = [];
 
 
 
-
-
-
 async function login(username, password) {
     const admin = await Admin.findOne({
         username
@@ -48,7 +45,7 @@ async function login(username, password) {
         const accessToken = jwt.sign({
             sub: admin.id
         }, config.accessTokenSecret, {
-            expiresIn: '1m'
+            expiresIn: '10m'
         });
         const refreshToken = jwt.sign({
             sub: admin.id
@@ -99,8 +96,6 @@ async function logout(req, res) {
         res.send("Error");
     }
 }
-
-
 
 
 async function getById(id) {
@@ -158,11 +153,11 @@ async function _delete(id) {
 }
 
 
+
+
 async function getSolutions() {
     return await Solution.find({},{products:0})
 }
-
-
 
 
 async function getSolution(id) {
@@ -170,10 +165,6 @@ async function getSolution(id) {
         "_id": id
     })
 }
-
-
-
-
 
 async function create_solution(req) {
 
@@ -208,34 +199,9 @@ async function update_solution(req) {
         _id: req.params.id
     })
 
-    console.log(req.body);
-
     if (!solution) {
         throw 'Solution "' + req.paramas.id + '" does not exist ';
     }
-    
-
-    /*if (typeof (req.body.new_image) == 'undefined' && typeof (req.body.new_title) == 'undefined') {
-        var newsolution = {
-            title: solution.title,
-            image: solution.image
-        }
-    } else if (typeof (req.body.new_image) == 'undefined') {
-        var newsolution = {
-            title: req.body.new_title,
-            image: solution.image
-        }
-    } else if (typeof (req.body.new_title) == 'undefined') {
-        var newsolution = {
-            title: solution.title,
-            image: req.body.new_image
-        }
-    } else {
-        var newsolution = {
-            title: req.body.new_title,
-            image: req.body.new_image
-        }
-    }*/
     var newsolution = {
         title: req.body.title,
         image: req.body.image
@@ -243,70 +209,60 @@ async function update_solution(req) {
     Object.assign(solution, newsolution);
 
     await solution.save();
-
-
-}
-
-
-
+    }
+    
 async function getProducts() {
     
-   
-   return await  Solution.aggregate([ 
-        { "$unwind": "$products" },
-        {"$group": {_id:null, products : { $push: '$products' }}}])
+ return await  Solution.aggregate([ 
+             { "$unwind": "$products" },
+             {"$group": {_id:null, products : { $push: '$products' }}}])
+         }
+
+
+async function getProduct(id) {
+        
+    return await  Solution.aggregate([
+              {"$match":{"products._id": ObjectId(id)}},
+              {"$project":{ 
+                  _id : 0 ,
+                  "products" :{
+                  "$arrayElemAt":[
+                      {"$filter":{
+                        "input":"$products" ,
+                        "cond":{"$eq":["$$this._id",ObjectId(id)]}
+                      }
+                    },0]
+                  }
+                }
+              }])
+            }
+            
+            
+ async function delete_product(req) {
+    
+    const product = await Solution.find({
+        "products._id": ObjectId(req.params.id)
+    })
+    console.log(product)
+    if (!product) {
+        throw 'Product "' + req.paramas.id + '" does not exist ';
     }
 
 
-
-    async function getProduct(id) {
-        return await  Solution.aggregate([
-          {"$match":{"products._id": ObjectId(id)}},
-          {"$project":{ 
-              _id : 0 ,
-              
-              "products" :{
-              
-                "$arrayElemAt":[
-                  {"$filter":{
-                    "input":"$products" ,
-                    "cond":{"$eq":["$$this._id",ObjectId(id)]}
-                  }
-                },0]
-              }
-            }
-          }])
-        }
-        
-        
-
-        async function delete_product(req) {
-
-            const product = await   Solution.aggregate([
-                {"$match":{"products._id": ObjectId(req.params.id)}},
-                {"$project":{ 
-                    _id : 0 ,
-                    
-                    "products" :{
-                    
-                      "$arrayElemAt":[
-                        {"$filter":{
-                          "input":"$products" ,
-                          "cond":{"$eq":["$$this._id",ObjectId(req.params.id)]}
-                        }
-                      },0]
-                    }
-                  }
-                }])
-                if (!product) {
-                    throw 'Product "' + req.paramas.id + '" does not exist ';
-                }
-            
-            await product.delete();
-        }
+    }
+   
+   
+   
+    
+    
 
 
 
+
+
+    
+
+       
         async function update_product(req) {
 
             const product = await   Solution.aggregate([
@@ -338,3 +294,24 @@ async function getProducts() {
             await product.save();
              }
         
+            /*const product = await Solution.aggregate([
+                {"$match":{"products._id": ObjectId(req.params.id)}},
+                {"$project":{ 
+                    _id : 0 ,
+                    
+                    "products" :{
+                    
+                      "$arrayElemAt":[
+                        {"$filter":{
+                          "input":"$products" ,
+                          "cond":{"$eq":["$$this._id",ObjectId(req.params.id)]}
+                        }
+                      },0]
+                    }
+                  }
+                }])
+                if (!product) {
+                    throw 'Product "' + req.paramas.id + '" does not exist ';
+                }
+            
+            await product.delete();*/

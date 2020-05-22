@@ -113,6 +113,7 @@ class Products extends Component {
   };
 
   render() {
+    console.log(this.state.products);
     if (this.state.isLoaded === false) {
       return <NotFound />;
     }
@@ -134,7 +135,7 @@ class Products extends Component {
                     <MDBCard>
                       <MDBCardImage
                         className="img-fluid"
-                        src={product.images[0]}
+                        src={product.images[0].url}
                         waves
                       />
                       <MDBCardBody>

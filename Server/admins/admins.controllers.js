@@ -44,6 +44,7 @@ router.put('/solutions/:id',authenticateJWT,update_solution);
 
 router.get('/products',authenticateJWT,getProducts);
 router.get('/products/:id',authenticateJWT,getProduct);
+router.post('/products',authenticateJWT,createProduct);
 router.delete('/products/:id',authenticateJWT,delete_product);
 router.put('/products/:id',authenticateJWT,update_product);
 
@@ -148,7 +149,18 @@ function getProduct(req, res, next) {
     adminService.getProduct(req.params.id)
         .then(product => product ? res.json(product[0].products) : res.sendStatus(404))
         .catch(err => next(err));
+}  
+
+
+function createProduct(req, res, next) {
+    adminService.createProduct(req)
+         .then(() => res.json({}))
+        .catch(err => next(err));
 }   
+
+
+
+
 
 function delete_product(req, res, next) {
     adminService.delete_product(req)

@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const Admin = db.Admin;
 const Solution = db.Solution;
+const Product = db.Product;
 const ObjectId = require("mongodb").ObjectID;
 
 
@@ -24,8 +25,10 @@ module.exports = {
     
     getProducts,
     getProduct,
+    createProduct,
     delete_product,
-    update_product
+
+    //update_product
 
 };
 
@@ -236,20 +239,38 @@ async function getProduct(id) {
                 }
               }])
             }
+
+async function createProduct(req){
+
+    product = new Product(req.body)
+    return await Solution.update({title:req.body.solution},{"$push":{"products": product}})
+   
+}
+
+
+
+
             
-            
- async function delete_product(req) {
+async function delete_product(req) {
+   
+   return await Solution.update(
+        { },
+        { 
+            "$pull": { 
+                "products": { 
+                    "_id":ObjectId(req.params.id)
+                }
+            } 
+        },
+        { "multi": true }
+    );
     
-    const product = await Solution.find({
-        "products._id": ObjectId(req.params.id)
-    })
-    console.log(product)
-    if (!product) {
-        throw 'Product "' + req.paramas.id + '" does not exist ';
-    }
+} 
+    
+  
 
 
-    }
+    
    
    
    
@@ -263,7 +284,13 @@ async function getProduct(id) {
     
 
        
-        async function update_product(req) {
+        
+
+
+
+
+
+/*async function update_product(req) {
 
             const product = await   Solution.aggregate([
                 {"$match":{"products._id": ObjectId(req.params.id)}},

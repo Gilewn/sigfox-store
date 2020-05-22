@@ -14,5 +14,6 @@ mongoose.Promise = global.Promise;
 module.exports = {
    Admin: require('../admins/admin.model'),
    Solution :require('../solutions/solutions.model'),
-   Partner:require('../partners/partner.model')
+   Partner:require('../partners/partner.model'),
+   Product:require('../products/product.model')
 };
